@@ -1,0 +1,10 @@
+# ISO Files
+*.iso
+
+# Disk files
+*.qcow2
+*.img
+
+# Data files
+*.raw
+
