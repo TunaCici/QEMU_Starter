@@ -11,7 +11,7 @@ $ brew install qemu
 
 ## GNU/Linux - Debian (ARM64)
 ```bash
-$ sudo apt install qemu qemu-efi-aarch64
+$ sudo apt install qemu qemu-utils qemu-efi-aarch64 qemu-system-arm
 ```
 ## GNU/Linux - Debian (x86_64)
 ```bash
