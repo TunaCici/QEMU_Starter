@@ -25,7 +25,7 @@ function print_msg() {
 
 QEMU_BIN=qemu-system-aarch64
 
-ISO_PATH="../ISOs/ubuntu-22.04.1-live-server-arm64.iso"
+ISO_PATH="../ISOs/archboot-2023.05.03-15.04-aarch64.iso"
 DISK_PATH="./disk0.qcow2"
 
 EFI_FLASH_PATH="../Firmwares/edk2-aarch64-code.fd"
