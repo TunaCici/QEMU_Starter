@@ -46,7 +46,7 @@ SMP="-smp 2"
 
 MEMORY="-m 4G"
 
-EFI_FLASH="-drive if=pflash,format=raw,readonly,file=${EFI_FLASH_PATH}"
+EFI_FLASH="-drive if=pflash,format=raw,readonly=on,file=${EFI_FLASH_PATH}"
 EFI_VARS="-drive if=pflash,format=raw,file=${EFI_VARS_PATH}"
 
 DISK_0="-drive media=cdrom,file=${ISO_PATH}"
