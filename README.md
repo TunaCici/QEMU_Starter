@@ -1,6 +1,9 @@
 # QEMU_Starter
 Guides, tutorials and example scripts that aims to help new QEMU users.
 
+# Terminology
+@TODO: List some of the most common terminologies used when dealing with QEMU, emulators and virtual machines. Also add definitions >.<
+
 # What is QEMU?
 Quick EMUlator (QEMU) is a generic Free and Open-Source machine emulator and virtualizer[^1].
 @TODO: Briefly talk about why it is neede, who uses it, how to use it and talk a bit about emulation and virtualization.
