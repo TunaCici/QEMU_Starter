@@ -14,7 +14,7 @@ Quick EMUlator (QEMU) is a generic Free and Open-Source machine emulator and vir
 ### KVM, Hyperviser.framework and Hyper-V
 @TODO: Talk about these hyperviseres. Intel VT-X and AMD-V should be mentioned as well.
 
-### Operation Modes
+## Operation Modes
 @TODO: QEMU can be in different modes. Full-system-emulation, user-mode-emulation, virtualization, Xen. Talk about them briefly.
 
 # Requirements
@@ -71,7 +71,7 @@ $ qemu-system-aarch64 -machine virt -cpu cortex-a53 -kernel installer-linux -nog
 ## Memory
 @TODO: Give information about the '-memory' argument.
 
-## Devices
+## Devices[^2]
 @TODO: Give information about the '-device' argument. There are tons of different devices (for ex. virtio). Find a way talk about all of them without boring the reader.
 
 ## Display
@@ -93,3 +93,4 @@ $ qemu-system-aarch64 -machine virt -cpu cortex-a53 -kernel installer-linux -nog
 @TODO: Give an average configration that create an example Windows machine.
 
 [^1]: https://www.qemu.org/docs/master/about/index.html
+[^2]: https://blogs.oracle.com/linux/post/introduction-to-virtio
