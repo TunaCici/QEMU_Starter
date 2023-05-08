@@ -2,7 +2,20 @@
 Guides, tutorials and example scripts that aims to help new QEMU users.
 
 # What is QEMU?
+Quick EMUlator (QEMU) is a generic Free and Open-Source machine emulator and virtualizer[^1].
 @TODO: Briefly talk about why it is neede, who uses it, how to use it and talk a bit about emulation and virtualization.
+
+## Emulation
+@TODO: Talk about emulation in general and then associate it with QEMU.
+
+## Virtualization
+@TODO: Talk about virtualization in general and how it is handled in QEMU.
+
+### KVM, Hyperviser.framework and Hyper-V
+@TODO: Talk about these hyperviseres. Intel VT-X and AMD-V should be mentioned as well.
+
+### Operation Modes
+@TODO: QEMU can be in different modes. Full-system-emulation, user-mode-emulation, virtualization, Xen. Talk about them briefly.
 
 # Requirements
 Each Architecture, OS or Distro has its own requirements.
@@ -79,3 +92,4 @@ $ qemu-system-aarch64 -machine virt -cpu cortex-a53 -kernel installer-linux -nog
 # Example 3: Windows 11 ARM64
 @TODO: Give an average configration that create an example Windows machine.
 
+[^1]: https://www.qemu.org/docs/master/about/index.html
