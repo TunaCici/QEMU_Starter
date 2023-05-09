@@ -13,7 +13,7 @@ Hypervisor: @TODO: Add def.
 
 # What is QEMU?
 Quick EMUlator (QEMU) is a generic Free and Open-Source machine emulator and virtualizer[^1]. It can fully emulate CPUs, Instruction Sets, I/O Devices and other common hardware devices.
-QEMU also supports virtualization with near-native performance using accelerators such as KVM, Hypervisor.Framework and Hyperviser-V. 
+QEMU also supports virtualization with near-native performance using accelerators such as Linux's KVM, Apple's Hypervisor.Framework and Microsoft's Hyper-V. 
 
 With those features QEMU can be used for[^2]:
 * **Software Dev**.: Run and test your software on different OSes and platforms.
@@ -41,7 +41,7 @@ Anyone who is looking for a Quick™ and headache-free experince to create Virtu
 ## Virtualization
 @TODO: Talk about virtualization in general and how it is handled in QEMU.
 
-### KVM, Hyperviser.framework and Hyper-V
+### KVM, Hyperviser.Framework and Hyper-V
 @TODO: Talk about these hyperviseres. Intel VT-X and AMD-V should be mentioned as well.
 
 ## Operation Modes
