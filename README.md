@@ -1,29 +1,39 @@
-# QEMU_Starter
-Guides, tutorials and example scripts that aims to help new QEMU users.
+# Motivation
+This guide welcomes all adventurers seeking knowledge and excitement in the world of QEMU! While it may seem challenging at first, the journey will be worth it [and fun], teaching you valuable lessons along the way <3
+
+@TODO: This part sounds a bit cringe. Maybe change it or remove it completely (?)
 
 # Terminology
-@TODO: List some of the most common terminologies used when dealing with QEMU, emulators and virtual machines. Also add definitions >.<
+```plain
+Host: @TODO: Add def.
+Guest: @TODO: Add def.
+Hypervisor: @TODO: Add def.
+...
+```
 
 # What is QEMU?
 Quick EMUlator (QEMU) is a generic Free and Open-Source machine emulator and virtualizer[^1]. It can fully emulate CPUs, Instruction Sets, I/O Devices and other common hardware devices.
-QEMU also supports virtualization with near-native performance using accelerators such as KVM, Hypervisor.Framework and Hyperviser-V. With those features QEMU can be used on:
-[*] Software Dev.: Run and test your software on different OSes and platforms.
-[*] OS & Driver Dev.: Develop operating systems and/or drivers without the actual hardware. 
-[*] Virtual Machines: Run multiple OSes with near-native performance.
-[*] Embedded Systems: Emulate the target hardware and test your software without using the real hardware.
-[*] Legacy Softwares: Run legacy or unsupported application.
-[*] Security Research: Fiddle with malwares and explore vulnerabilities in an isolated environment. 
+QEMU also supports virtualization with near-native performance using accelerators such as KVM, Hypervisor.Framework and Hyperviser-V. 
+
+With those features QEMU can be used for[^2]:
+* **Software Dev**.: Run and test your software on different OSes and platforms.
+* **OS & Driver Dev.**: Develop operating systems and/or drivers without the actual hardware. []
+* **Virtual Machines**: Run multiple OSes with near-native performance.
+* **Embedded Systems**: Emulate the target hardware and test your software without using the real hardware.
+* **Legacy Softwares**: Run legacy or unsupported application.
+* **Security Research**: Fiddle with malwares and explore vulnerabilities in an isolated environment. 
 
 ## Who is QEMU For?
 Basically: it Depends™. QEMU is an extremely versatile tool. It has a very steep learning curve. If you have the time, dedication and are looking for an emulator or a virtualizer then QEMU is exactly for you!
 
-```bash
-# Anyone who is looking to learn more about software & hardware while having some fun is also welcome! QEMU is ratherwsshard but you will learn a lot. 
-```
+> Anyone who is looking for an adventure and want to learn more about software & hardware is welcome! QEMU is rather hard at first but in the end it will all be worth it and it will teach you a lot <3
 
 ## Who is QEMU NOT For?
-Anyone who is looking for a Quick™ and headache-free experince to create Virtual Machines and/or Emulated Systems. This documentation tries to help beginners and new users with QEMU. But, it still requires time
-and attention when using it. And if you are looking for an easy-to-use virtual machine, there are other great tools out there in the wild (VirtualBox, VMWare, Paralles and etc.).
+Anyone who is looking for a Quick™ and headache-free experince to create Virtual Machines and/or Emulated Systems.
+
+> If you are looking for an easy-to-use virtual machine QEMU is not the place. There are other great tools out there in the wild (ex. VirtualBox[^3], VMWare[^4], Parallels[^5]).
+
+
 
 ## Emulation
 @TODO: Talk about emulation in general and then associate it with QEMU.
@@ -91,7 +101,7 @@ $ qemu-system-aarch64 -machine virt -cpu cortex-a53 -kernel installer-linux -nog
 ## Memory
 @TODO: Give information about the '-memory' argument.
 
-## Devices[^2]
+## Devices[^3]
 @TODO: Give information about the '-device' argument. There are tons of different devices (for ex. virtio). Find a way talk about all of them without boring the reader.
 
 ## Display
@@ -113,4 +123,8 @@ $ qemu-system-aarch64 -machine virt -cpu cortex-a53 -kernel installer-linux -nog
 @TODO: Give an average configration that create an example Windows machine.
 
 [^1]: https://www.qemu.org/docs/master/about/index.html
-[^2]: https://blogs.oracle.com/linux/post/introduction-to-virtio
+[^2]: https://en.wikipedia.org/wiki/QEMU#Accelerator
+[^3]: https://www.virtualbox.org
+[^4]: https://www.vmware.com/products/workstation-player.html
+[^5]: https://www.parallels.com
+[^6]: https://blogs.oracle.com/linux/post/introduction-to-virtio
