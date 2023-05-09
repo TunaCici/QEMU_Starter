@@ -17,10 +17,10 @@ QEMU also supports virtualization with near-native performance using accelerator
 
 With those features QEMU can be used for[^2]:
 * **Software Dev**.: Run and test your software on different OSes and platforms.
-* **OS & Driver Dev.**: Develop operating systems and/or drivers without the actual hardware. []
+* **OS & Driver Dev.**: Develop operating systems and/or drivers without the actual hardware. (x86_64, ARM64, PowerPC)
 * **Virtual Machines**: Run multiple OSes with near-native performance.
 * **Embedded Systems**: Emulate the target hardware and test your software without using the real hardware.
-* **Legacy Softwares**: Run legacy or unsupported application.
+* **Legacy Softwares**: Run legacy or unsupported application. (Classic Macintosh, Windows 95)
 * **Security Research**: Fiddle with malwares and explore vulnerabilities in an isolated environment. 
 
 ## Who is QEMU For?
