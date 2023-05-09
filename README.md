@@ -5,8 +5,25 @@ Guides, tutorials and example scripts that aims to help new QEMU users.
 @TODO: List some of the most common terminologies used when dealing with QEMU, emulators and virtual machines. Also add definitions >.<
 
 # What is QEMU?
-Quick EMUlator (QEMU) is a generic Free and Open-Source machine emulator and virtualizer[^1].
-@TODO: Briefly talk about why it is neede, who uses it, how to use it and talk a bit about emulation and virtualization.
+Quick EMUlator (QEMU) is a generic Free and Open-Source machine emulator and virtualizer[^1]. It can fully emulate CPUs, Instruction Sets, I/O Devices and other common hardware devices.
+QEMU also supports virtualization with near-native performance using accelerators such as KVM, Hypervisor.Framework and Hyperviser-V. With those features QEMU can be used on:
+[*] Software Dev.: Run and test your software on different OSes and platforms.
+[*] OS & Driver Dev.: Develop operating systems and/or drivers without the actual hardware. 
+[*] Virtual Machines: Run multiple OSes with near-native performance.
+[*] Embedded Systems: Emulate the target hardware and test your software without using the real hardware.
+[*] Legacy Softwares: Run legacy or unsupported application.
+[*] Security Research: Fiddle with malwares and explore vulnerabilities in an isolated environment. 
+
+## Who is QEMU For?
+Basically: it Depends™. QEMU is an extremely versatile tool. It has a very steep learning curve. If you have the time, dedication and are looking for an emulator or a virtualizer then QEMU is exactly for you!
+
+```bash
+# Anyone who is looking to learn more about software & hardware while having some fun is also welcome! QEMU is ratherwsshard but you will learn a lot. 
+```
+
+## Who is QEMU NOT For?
+Anyone who is looking for a Quick™ and headache-free experince to create Virtual Machines and/or Emulated Systems. This documentation tries to help beginners and new users with QEMU. But, it still requires time
+and attention when using it. And if you are looking for an easy-to-use virtual machine, there are other great tools out there in the wild (VirtualBox, VMWare, Paralles and etc.).
 
 ## Emulation
 @TODO: Talk about emulation in general and then associate it with QEMU.
