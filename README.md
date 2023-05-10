@@ -4,11 +4,22 @@ This guide welcomes all adventurers seeking knowledge and excitement in the worl
 @TODO: This part sounds a bit cringe. Maybe change it or remove it completely (?)
 
 # Terminology
+There are many terminologies used in the guide. Here are some of the most important ones. Do note that these definitions are not 100% formal and only gives an abstract view.
+
+@TODO: Maybe fix this area? Simplify it? Move it somewhere else? Give references/sources.
 ```plain
-Host: @TODO: Add def.
-Guest: @TODO: Add def.
-Hypervisor: @TODO: Add def.
-...
+Machine: The real-world hardware that the host runs on.
+Operating System (OS): The software that manages the hardware resources.
+Host: The OS/machine running the emulation/virtualization. (Ex. MacOS/MacBook) 
+Guest: The virtualized/emulated software that runs on the host operating system. (Ex. Windows XP)
+Emulation: The process of imitating real-world hardware devices or systems (CPU, I/O, Network; ARM64, PlayStation) using software.
+Emulator: The software/system that does the emulation. (Ex. QEMU)
+Virtualization: The process of creating isolated environments for OS and kernels.
+Virtualizor: The software/system that does the virtualization. (Ex. QEMU, VirtualBox);
+Virtul Machine: Same as virtualizor. Additionaly comes with set of helpful tools. (Ex. VBox Guest Additions)
+Hypervisor (Type 1): The software/hardware layer that enables virtualization on OS/Kernel level. [^Further def. is needed]
+Hypervisor (Type 2): Same as emulator and virtualizor.
+Hardware Acceleration: The utilization of the host's hardware to speed-up virtualization. (Ex. Intel VT-x, AMD-V)
 ```
 
 # What is QEMU?
