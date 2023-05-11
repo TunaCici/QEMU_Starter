@@ -112,6 +112,9 @@ $ qemu-system-aarch64 -machine virt -cpu cortex-a53 -kernel installer-linux -nog
 ## Memory
 @TODO: Give information about the '-memory' argument.
 
+## Disks
+@TODO: Give information about  the '-drive' and '-cdrom' arguments. This may be relate to `qemu-img`.
+
 ## Devices[^7]
 @TODO: Give information about the '-device' argument. There are tons of different devices (for ex. virtio). Find a way talk about all of them without boring the reader.
 
@@ -124,13 +127,13 @@ $ qemu-system-aarch64 -machine virt -cpu cortex-a53 -kernel installer-linux -nog
 ## Accelerator
 @TODO: Give information about the '-accel' argument. Talk about KVM, Hypervisor.framework and Hyperviser-V.
 
-# Example 1: Ubuntu 22.04 ARM64
+# Example 1: Ubuntu 22.04 Guest
 @TODO: Give an average configration that creates an example Ubuntu machine.
 
-# Example 2: Arch Linux ARM64
+# Example 2: Arch Linux Guest
 @TODO: Give an average configration that creates an example machine that is able to boot ArchLinux.
 
-# Example 3: Windows 11 ARM64
+# Example 3: Windows 11 Guest
 @TODO: Give an average configration that create an example Windows machine.
 
 [^1]: https://www.qemu.org/docs/master/about/index.html
