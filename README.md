@@ -44,7 +44,7 @@ Anyone who is looking for a Quick™ and headache-free experince to create Virtu
 
 > If you are looking for an easy-to-use virtual machine QEMU is not the place. There are other great tools out there in the wild (ex. VirtualBox[^3], VMWare[^4], Parallels[^5]).
 
-
+[Additional [ELI5] Info on Emulation/Virtualization](https://medium.com/@tunacici7/virtualization-vs-emulation-4ab2afdb1b90)
 
 ## Emulation
 @TODO: Talk about emulation in general and then associate it with QEMU.
