@@ -55,7 +55,7 @@ Anyone who is looking for a Quick™ and headache-free experince to create Virtu
 ### KVM, Hyperviser.Framework and Hyper-V
 @TODO: Talk about these hyperviseres. Intel VT-X and AMD-V should be mentioned as well.
 
-## Operation Modes
+## Operation Modes [^6]
 @TODO: QEMU can be in different modes. Full-system-emulation, user-mode-emulation, virtualization, Xen. Talk about them briefly.
 
 # Requirements
@@ -112,7 +112,7 @@ $ qemu-system-aarch64 -machine virt -cpu cortex-a53 -kernel installer-linux -nog
 ## Memory
 @TODO: Give information about the '-memory' argument.
 
-## Devices[^3]
+## Devices[^7]
 @TODO: Give information about the '-device' argument. There are tons of different devices (for ex. virtio). Find a way talk about all of them without boring the reader.
 
 ## Display
@@ -138,4 +138,5 @@ $ qemu-system-aarch64 -machine virt -cpu cortex-a53 -kernel installer-linux -nog
 [^3]: https://www.virtualbox.org
 [^4]: https://www.vmware.com/products/workstation-player.html
 [^5]: https://www.parallels.com
-[^6]: https://blogs.oracle.com/linux/post/introduction-to-virtio
+[^6]: https://en.wikipedia.org/wiki/QEMU#Operating_modes
+[^7]: https://blogs.oracle.com/linux/post/introduction-to-virtio
