@@ -8,7 +8,7 @@ This guide welcomes all adventurers seeking knowledge and excitement in the worl
 
 There are many terminologies used in the guide. Here are some of the most important ones. Do note that these definitions are not 100% formal and only gives an abstract view.
 
-@TODO: Maybe fix this area? Simplify it? Move it somewhere else? Give references/sources.
+@TODO: Maybe fix this area? Simplify it? Move it somewhere else?
 
 ```plain
 Machine: The real-world hardware that the host runs on.
