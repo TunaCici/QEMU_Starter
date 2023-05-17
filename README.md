@@ -49,7 +49,7 @@ Emulation [in computers] is the method of imitating a software, hardware or a sy
 
 With QEMU we can achieve different kinds of emulations: [^7]
 
-- **Architecture/CPU Emulation**: It can emulate different CPU architectures on different machines using `Tiny Code Generator`. (Ex. ARM64 on x86_64) [^8]
+- **Architecture/CPU Emulation**: It can emulate different CPU architectures on different machines using `Tiny Code Generator (TCG)`. (Ex. ARM64 on x86_64) [^8]
 - **User-Mode Emulation**: Allows running binaries compiled for different CPU architectures. (Ex. ELF-AARCH64 on GNU/Linux x86_64) [^9] [Further_Explanation_Needed]
 - **Device Emulation**: Many of the popular real-world and virtual devices be emulated by QEMU. (Ex. USB, Network Cards, NVMe etc.) [^10]
 - **Full-System Emulation**: The full emulation of a system including CPU, Memory, I/O and etc. (Ex. GNU/Linux, MS-DOS, PowerPC, Raspberry Pi) [^11]
