@@ -38,7 +38,7 @@ This guide welcomes all adventurers seeking knowledge and excitement in the worl
   - [CPU](#cpu)
   - [Memory](#memory)
   - [Disks](#disks)
-  - [Devices^39](#devices39)
+  - [Devices^41](#devices41)
   - [Display](#display)
   - [BIOS \& UEFI](#bios--uefi)
   - [Accelerator](#accelerator)
@@ -216,7 +216,7 @@ Launch `Task Manager`, switch to `Performance` tab and check the value of `Virtu
 
 # Installation
 
-@TODO: What do?
+The following sections gives a step-by-step tutorial on how to install QEMU and it's utilities. Note that you need an active internet connection to download some packages.
 
 ## GNU/Linux
 
@@ -226,31 +226,253 @@ Each distro uses different package managers. In the following sections only the 
 
 ### ArchLinux (pacman)
 
-@TODO: General steps to follow on ArchLinux.
+The below commands should be run as the `root` user. Proceed with cauiton!
+
+**Step 1 - Update your sources**
+
+```bash
+$ pacman -Syy
+
+# Output will look like this
+> :: Synchronizing package databases...
+> core          154.3 KiB   304 KiB/s 00:01 [###########] 100%
+> extra        1766.3 KiB  6.23 MiB/s 00:00 [###########] 100%
+> community       7.4 MiB  9.62 MiB/s 00:01 [###########] 100%
+```
+
+**Step 2 - Install the `qemu-full` package** \
+This will install everything QEMU has to offer. EFI, GUI, user-mode emulation and etc.
+
+```bash
+$ pacman -S qemu-full
+
+# Output will look similiar to this
+> resolving dependecies...
+> looking for conflicting packages..
+
+> Packages (41) edk2-aarch64-202302-1 ....
+>               ...
+>               qemu-full-8.0.0-1
+>
+> Total Download Size:      105.25 MiB
+> Total INstalled Size:     785.45 MiB
+>
+> :: Proceed with installation? [Y/n] y
+```
+
+**Step 3 - Proceed with `y` and wait for `pacman` to finish**
+
+```bash
+# Grab some coffee or an energy drink in the mean time >.<
+```
+
+**Step 4 - Check if `qemu-full` is installed**
+
+```bash
+$ qemu-img --version
+
+# Output will look like this
+> qemu-img version 8.0.0
+> Copyright (c) 2003-2022 Fabrice Bellard and the QEMU Project developers
+
+$ qemu-system-x86_64 --version
+
+# Output will look like this
+> QEMU emulator version 8.0.0
+> Copyright (c) 2003-2022 Fabrice Bellard and the QEMU Project developers
+
+$ qemu-aarch64 --version
+
+# Output will look like this
+> qemu-aarch64 version 8.0.0
+> Copyright (c) 2003-2022 Fabrice Bellard and the QEMU Project developers
+```
+
+💚 If the above commands **worked** then congrats, you successfuly installed QEMU! 💚 \
+🔴 If you ran into any **problems** feel free to contact me or create an issue. 🔴
 
 ### Ubuntu/Debian (apt)
 
-@TODO: General steps to follow on Debian.
+The below commands should be run as either as `root` user or using `sudo`. Proceed with caution!
+
+**Step 1 - Update the repositories**
 
 ```bash
-$ sudo apt install qemu qemu-utils qemu-efi-aarch64 qemu-system-arm
+$ apt update
+
+# Output will look like this
+> Get:1 http://us.archive.ubuntu,com/ubuntu...
+> ...
+> Get:15 http://us.archive.ubuntu.com/ubuntu...
+> Fetched 3.300 kB in 3s (1.297 kb/s)
+> Reading package lists... Done
+> ...
+> All packages are up to date.
 ```
+
+**Step 2 - Install the `qemu-system`, `qemu-user` and `qemu-utils` packages**
+
+```bash
+$ apt install qemu-system qemu-user qemu-utils
+
+# Output will look similiar to this
+> ...
+> The folowing NEW packages will be installed:
+>   ibverbs-providers ipxe-qemu ...
+>   ...
+>   qemu-system-x86 qemu-user qemu-utils seabios
+> 0 upgraded 44 newly installed, ...
+> Need to get 122 MB of archives.
+> After this operation 880 MB of additional disk space will be used.
+> Do you want to continue [Y/n] y
+```
+
+**Step 3 - Proceed with `y` and wait for `apt` to finish**
+
+```bash
+# Grab some coffee or an energy drink in the mean time >.<
+```
+
+**Step 4 - Check if `qemu-system`, `qemu-user` and `qemu-utils` is installed**
+
+```bash
+$ qemu-img --version
+
+# Output will look like this
+> qemu-img version 6.2.0 (Debian 1:6.2+dfsg-2ubuntu6.8)
+> Copyright (c) 2003-2021 Fabrice Bellard and the QEMU Project developers
+
+$ qemu-system-x86_64 --version
+
+# Output will look like this
+> QEMU emulator version 6.2.0 (Debian 1:6.2+dfsg-2ubuntu6.8)
+> Copyright (c) 2003-2021 Fabrice Bellard and the QEMU Project developers
+
+$ qemu-aarch64 --version
+
+# Output will look like this
+> qemu-aarch64 version 6.2.0 (Debian 1:6.2+dfsg-2ubuntu6.8)
+> Copyright (c) 2003-2021 Fabrice Bellard and the QEMU Project developers
+```
+
+💚 If the above commands **worked** then congrats, you successfuly installed QEMU! 💚 \
+🔴 If you ran into any **problems** feel free to contact me or create an issue. 🔴
 
 ## Windows 10/11
 
-@TODO: Maybe later (?)
+There are fundemantally two ways to 'natively' install QEMU on Windows platforms: `MSYS2` or `Installers`. We will use the latter one, as it's easier and more straightforward.
 
-```plain
-:(
+> The `binaries/installers` are provided by Stefen Weil [^39]
+
+**Step 1 - Download the `Installer` from QEMU's File Servers** \
+For Windows 32-Bit: https://qemu.weilnetz.de/w32 \
+For Windows 64-Bit: https://qemu.weilnetz.de/w64 \
+Alternatively (Both): https://www.qemu.org/download/#windows
+
+> The file we are looking for looks like this: `qemu-w64-setup-20230424.exe`
+
+**Step 2 - Follow The Setup Wizard**
+
+Simply follow the instructions on the `Installer`. Make sure to select **ALL** components when installing.
+
+Also, **DO NOT FORGET** the install location! We will use it on the next step.
+
+```bash
+# Your selected components should look like this
+> [X] QEMU
+> [X] Tools
+> [X] System emulation
+> [X] Desktop icons
+> [X] DLL Library
+> [X] Documentation
+> [X] Program Group
 ```
+
+**Step 3 - Add QEMU to Environment `PATH` Variable**
+
+Right now QEMU is installed. However, we need to it to the `PATH` variable. So that we can access `qemu-system`, `qemu-img` and other QEMU related binaries.
+
+- Select **Start**, enter `Environment`, and select `Edit the system environment variables` from the list of results.
+
+- In the `System Properties` window that just opened, find `Environment Variables` and select it.
+
+- In the `Environment Variables` window that just opened, find `Path` under the `System variables` tab and select it.
+
+- In the `Edit environment variable` window that just opened, select `New` and enter the QEMU's installation path.
+
+- After all that select `OK`, and `OK` again to **save & exit**.
+
+> By default, the QEMU installation path is `C:\Program Files\qemu`.
+
+**Step 4 - Check if `QEMU` is installed**
+
+Now, launch a `Terminal` window and test if QEMU is installed and `PATH` variable is correctly set-up.
+
+```powershell
+$ qemu-img.exe --version
+
+# Output will look like this
+> qemu-img version 8.0.0 (v8.0.0-12024-gd6b71850be-dirty)
+> Copyright (c) 2003-2022 Fabrice Bellard and the QEMU Project developers
+
+$ qemu-system-x86_64.exe --version
+
+# Output will look like this
+> QEMU emulator version 8.0.0 (v8.0.0-12024-gd6b71850be-dirty)
+> Copyright (c) 2003-2022 Fabrice Bellard and the QEMU Project developers
+```
+
+> Unfortunately, QEMU does not support user-mode emulation on Windows 10/11 yet.[^40]
+
+> You might get an error like _'qemu-img' is not recognized as an internal or extarnel command,..._ Make sure that your `PATH` variable is set-up correctly.
+
+💚 If the above commands **worked** then congrats, you successfuly installed QEMU! 💚 \
+🔴 If you ran into any **problems** feel free to contact me or create an issue. 🔴
 
 ## macOS 11+ (Big Sur)
 
-@TODO: How to test it (?)
+The most common way to install QEMU on macOS is via `brew`. The installation process is rather straightforward. Just follow the below steps.
 
-```bash
+**Step 1 - Install `brew` if you don't already have it. Otherwise skip!** \
+
+Follow the instructions here: https://brew.sh
+
+**Step 2 - Install `qemu` using `brew`**
+
+```zsh
 $ brew install qemu
+
+# Output will look like this
+> ...
+> ==> Fetching qemu
+> ==> Downloading https://ghcr.io/v2/homebrew/core/qemu/manifests/8.0.0
+> ...
+> ==> Installing qemu
+> ==> Pouring qemu--8.0.0.arm64_ventura.bottle.tar.gz
+> 🍺  /opt/homebrew/Cellar/qemu/8.0.0: 162 files, 527.4MB
+> ...
 ```
+
+**Step 3 - Check if `qemu` is installed**
+
+```zsh
+$ qemu-img --version
+
+# Output will look like this
+> qemu-img version 8.0.0
+> Copyright (c) 2003-2022 Fabrice Bellard and the QEMU Project developers
+
+$ qemu-system-aarch64 --version
+
+# Output will look like this
+> QEMU emulator version 8.0.0
+> Copyright (c) 2003-2022 Fabrice Bellard and the QEMU Project developers
+```
+
+> Unfortunately, QEMU does not support user-mode emulation on macOS yet.[^40]
+
+💚 If the above commands **worked** then congrats, you successfuly installed QEMU! 💚 \
+🔴 If you ran into any **problems** feel free to contact me or create an issue. 🔴
 
 # EFI Locations
 
@@ -321,7 +543,7 @@ $ qemu-system-aarch64 -machine virt -cpu cortex-a53 -kernel installer-linux -nog
 
 @TODO: Give information about the '-drive' and '-cdrom' arguments. This may be relate to `qemu-img`.
 
-## Devices[^39]
+## Devices[^41]
 
 @TODO: Give information about the '-device' argument. There are tons of different devices (for ex. virtio). Find a way talk about all of them without boring the reader.
 
@@ -386,4 +608,6 @@ $ qemu-system-aarch64 -machine virt -cpu cortex-a53 -kernel installer-linux -nog
 [^36]: https://www.cyberciti.biz/faq/linux-xen-vmware-kvm-intel-vt-amd-v-support/
 [^37]: https://wiki.archlinux.org/title/KVM
 [^38]: https://support.microsoft.com/en-us/windows/enable-virtualization-on-windows-11-pcs-c5578302-6e43-4b4b-a449-8ced115f58e1
-[^39]: https://blogs.oracle.com/linux/post/introduction-to-virtio
+[^39]: https://www.qemu.org/download/#windows
+[^40]: https://qemu.readthedocs.io/en/latest/user/main.html#supported-operating-systems
+[^41]: https://blogs.oracle.com/linux/post/introduction-to-virtio
