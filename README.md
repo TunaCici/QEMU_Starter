@@ -152,7 +152,7 @@ Here is the list of common QEMU binaries/packages [^24]:
 
 ## Hardware Acceleration (Optional)
 
-By default, QEMU emulates everything and that includes the CPU. Emulating a CPU is extremely hard and brings lots of overheads ([tho it's a fascinating thing!](http://www.emulator101.com/a-quick-introduction-to-a-cpu.html)). And unless you have a CPU made out of a Dyson Sphere™ you will have a hard time using it. The emulated machine is, naturally, is slow and becames unpractical to use.
+By default, QEMU emulates everything and that includes the CPU. Emulating a CPU is extremely hard and brings lots of overheads ([tho it's a fascinating thing!](http://www.emulator101.com/a-quick-introduction-to-a-cpu.html)). The emulated machine is, naturally, slow and becames unpractical to use.
 
 > Hardware acceleration is not necessary to use QEMU. Though it is **highly recommended!** as it speeds up the machine by a factor of 10x or more..
 
@@ -172,7 +172,7 @@ Intel calls their `Intel VT-x` [^34], AMD calls `AMD-V` [^35] and Apple calls `n
 
 **K**ernel-based **V**irtual **M**achine (KVM) is the `Hypervisor` used in GNU/Linux platforms. [^18] Your Linux kernel needs to be built with KVM module. Most distros include KVM, so you probably need not to worry about it.
 
-Run the below command to check if KVM module is installed:
+Run the below command to **check** if KVM module is installed:
 
 ```bash
 $ lsmod | grep kvm
@@ -193,18 +193,24 @@ $ sudo kvm-ok
 > KVM acceleration can be used
 ```
 
-> If you ran into any problems above check out [ArchLinux Wiki](https://wiki.archlinux.org/title/KVM). It gives super useful informations that might help you!
+💚 If the above commands **worked** then congrats your Linux kernel has KVM installed! 💚 \
+🔴 If you ran into any **problems**, check out [ArchLinux Wiki KVM](https://wiki.archlinux.org/title/KVM). You probably need to switch to another kernel built with KVM. 🔴
 
 ### Windows 10/11 (Hypervisor-V)
 
-**V**iridian, Hypervisor-V, is the `Hypervisor` used in Windows 10/11 platforms. [^20]. By default, it is probably disabled on your system. Follow the steps below to install it.
+**V**iridian, Hypervisor-V, is the `Hypervisor` used in Windows 10/11 platforms. [^20]. By default, it is probably disabled on your system. Follow the steps below to **install/enable** it.
 
 **Step 1** \
-Select **Start**, enter **Windows features**, and select **Turn Windows features on or off** from the list of results. \
+Select `Start`, enter `Windows features`, and select `Turn Windows features on or off` from the list of results. \
 **Step 2** \
-In the **Windows Features** window that just opened, find **Virtual Machine Platform** and select it. \
+In the `Windows Features` window that just opened, find `Virtual Machine Platform` and select it. \
 **Step 3** \
-Select **OK**. You might need to **restart** your PC.
+Select **OK**. You might need to **restart** your PC. \
+**Step 4** \
+Launch `Task Manager`, switch to `Performance` tab and check the value of `Virtualization`.
+
+💚 If the `Virtualization` is **Enabled** then congrats your Windows 10/11 is ready! 💚 \
+🔴 If it is **Disabled** or not showing up, try Google.. Sorry :( 🔴
 
 > The above steps are taken directly from Microsoft's offical guide. [^38]
 
