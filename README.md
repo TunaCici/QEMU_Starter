@@ -17,28 +17,20 @@ This guide welcomes all adventurers seeking knowledge and excitement in the worl
 - [Requirements](#requirements)
   - [Main Packages](#main-packages)
   - [Hardware Acceleration (Optional)](#hardware-acceleration-optional)
-    - [GNU/Linux (KVM)](#gnulinux-kvm)
-    - [Windows 10/11 (Hypervisor-V)](#windows-1011-hypervisor-v)
 - [Installation](#installation)
   - [GNU/Linux](#gnulinux)
-    - [ArchLinux (pacman)](#archlinux-pacman)
-    - [Ubuntu/Debian (apt)](#ubuntudebian-apt)
   - [Windows 10/11](#windows-1011)
   - [macOS 11+ (Big Sur)](#macos-11-big-sur)
-- [EFI Locations](#efi-locations)
-  - [GNU/Linux - Debian (ARM64 | x86_64)](#gnulinux---debian-arm64--x86_64)
-  - [macOS 13.0 (Ventura)](#macos-130-ventura)
 - [Hello World](#hello-world)
 - [Tools](#tools)
   - [qemu-img](#qemu-img)
   - [qemu-system-x86_64](#qemu-system-x86_64)
-  - [qemu-system-aarch64](#qemu-system-aarch64)
 - [Configurations](#configurations)
   - [Machine](#machine)
   - [CPU](#cpu)
   - [Memory](#memory)
   - [Disks](#disks)
-  - [Devices^41](#devices41)
+  - [Devices](#devices41)
   - [Display](#display)
   - [BIOS \& UEFI](#bios--uefi)
   - [Accelerator](#accelerator)
@@ -474,54 +466,209 @@ $ qemu-system-aarch64 --version
 💚 If the above commands **worked** then congrats, you successfuly installed QEMU! 💚 \
 🔴 If you ran into any **problems** feel free to contact me or create an issue. 🔴
 
-# EFI Locations
-
-@TODO: Move this section somewhere else.
-Possible locations for EFI files on AARCH64 and x86_64 systems.
-
-## GNU/Linux - Debian (ARM64 | x86_64)
-
-```bash
-$ file /usr/share/qemu-efi-aarch64/QEMU_EFI.fd
-```
-
-## macOS 13.0 (Ventura)
-
-```bash
-$ file /opt/homebrew/Cellar/qemu/*.*/share/qemu/edk2-aarch64-code.fd
-```
 
 # Hello World
 
-@TODO: Give a step-by-step tutorial on how to launch a QEMU machine with a generic Linux kernel image. (both ARM64 and x86_64)
+Generally you want to launch a QEMU machine with an operating system like ArchLinux. But, before doing that, we need to learn a bit more. Be patient we will get there! For now, let's run a simple "Hello World" QEMU machine by launching a Linux kernel image. 
 
-Kernel Image
+## Kernel Images
+
+Every Linux kernel is built differently depending on the platform/needs. We will use a more "generic" kernel image taken from Debian's repositories.
+
+> You can choose to build your own kernel or find another Linux kernel image (Oracle, ArchLinux and etc.). Though, the Debian kernel used here is pretty good and generic.
+
+**Step 1 - Download the Linux Kernel**
+
+Head over to Debian's FTP repo and download the Linux `kernel` image for ARM64 machines. \
+Repository: http://ftp.debian.org/debian/dists/stable/main/installer-arm64/current/images/netboot/debian-installer/arm64/
+
+Alternatively, on GNU/Linux or macOS, use `wget`:
 
 ```bash
-# http://ftp.debian.org/debian/dists/stable/main/installer-arm64/current/images/netboot/debian-installer/arm64/
+$ wget http://ftp.debian.org/debian/dists/stable/main/installer-arm64/current/images/netboot/debian-installer/arm64/linux
 ```
 
-Launch Command
+Alternatively, on Windows 10/11, use `Invoke-WebRequest`:
+
+```powershell
+$ Invoke-WebRequest http://ftp.debian.org/debian/dists/stable/main/installer-arm64/current/images/netboot/debian-installer/arm64/linux -OutFile linux
+```
+
+**Step 2 - Launch `qemu-system-aarch64`**
+
+Run the below command to launch a QEMU machine with `-nographic` options:
 
 ```bash
-$ qemu-system-aarch64 -machine virt -cpu cortex-a53 -kernel installer-linux -nographic
+$ qemu-system-aarch64 -machine virt -cpu cortex-a53 -kernel linux -nographic
 ```
+
+The QEMU machine should now start by loading/launching the Linux kernel! The logs on the terminal you [hopefully] see are from the Linux kernel. 
+
+Our "Hello World" machine ends with a _kernel panic_ telling us it couldn't find a _root filesystem_ to mount.
+
+> The `-nographic` is pretty self-explanatory. With that option, QEMU machine connects to terminals stdio and does not launch with a GUI.
+
+**Step 3 - Terminate the machine**
+
+Press `CTRL + A` followed by `X` to terminate the machine.
+
+**Step 4 - Launch `qemu-system-aarch64` /w Display (Optional)**
+
+Intuitively, you want your machines to have a display. In **Step 2** we disabled this behaviour with the  `-nographic` option. But, normally QEMU launches with a display. If you have a desktop environment (like many people) you can launch QEMu with a display!
+
+Run the below command to launch a QEMU machine with a display:
+
+```bash
+$ qemu-system-aarch64 -machine virt -cpu cortex-a53 -kernel linux
+```
+
+By default, the QEMU displays the `QEMU Monitor`[^41]. Don't worry about it too much, we are not there yet! Let's switch consoles.
+
+Press `CTRL + ALT + 2` to switch to the Linux kernel. Now, we can see the same logs that we have seen in **Step 2**!
+
+**Step 5 - Terminate the machine /w Display (Optional)**
+
+QEMU traps your mouse inside the display. Release it by pressing `CTRL + ALT + G`. Then, just close the QEMU window to terminate it!
+
+
+💚 If the Linux kernel ended with a **panic** then congrats! 💚 \
+🔴 If the QEMU somehow **failed to launch**, feel free to contact me or create an issue. 🔴
 
 # Tools
 
-@TODO: Talk about QEMU's commonly used CLI tools.
+There are many `tools` provided by QEMU that are used to create, configure and 'launch' machines. I call them tools, _but in fact_, all they are all `binaries`. For simplicity sakes, assume that a `tool` is just a `binary` executable.
+
+It would be unpractical to list and explain all of them here. For that, only the most popular and used `tools` are listed. _Who knows, maybe I will document other ones in the future:)_
+
+> If your `shell` supports _completions_, then you can list most of the QEMU tools by typing `qemu-` and presing `Tab`!
 
 ## qemu-img
 
-@TODO: Disk images, QCOW and other stuff..
+Allows you to create, convert and modify disk images.[^42] It supports wide variety of image formats such as: `VDI`, `VMDK`, `raw` and `qcow2`. The latter format is special to QEMU machines. It's an abbreviation of **Q**EMU **C**opy-**o**n-**W**rite **2**. 
+
+`qcow2` images initially takes a very tiny space on your disk `~200KB`, but it dynamically grows as the guest OS writes data on it. This way your QEMU machine /w 500GiB disk space does not actually take 500GiB. It's amazing isn't it!
+
+Now, let's go over some of the main usages of `qemu-img`.
+
+**Create**
+
+Create new disk images using the command below:
+```bash
+$ qemu-img create [options]
+```
+
+Example:
+```bash
+$ qemu-img create -f qcow2 disk0.qcow2 64G  
+```
+
+The above example creates a disk image with file type `qcow2` and size `64G` named `disk0.qcow2`. This is the most trivial usage of `qemu-img`.
+
+**Convert**
+
+Different virtual machines use different disk image formats. Popular ones like `VirtualBox` uses `VDI` and VMWare uses `VMDK`. Although, QEMU supports both formats, `qcow2` is the preferred one. So, you can use `qemu-img` to convert from supported formats to `qcow2` and vice-versa.
+
+> I don't think I need to explain how useful this can be >.<
+
+Convert between disk image formats using the command below:
+```bash
+$ qemu convert [options]
+```
+
+Example:
+```bash
+$ qemu-img convert -f vdi -O qcow2 disk0.vdi disk0.qcow2
+```
+
+The above example simply converts a VirtualBox image `-f vdi` to `-O qcow2`.  
+
+**Inspect**
+
+You might want to inspect and get some information about your disk images. This can be useful for developers and some curious people.
+
+> There are many _commands_ that we can use to inspect an image. `info` is just one of them.
+
+Get [basic] information about an image using the command below:
+```bash
+$ qemu-img info [options]
+```
+
+Example:
+```bash
+$ qemu-img info disk0.qcow2 
+
+# Output can look like this
+> image: disk0.qcow2
+> file format: qcow2
+> virtual size: 8 GiB (8589934592 bytes)
+> disk size: 196 KiB
+> cluster_size: 65536
+> Format specific information:
+>     compression type: zlib
+>     ...
+>     corrupt: false
+> Child node '/file':
+>     ...
+```
 
 ## qemu-system-x86_64
 
-@TODO: The main binary/process...
+The main and one of the most used `binary` in QEMU. `qemu-system-x86_64` is used to run emulated/virtualized machines. Most of the time you will be using this to launch your machines. [^43]
 
-## qemu-system-aarch64
+> The `qemu-system-*` is a prefix that is used by many other `binaries`. It is generally followed by an architecture name like: `aarch64` and `riscv64`. _Each of them has different options and configurations._ [^44]
 
-@TODO: The main binary/process...
+Extremely simplified usage of `qemu-system-x86_64`:
+```bash
+$ qemu-system-x86_64 [options] [disk_image]
+```
+
+When you want to launch a machine, you need to specify options. For a starter, this can be overwhelming. You might find yourself asking questions like:
+
+- What are those options?
+- Which options should I specify?
+- What are the important ones?
+- What happens if I don't specify one?
+- Why are we still here?
+- Where can I find happiness?
+
+To answer them, we need to go over the **most used** ones. From there, you will get an overall idea how to launch machines using `qemu-system-x86_64`.
+
+Just to give an idea here is an example usage:
+
+```bash
+$ qemu-system-x86_64 \
+  # Hardware Acceleration (Hypervisor)
+  -accel kvm
+
+  # System Specs
+  -name MyFirstQemu \
+  -m 2G \
+  -cpu host \
+  -smp 2 \
+  
+  # Disks
+  -drive if=none,file=${INSTALL_IMAGE_PATH},format=qcow2,id=hd0 \
+  -device virtio-blk-device,drive=hd0,serial="main_disk" \ 
+  -cdrom ${VM_DISK_PATH} \
+  
+  # Devices
+  -device usb-ehci  \
+  -device usb-kbd \
+  -usb \
+
+  # Network
+  -device virtio-net-device,netdev=net0 \
+  -netdev user,id=net0 \
+
+  # Display
+  -device virtio-gpu \
+  -vga none \
+
+  # Serial & Terminal
+  -serial stdio
+```
+
+If you're feeling ready for the main event, let's begin!
 
 # Configurations
 
@@ -543,7 +690,7 @@ $ qemu-system-aarch64 -machine virt -cpu cortex-a53 -kernel installer-linux -nog
 
 @TODO: Give information about the '-drive' and '-cdrom' arguments. This may be relate to `qemu-img`.
 
-## Devices[^41]
+## Devices[^45]
 
 @TODO: Give information about the '-device' argument. There are tons of different devices (for ex. virtio). Find a way talk about all of them without boring the reader.
 
@@ -555,9 +702,30 @@ $ qemu-system-aarch64 -machine virt -cpu cortex-a53 -kernel installer-linux -nog
 
 @TODO: Give information about the '-bios' argument. Also talk about the OVMF project.
 
+### EFI Locations
+
+@TODO: Move this section somewhere else.
+Possible locations for EFI files on AARCH64 and x86_64 systems.
+
+#### GNU/Linux - Debian (ARM64 | x86_64)
+
+```bash
+$ file /usr/share/qemu-efi-aarch64/QEMU_EFI.fd
+```
+
+#### macOS 13.0 (Ventura)
+
+```bash
+$ file /opt/homebrew/Cellar/qemu/*.*/share/qemu/edk2-aarch64-code.fd
+```
+
 ## Accelerator
 
 @TODO: Give information about the '-accel' argument. Talk about KVM, Hypervisor.framework and Hyperviser-V.
+
+# Shortcuts / Key Bindings
+
+@TODO: While running with `-nographic` QEMU can be controlled via the QEMU Shell and key binding. Talk about them here.
 
 # Example VM-1: Ubuntu 22.04
 
@@ -610,4 +778,8 @@ $ qemu-system-aarch64 -machine virt -cpu cortex-a53 -kernel installer-linux -nog
 [^38]: https://support.microsoft.com/en-us/windows/enable-virtualization-on-windows-11-pcs-c5578302-6e43-4b4b-a449-8ced115f58e1
 [^39]: https://www.qemu.org/download/#windows
 [^40]: https://qemu.readthedocs.io/en/latest/user/main.html#supported-operating-systems
-[^41]: https://blogs.oracle.com/linux/post/introduction-to-virtio
+[^41]: https://en.wikibooks.org/wiki/QEMU/Monitor
+[^42]: https://qemu.readthedocs.io/en/latest/tools/qemu-img.html
+[^43]: https://www.qemu.org/docs/master/system/invocation.html
+[^44]: https://www.qemu.org/docs/master/system/targets.html
+[^45]: https://blogs.oracle.com/linux/post/introduction-to-virtio
