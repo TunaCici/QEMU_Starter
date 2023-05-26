@@ -526,6 +526,8 @@ By default, the QEMU displays the `QEMU Monitor`[^41]. Don't worry about it too 
 
 Press `CTRL + ALT + 2` to switch to the Linux kernel. Now, we can see the same logs that we have seen in **Step 2**!
 
+![QEMU Display](/Media/display_hello_world.png)
+
 **Step 5 - Terminate the machine /w Display (Optional)**
 
 QEMU traps your mouse inside the display. Release it by pressing `CTRL + ALT + G`. Then, just close the QEMU window to terminate it!
