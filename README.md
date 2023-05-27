@@ -674,7 +674,22 @@ If you're feeling ready for the main event, let's begin!
 
 # Configurations
 
-@TODO: Talk about some common QEMU configurations. Give examples from the Hello World and the upcoming configurations.
+Like every machine in the real-world, every QEMU machine can be different. The CPU architecture, memory size, devices, disks, displays and so on. Each of these settings can be customized. For example, you can create a QEMU machine with `Cortex A72 CPU`, `8GiB RAM` and devices like `USB-Storage`, `Intel E1000 Network`, `AHCI HDD`, `UART`, `Console Device` ... QEMU is greatly configurable. You have many devices and options to choose from!
+
+> You can basically create your own machine. Just like building a custom computer!
+
+QEMU is capable of emulating many devices and CPUs![^45] However, as you know, emulation is expensive! If your intention is to have a performant, _maybe even near-native_, machines then using emulated devices is not a good choice. Espacially emulating a CPU architecture.
+
+To achive good performance QEMU can be as a `Virtual Machine` if configured to use `Accelerators` and `Virtio` devices. Now, at this exact point we are faced with two options:
+
+- **Use QEMU as an Emulator:** In this approach, QEMU emulates all the hardware devices and the CPU architecture. This is the _default mode_ of operation and is suitable for compatibility with a wide range of guest operating systems and architectures. However, the performance might not be optimal due to the overhead of emulation.
+- **Use QEMU as a Virtual Machine:** In this approach, QEMU is _configured_ to take advantage of Accelerators, such as `KVM` or leverage hardware device virtualization (AKA `virtio`). `Virtio` devices are paravirtualized devices that offer efficient communication between the guest and host OS. By using these technologies, QEMU can achieve significantly better performance and reduce the emulation overhead.
+
+> You can also configure QEMU to be `half emulator` and `half virtualizor`. For example, using `KVM` in combination with `Intel E1000 Network`.
+
+How you configure your QEMU machine will depend on your specific needs. If performance is a priority, utilizing QEMU as a Virtual Machine with accelerators and `Virtio` devices is recommended. Now, enough talking. Let's go over the main configuration settings! 
+
+_**Important Note:** Some `qemu-system`s might have additional configurations. However, the ones explained in this guide should be more than enough. If you want to learn more, be sure to check the references given!_
 
 ## Machine
 
@@ -692,7 +707,7 @@ If you're feeling ready for the main event, let's begin!
 
 @TODO: Give information about the '-drive' and '-cdrom' arguments. This may be relate to `qemu-img`.
 
-## Devices[^45]
+## Devices[^46]
 
 @TODO: Give information about the '-device' argument. There are tons of different devices (for ex. virtio). Find a way talk about all of them without boring the reader.
 
@@ -784,4 +799,5 @@ $ file /opt/homebrew/Cellar/qemu/*.*/share/qemu/edk2-aarch64-code.fd
 [^42]: https://qemu.readthedocs.io/en/latest/tools/qemu-img.html
 [^43]: https://www.qemu.org/docs/master/system/invocation.html
 [^44]: https://www.qemu.org/docs/master/system/targets.html
-[^45]: https://blogs.oracle.com/linux/post/introduction-to-virtio
+[^45]: https://qemu-project.gitlab.io/qemu/system/device-emulation.html
+[^46]: https://blogs.oracle.com/linux/post/introduction-to-virtio
