@@ -30,7 +30,7 @@ This guide welcomes all adventurers seeking knowledge and excitement in the worl
   - [CPU](#cpu)
   - [Memory](#memory)
   - [Disks](#disks)
-  - [Devices](#devices41)
+  - [Devices](#devices)
   - [Display](#display)
   - [BIOS \& UEFI](#bios--uefi)
   - [Accelerator](#accelerator)
