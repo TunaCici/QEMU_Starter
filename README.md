@@ -34,6 +34,7 @@ This guide welcomes all adventurers seeking knowledge and excitement in the worl
   - [Display](#display)
   - [BIOS \& UEFI](#bios--uefi)
   - [Accelerator](#accelerator)
+- [Networking](#networking)
 - [Example VM-1: Ubuntu 22.04](#example-vm-1-ubuntu-2204)
 - [Example VM-2: ArchLinux](#example-vm-2-archlinux)
 - [Example VM-3: Windows 11](#example-vm-3-windows-11)
@@ -683,11 +684,12 @@ QEMU is capable of emulating many devices and CPUs![^45] However, as you know al
 To achive good performance QEMU needs to act like a `Virtual Machine` with the help of configurations like `Accelerators` and `Virtio` devices. Now, at this exact point we are faced with two options:
 
 - **Use QEMU as an Emulator:** In this approach, QEMU emulates all the hardware devices and the CPU architecture. This is the _default mode_ of operation and is suitable for compatibility with a wide range of guest operating systems and architectures. However, the performance might not be optimal due to the overhead of emulation.
-- **Use QEMU as a Virtual Machine:** In this approach, QEMU is _configured_ to take advantage of Accelerators, such as `KVM` or leverage hardware device virtualization (aka. `virtio`). `Virtio` devices are paravirtualized devices that offer efficient communication between the guest and host OS.[^46] By using these technologies, QEMU can achieve significantly better performance and reduce the emulation overhead.
+- **Use QEMU as a Virtual Machine:** In this approach, QEMU is _configured_ to take advantage of Accelerators, such as `KVM` or leverage hardware device virtualization (aka. `virtIO`). `VirtIO` devices are paravirtualized devices that offer efficient communication between the guest and host OS.[^46] By using these technologies, QEMU can achieve significantly better performance and reduce the emulation overhead.
 
+> More on `virtIO` devices later. They are pretty cool and useful!
 > You can also configure QEMU to be `half emulator` and `half virtualizor`. For example, using `KVM` in combination with the `Intel E1000 Network Card`.
 
-How you configure your QEMU machine will depend on your specific needs. If performance is a priority, utilizing QEMU with `Accelerators` and `Virtio` devices is highly recommended. Now, enough talking. Let's go over the configurations! 
+How you configure your QEMU machine will depend on your specific needs. If performance is a priority, utilizing QEMU with `Accelerators` and `virtIO` devices is highly recommended. Now, enough talking. Let's go over the configurations! 
 
 _**Important Note:** Some `qemu-system`s might have additional configurations. However, the ones explained in this guide should be more than enough. If you want to learn more, be sure to check the given references!_
 
@@ -793,7 +795,8 @@ Specifies the format of the disk image. Commonly used formats include `raw`, `qc
 $ qemu-system-x86_64 -drive file=archlinux0.qcow2,format=qcow2
 ```
 
-> For more information to [qemu-img](#qemu-img).
+> If not specified, QEMU will **try** to guess the `file` format. It is recommended to specify a `format` just in case.
+> Refer to [qemu-img](#qemu-img) for more information on formats.
 
 ### `if=[option]`
 
@@ -852,7 +855,180 @@ Here's a simple usage:
 
 ## Devices
 
-@TODO: Give information about the '-device' argument. There are tons of different devices (for ex. virtio). Find a way talk about all of them without boring the reader.
+Usage (type `-device help` to get a list of all devices)
+```bash
+$ qemu-system-x86_64 -device [target],[option]
+```
+
+Specifies the device to be used in the machine, along with any additional options. QEMU provides virtual/emulated hardware devices to the guest machine, allowing it to interact with the external world, just like if it were running on real hardware. [^TODO:https://en.wikibooks.org/wiki/QEMU/Devices].
+
+> The above sentence is taken almost **as is** from the QEMU Wikibooks page.
+
+Just like in a real hardware, QEMU machines can also have external devices connected to them. For example, `USB`, `Network Card`, `VGA`, `Sound Card` and many more! There are many options that you can choose here, and each have it's own options as well. It would be a VERY LONG GUIDE if I were to explain each of them here. For that, I will explain only the most used ones here.
+
+**Useful Information**
+You can add `help` as an option to any `-device` targets to get a list of all available options! It is a great way to learn more about that device. Here's an example:
+```bash
+$ qemu-system-x86_64 -device sd-card,help 
+
+# Output
+> sd-card options:
+>   drive=<str>            - Node name or ID of a block device to use as a backend
+>   spec_version=<uint8>   -  (default: 2)
+>   spi=<bool>             -  (default: false)
+```
+
+### VirtIO
+
+**Virt**ual **I**nput/**O**utput, `virtIO`, devices are special type of devices that are tailored for virtual machines. Formally, `virtIO` is not a device but a specification. [^TODO:https://www.oasis-open.org/committees/virtio/] The main purpose here is to simplify the virtual devices, and _naturally_ making them efficient and high-performant. There are many devices specified within `virtIO` specification. We simply call them `virtIO` devices.
+
+Here are some of the most commonly used ones:
+
+- **Networking `virto-net`** [^TODO:https://projectacrn.github.io/latest/developer-guides/hld/virtio-net.html]
+- **Storage `virtio-scsi`** [^TODO:https://www.qemu.org/2021/01/19/virtio-blk-scsi-configuration/]
+- **Block `virto-blk`** [^TODO:https://projectacrn.github.io/latest/developer-guides/hld/virtio-blk.html]
+- **GPU `virtio-gpu`** [^TODO:https://docs.oasis-open.org/virtio/virtio/v1.1/cs01/virtio-v1.1-cs01.html#x1-3200007]
+- **Console `virtio-console`** [^TODO:https://projectacrn.github.io/latest/developer-guides/hld/virtio-console.html]
+- **Serial `virto-serial`** [^TODO:https://fedoraproject.org/wiki/Features/VirtioSerial]
+
+Unlike other devices in QEMU (`Intel E1000 Network Card`), the above `virtIO` devices are very minimal. This is because most of the operations like setup and maintainance is handled by the host. This makes `virtIO` very simple and straightforward to use within the guest.
+
+`virtIO` devices are pretty cool. If you are interested about how they work and implemented check out Oracle's [Introduction to VirtIO](https://blogs.oracle.com/linux/post/introduction-to-virtio). For now, all we need to know is that _they are special devices designed to be used in virtual machines_.
+
+> Each `virtIO` device deserve its own wiriting. I will only talk about _some_ of them here. If you want to learn more, check out the _references_ linked in the above list.
+
+### Input Devices
+
+Input devices in QEMU refer to the devices that allow users to interact with the guest machine by providing input. These devices include `keyboards`, `mouse`, and other `input peripherals`. Here's some of the most commonly used input devices.
+
+- `usb-kbd`: An emulated generic USB keyboard.
+- `usb-mouse`: An emulated generic USB mouse.
+- `usb-serial`: An emulated USB serial device for serial communication.
+- `usb-table`: An emulated USB tablet for touch inputs. (_pretty cool imo_)
+- `virtio-keyboard`: Virtual keyboard that uses the `VirtIO` specification.
+- `virtio-mouse`: Virtual mouse that uses the `VirtIO` specification.
+- `virtio-serial`: Virtual serial communication that uses the `VirtIO` specification.
+- `virtio-tablet`: Virtual table for touch inputs that uses the `VirtIO` specification.
+
+There are many more _Input devices_ that can be speficied in QEMU. But most of the time you will only be using the ones above. The importing to note here is the difference between the `usb-*` and `virtio-*` devices. Essentially, **both** achieves the same thing. The only difference is their implementation (_guest driver and host device_).
+
+If you want an efficient input device, then simply use `virtio-*` devices. However, if you really need `usb-*` devices (when developing/testing drivers), then use that as you wish.
+
+An example usage:
+```bash
+$ qemu-system-x86_64 ... -device usb-kbd -device usb-mouse ...
+```
+
+To learn more about an _Input device_ use `-device [target],help`:
+```bash
+$ qemu-system-x86_64 -device usb-kbd,help
+
+# Output
+> usb-kbd options:
+>  attached=<bool>
+>  display=<str>
+>  msos-desc=<bool>       - on/off (default: true)
+>  pcap=<str>
+>  port=<str>
+>  serial=<str>
+>  usb_version=<uint32>   -  (default: 2)
+```
+
+### Network Devices
+
+Network devices in QEMU provides the guest machine with a Network Interface Controller (NIC).[^TODO:https://en.wikipedia.org/wiki/Network_interface_controller]. These NIC devices enables the guest machine to connect to various types of networks. Refer to the [Networking](#networking) for more information on how _Networking_ is handled within QEMU.
+
+ Here are some of the most commonly used network devices:
+
+- `e1000`: Emulates an Intel 8254x-based Gigabit Ethernet NIC.
+- `rtl8139`: Emulates a Realtek RTL8139-based Ethernet NIC. (_very popular_)
+- `virtio-net`: A virtual NIC using the `VirtIO` specification.
+- `usb-net`: Emulates a generic USB NIC.
+
+These network devices offer different network connectivity options for the guest machine. You can choose the appropriate device based on your requirements and needs. Generally `rtl8139` and `e1000` is used when developing/testing Ethernet drivers. And `virtio-net` is used [heavily] within virtual machines and various cloud solutions.
+
+An example usage:
+```bash
+$ qemu-system-x86_64 ... -device rtl8139,mac=52:54:00:12:34:56,netdev=mynetdev ...
+```
+
+> The `netdev=[name]` is very important in here. Please, refer to [Networking](#networking).
+
+To learn more about a _Network device_ use `-device [target],help`:
+```bash
+$ qemu-system-x86_64 -device rtl8139,help
+
+# Output
+> rtl8139 options:
+>  acpi-index=<uint32>    -  (default: 0)
+>  addr=<int32>           - Slot and optional function number, example: 06.0 or 06 (default: -1)
+> ...
+>  mac=<str>              - Ethernet 6-byte MAC Address, example: 52:54:00:12:34:56
+> ...
+>  netdev=<str>           - ID of a netdev to use as a backend
+>  ...
+```
+
+### Storage Devices
+
+Storage devices in QEMU facilitate the storage and retrieval of data between the guest and host machine. They allow the guest machine to access and manage storage resources (like a real-world storage device). 
+
+Here are some of the most commonly used storage devices in QEMU:
+
+- `scsi-hd`: Emulates a SCSI disk device (SSD/HDD).
+- `scsi-cd`: Emulates a SCSI CD/DVD device.
+- `ide-hd`: Emulates an IDE hard disk device (SSD/HDD).
+- `ide-cd`: Emulates an IDE CD/DVD device.
+- `nvme`: Emulates an NVMe (Non-Volatile Memory Express) storage device.
+- `usb-storage`: Emulates a generic USB storage device.
+- `sd-card`: Emulates a generic SD card device.
+- `virtio-blk`: A virtual block device that uses `VirtIO` specification.
+- `virtio-scsi`: A virtual storage device uses the SCSI protocol and the `VirtIO` specification.
+
+You might be confused, because we already have `-drive` to give storage access to the guest machine (See [Disks](#disks) . Why do we have anoter way to add a storage device? You are totally right, the differecen between a `-device [target` and a `-drive` is somewhat blurry. But they DO have different purposes.
+
+The storage devices (`-device [target]`) gives the guest machine just an interface. The _storage_ part of if does not exist until you specify one using the `-drive`. This might be useful when developing/testing a driver. Now, let's go over an example to understand this better.
+
+Assume that I have a disk image called `disk0.qcow2`. I have two options to expose that to my QEMU machine.
+
+- **Using only `-drive`:** The simplest way. Just do `... -drive file=disk0.qcow2,format=qcow2,if=virtio`
+- **Using `-device` and `-drive`:** The more _controlled way_. Do `-device virtio-blk,drive=mydrive` and `-drive file=disk0.qcow2,format=qcow2,id=mydrive`
+
+
+As you can see I can use `-device` to add a _Storage device_ and ADDITIONALLY use `-drive` to expose my disk image using the **drive ID**. However, I can choose NOT to use `-device` and simply use `-drive` by specifying the `if=[target]`. With QEMU, you are free to choose whichever you want! 
+
+> In other words, `-device` specifies the device model rather than directly exposing a disk image.
+
+An example usage:
+```bash
+qemu-system-x86_64 ... -device nvme,drive=my-ubuntu-drive ...
+```
+
+To learn more about a Storage device_ use `-device [target],help`:
+```bash
+$ qemu-system-x86_64 -device virtio-blk,help
+
+# Output
+> virtio-blk options:
+>  ...
+>  drive=<str>                - Node name or ID of a block device to use as a backend
+>  ...
+>  physical_block_size=<size> - A power of two between 512 B and 2 MiB (default: 0)
+>  vectors=<uint32>           -  (default: 4294967295)
+>  ...
+```
+
+### Display Devices
+
+Hello.
+
+### Sound Devices
+
+Hello.
+
+### USB Devices
+
+Hello.
 
 ## Display
 
@@ -882,6 +1058,11 @@ $ file /opt/homebrew/Cellar/qemu/*.*/share/qemu/edk2-aarch64-code.fd
 ## Accelerator
 
 @TODO: Give information about the '-accel' argument. Talk about KVM, Hypervisor.framework and Hyperviser-V.
+
+# Networking
+
+@TODO: The networking within QEMU is quite a big topic. Talk about it without going into much detail. Give example networks and etc. \
+Reference documentation: https://wiki.qemu.org/Documentation/Networking
 
 # Shortcuts / Key Bindings
 
