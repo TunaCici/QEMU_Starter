@@ -1020,7 +1020,23 @@ $ qemu-system-x86_64 -device virtio-blk,help
 
 ### Display Devices
 
-Hello.
+Display devices in QEMU handle the graphical output of the guest machine. When a QEMU machine is configured with a _display device_, a window is shown on the host machine. Thru that window, the guest machine can display graphics, _and if possible_, accept inputs such as mouse clicks and touch inputs. 
+
+By default, a QEMU machine is launched with a `qxl-vga` _display device_. However, you can disable this via configurations like `-nographic`. This can be good if you don't really need one (e.g. headless computer).
+
+Here's some of the most commonly used _Displays_:
+
+- `vga`: Emulates a very simple and generic VGA display.
+- `bochs-display`: Emulates a generic VGA display. Similiar to `vga`.
+- `virtio-vga`: A virtual VGA display device using the `VirtIO` specification.
+- `virtio-gpu`: A virtual GPU display device using the `VirtIO` specification. Similiar to `virtio-vga`.
+- `qxl-vga`: Emulates a QXL VGA display. Provides accelerated graphics capabilities for virtual machines. Good for Windows.
+- `ramfb`: Emulates a framebuffer device backed by host RAM. Provides a simple display output.
+
+> https://www.kraxel.org/blog/2019/09/display-devices-in-qemu/
+> https://wiki.archlinux.org/title/QEMU/Guest_graphics_acceleration
+> https://docs.mesa3d.org/drivers/virgl.html
+
 
 ### Sound Devices
 
