@@ -733,8 +733,6 @@ Which CPU and CPUID flags should you choose can be, _again_, confusing. If you a
 
 - **host:** Passes the host CPU model features, model, stepping, exactly to the guest. (Requires an `Hypervisor`) [^49]
 
-> https://www.qemu.org/docs/master/system/i386/cpu.html
-
 ### Core Count (vCPU / SMP)
 
 The `-cpu [target]` option in QEMU defines a default core count (vCPU). However, you may want to increase it to improve performance. To do so, you can combine the `-cpu` option with `-smp`. For example, to define a `Cortex A53 CPU` with `8 Cores`, use `-smp 8`:
@@ -989,16 +987,16 @@ Here are some of the most commonly used storage devices in QEMU:
 - `virtio-blk`: A virtual block device that uses `VirtIO` specification.
 - `virtio-scsi`: A virtual storage device uses the SCSI protocol and the `VirtIO` specification.
 
-You might be confused, because we already have `-drive` to give storage access to the guest machine (See [Disks](#disks) . Why do we have anoter way to add a storage device? You are totally right, the differecen between a `-device [target` and a `-drive` is somewhat blurry. But they DO have different purposes.
+You might be confused, because we already have `-drive` to give storage access to the guest machine (Refer to [Disks](#disks)). Why do we have another way to add a storage device? You are totally right, the differecen between a `-device [storage_dev]` and a `-drive` is somewhat blurry. But they DO have different purposes.
 
-The storage devices (`-device [target]`) gives the guest machine just an interface. The _storage_ part of if does not exist until you specify one using the `-drive`. This might be useful when developing/testing a driver. Now, let's go over an example to understand this better.
+The storage devices (`-device [storage_dev]`) gives the guest machine just an interface. The _storage_ part of if does not exist until you specify one using the `-drive`. This might be useful when developing/testing a driver. Now, let's go over an example to understand this better.
 
 Assume that I have a disk image called `disk0.qcow2`. I have two options to expose that to my QEMU machine.
 
 - **Using only `-drive`:** The simplest way. Just do `... -drive file=disk0.qcow2,format=qcow2,if=virtio`
-- **Using `-device` and `-drive`:** The more _controlled way_. Do `-device virtio-blk,drive=mydrive` and `-drive file=disk0.qcow2,format=qcow2,id=mydrive`
+- **Using both `-device` and `-drive`:** The more _controlled way_. Do `-device virtio-blk,drive=mydrive` and `-drive file=disk0.qcow2,format=qcow2,id=mydrive`
 
-As you can see I can use `-device` to add a _Storage device_ and ADDITIONALLY use `-drive` to expose my disk image using the **drive ID**. However, I can choose NOT to use `-device` and simply use `-drive` by specifying the `if=[target]`. With QEMU, you are free to choose whichever you want! 
+As you can see I can use `-device` to add a _Storage device_ and ADDITIONALLY use `-drive` to expose my disk image using the **drive** identifier. However, I can choose NOT to use `-device` and simply use `-drive` by specifying the `if=[target]`. With QEMU, you are free to choose whichever you want! 
 
 > In other words, `-device` specifies the device model rather than directly exposing a disk image.
 
@@ -1027,7 +1025,7 @@ Display devices in QEMU handle the graphical output of the guest machine. When c
 
 > QEMU makes use of host's windowing system when displaying GUI elements. `Win32` on Windows[^60], `AppKit` on macOS[^61] and `GTK` on GNU/Linux[^62].
 
-By default, a QEMU machine is launched with a `qxl-vga` _display device_. However, you can disable this via configurations like `-nographic`. This way you will be **disabling the display** and other host GUI elements! In that case you might want to consider using `-serial` to interact with the guest machine.
+By default, a QEMU machine is launched with a `qxl-vga` _display device_. However, you can disable this via configurations like `-nographic`. This way you will be **disabling the display** and other host GUI elements!
 
 > Disabling the display might be useful if you don't intent to interact with the guest via a GUI (e.g. mouse clicks). For example, servers and headless computers choose to use SSH and/or VNC insted of an actual _display device_.
 
@@ -1040,13 +1038,9 @@ Here's some of the most commonly used _Displays_:
 - `qxl-vga`: Emulates a QXL VGA display. Provides accelerated graphics capabilities for virtual machines. Good for Windows.
 - `ramfb`: Emulates a framebuffer device backed by host RAM. Provides a simple display output.
 
-> https://www.kraxel.org/blog/2019/09/display-devices-in-qemu/
-> https://wiki.archlinux.org/title/QEMU/Guest_graphics_acceleration
-> https://docs.mesa3d.org/drivers/virgl.html
-
 Most of the time you will be fine using the default _display device_, `qxl-vga`. If your intention is to use QEMU to do some 'heavy' GPU stuff (DirectX, Vulkan, Tensor), just don't. That's why other emulation/virtualization services exist (e.g. [Parallels](https://www.parallels.com), [Crossover](https://www.codeweavers.com/crossover),[VMWare Workstation](https://www.vmware.com/products/workstation-pro.html)). Maybe in the future QEMU will be mature enough for this type of stuff.
 
-> There are some amzing people out there working on 3D acceleration and decent GPU support to QEMU. I highly suggest you to check them out! [Mesa3D VirGL](https://docs.mesa3d.org/drivers/virgl.html)
+> There are some amazing people out there working on 3D acceleration and decent GPU support to QEMU. I highly suggest you to check them out! [Mesa3D VirGL](https://docs.mesa3d.org/drivers/virgl.html) [ArchLinux Guest Graphics Acceleration](https://wiki.archlinux.org/title/QEMU/Guest_graphics_acceleration) [Kraxel Display Devices in QEMU](https://www.kraxel.org/blog/2019/09/display-devices-in-qemu/)
 
 An example usage:
 ```bash
