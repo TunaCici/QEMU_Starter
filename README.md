@@ -709,8 +709,8 @@ _**Important Note:** Any of the default values can be overridden! It is pretty c
 
 Which machine should you choose can be confusing. There might be too many options. If you are confused use either of the following machines:
 
-- **q35:** Represents a modern PC (Available on `qemu-system-x86_64`) [^TODO:https://wiki.qemu.org/Features/Q35]
-- **virt:** Represents a machine _suitable_ for virtualization (Available on `qemu-system-aarch64`) [^TODO:https://www.qemu.org/docs/master/system/arm/virt.html]
+- **q35:** Represents a modern PC (Available on `qemu-system-x86_64`) [^47]
+- **virt:** Represents a machine _suitable_ for virtualization (Available on `qemu-system-aarch64`) [^48]
 
 ## CPU
 
@@ -731,7 +731,7 @@ $ qemu-system-x86_64 -cpu SandyBridge,+avx
 
 Which CPU and CPUID flags should you choose can be, _again_, confusing. If you are confused use the following CPU:
 
-- **host:** Passes the host CPU model features, model, stepping, exactly to the guest. (Requires an `Hypervisor`) [^TODO:https://qemu-project.gitlab.io/qemu/system/qemu-cpu-models.html]
+- **host:** Passes the host CPU model features, model, stepping, exactly to the guest. (Requires an `Hypervisor`) [^49]
 
 > https://www.qemu.org/docs/master/system/i386/cpu.html
 
@@ -743,7 +743,11 @@ The `-cpu [target]` option in QEMU defines a default core count (vCPU). However,
 $ qemu-system-aarch64 -cpu cortex-a53 -smp 8
 ```  
 
-**S**ymmetric **M**ulti**P**rocessing (SMP) is used to specify the number of virtual CPUs (vCPUs) for the QEMU machine.[^TODO:https://en.wikipedia.org/wiki/Symmetric_multiprocessing] Increasing the core count can **enhance** the performance of your guest OS, _provided that your host CPU has enough cores_. Therefore, it is highly recommended to specify the `-smp` option in your QEMU `virtual` machines.
+**S**ymmetric **M**ulti**P**rocessing (SMP) is used to specify the number of virtual CPUs (vCPUs) for the QEMU machine.[^50] Increasing the core count can **enhance** the performance of your guest OS, _provided that your host CPU has enough cores_. Therefore, it is highly recommended to specify the `-smp` option in your QEMU `virtual` machines.
+
+### Accelerator
+
+@TODO: Give information about the '-accel' argument.
 
 ## Memory
 
@@ -860,7 +864,7 @@ Usage (type `-device help` to get a list of all devices)
 $ qemu-system-x86_64 -device [target],[option]
 ```
 
-Specifies the device to be used in the machine, along with any additional options. QEMU provides virtual/emulated hardware devices to the guest machine, allowing it to interact with the external world, just like if it were running on real hardware. [^TODO:https://en.wikibooks.org/wiki/QEMU/Devices].
+Specifies the device to be used in the machine, along with any additional options. QEMU provides virtual/emulated hardware devices to the guest machine, allowing it to interact with the external world, just like if it were running on real hardware. [^51].
 
 > The above sentence is taken almost **as is** from the QEMU Wikibooks page.
 
@@ -880,16 +884,16 @@ $ qemu-system-x86_64 -device sd-card,help
 
 ### VirtIO
 
-**Virt**ual **I**nput/**O**utput, `virtIO`, devices are special type of devices that are tailored for virtual machines. Formally, `virtIO` is not a device but a specification. [^TODO:https://www.oasis-open.org/committees/virtio/] The main purpose here is to simplify the virtual devices, and _naturally_ making them efficient and high-performant. There are many devices specified within `virtIO` specification. We simply call them `virtIO` devices.
+**Virt**ual **I**nput/**O**utput, `virtIO`, devices are special type of devices that are tailored for virtual machines. Formally, `virtIO` is not a device but a specification. [^52] The main purpose here is to simplify the virtual devices, and _naturally_ making them efficient and high-performant. There are many devices specified within `virtIO` specification. We simply call them `virtIO` devices.
 
 Here are some of the most commonly used ones:
 
-- **Networking `virto-net`** [^TODO:https://projectacrn.github.io/latest/developer-guides/hld/virtio-net.html]
-- **Storage `virtio-scsi`** [^TODO:https://www.qemu.org/2021/01/19/virtio-blk-scsi-configuration/]
-- **Block `virto-blk`** [^TODO:https://projectacrn.github.io/latest/developer-guides/hld/virtio-blk.html]
-- **GPU `virtio-gpu`** [^TODO:https://docs.oasis-open.org/virtio/virtio/v1.1/cs01/virtio-v1.1-cs01.html#x1-3200007]
-- **Console `virtio-console`** [^TODO:https://projectacrn.github.io/latest/developer-guides/hld/virtio-console.html]
-- **Serial `virto-serial`** [^TODO:https://fedoraproject.org/wiki/Features/VirtioSerial]
+- **Networking `virto-net`** [^53]
+- **Storage `virtio-scsi`** [^54]
+- **Block `virto-blk`** [^55]
+- **GPU `virtio-gpu`** [^56]
+- **Console `virtio-console`** [^57]
+- **Serial `virto-serial`** [^58]
 
 Unlike other devices in QEMU (`Intel E1000 Network Card`), the above `virtIO` devices are very minimal. This is because most of the operations like setup and maintainance is handled by the host. This makes `virtIO` very simple and straightforward to use within the guest.
 
@@ -904,7 +908,7 @@ Input devices in QEMU refer to the devices that allow users to interact with the
 - `usb-kbd`: An emulated generic USB keyboard.
 - `usb-mouse`: An emulated generic USB mouse.
 - `usb-serial`: An emulated USB serial device for serial communication.
-- `usb-table`: An emulated USB tablet for touch inputs. (_pretty cool imo_)
+- `usb-tablet`: An emulated USB tablet for touch inputs. (_pretty cool imo_)
 - `virtio-keyboard`: Virtual keyboard that uses the `VirtIO` specification.
 - `virtio-mouse`: Virtual mouse that uses the `VirtIO` specification.
 - `virtio-serial`: Virtual serial communication that uses the `VirtIO` specification.
@@ -936,7 +940,7 @@ $ qemu-system-x86_64 -device usb-kbd,help
 
 ### Network Devices
 
-Network devices in QEMU provides the guest machine with a Network Interface Controller (NIC).[^TODO:https://en.wikipedia.org/wiki/Network_interface_controller]. These NIC devices enables the guest machine to connect to various types of networks. Refer to the [Networking](#networking) for more information on how _Networking_ is handled within QEMU.
+Network devices in QEMU provides the guest machine with a Network Interface Controller (NIC).[^59]. These NIC devices enables the guest machine to connect to various types of networks. Refer to the [Networking](#networking) for more information on how _Networking_ is handled within QEMU.
 
  Here are some of the most commonly used network devices:
 
@@ -994,17 +998,16 @@ Assume that I have a disk image called `disk0.qcow2`. I have two options to expo
 - **Using only `-drive`:** The simplest way. Just do `... -drive file=disk0.qcow2,format=qcow2,if=virtio`
 - **Using `-device` and `-drive`:** The more _controlled way_. Do `-device virtio-blk,drive=mydrive` and `-drive file=disk0.qcow2,format=qcow2,id=mydrive`
 
-
 As you can see I can use `-device` to add a _Storage device_ and ADDITIONALLY use `-drive` to expose my disk image using the **drive ID**. However, I can choose NOT to use `-device` and simply use `-drive` by specifying the `if=[target]`. With QEMU, you are free to choose whichever you want! 
 
 > In other words, `-device` specifies the device model rather than directly exposing a disk image.
 
 An example usage:
 ```bash
-qemu-system-x86_64 ... -device nvme,drive=my-ubuntu-drive ...
+$ qemu-system-x86_64 ... -device nvme,drive=my-ubuntu-drive ...
 ```
 
-To learn more about a Storage device_ use `-device [target],help`:
+To learn more about a _Storage device_ use `-device [target],help`:
 ```bash
 $ qemu-system-x86_64 -device virtio-blk,help
 
@@ -1020,9 +1023,13 @@ $ qemu-system-x86_64 -device virtio-blk,help
 
 ### Display Devices
 
-Display devices in QEMU handle the graphical output of the guest machine. When a QEMU machine is configured with a _display device_, a window is shown on the host machine. Thru that window, the guest machine can display graphics, _and if possible_, accept inputs such as mouse clicks and touch inputs. 
+Display devices in QEMU handle the graphical output of the guest machine. When configured with a _display device_, a window is shown on the host machine. Thru that window, the guest machine can display graphics, _and if possible_, accept inputs such as mouse clicks and touch inputs. 
 
-By default, a QEMU machine is launched with a `qxl-vga` _display device_. However, you can disable this via configurations like `-nographic`. This can be good if you don't really need one (e.g. headless computer).
+> QEMU makes use of host's windowing system when displaying GUI elements. `Win32` on Windows[^60], `AppKit` on macOS[^61] and `GTK` on GNU/Linux[^62].
+
+By default, a QEMU machine is launched with a `qxl-vga` _display device_. However, you can disable this via configurations like `-nographic`. This way you will be **disabling the display** and other host GUI elements! In that case you might want to consider using `-serial` to interact with the guest machine.
+
+> Disabling the display might be useful if you don't intent to interact with the guest via a GUI (e.g. mouse clicks). For example, servers and headless computers choose to use SSH and/or VNC insted of an actual _display device_.
 
 Here's some of the most commonly used _Displays_:
 
@@ -1037,48 +1044,211 @@ Here's some of the most commonly used _Displays_:
 > https://wiki.archlinux.org/title/QEMU/Guest_graphics_acceleration
 > https://docs.mesa3d.org/drivers/virgl.html
 
+Most of the time you will be fine using the default _display device_, `qxl-vga`. If your intention is to use QEMU to do some 'heavy' GPU stuff (DirectX, Vulkan, Tensor), just don't. That's why other emulation/virtualization services exist (e.g. [Parallels](https://www.parallels.com), [Crossover](https://www.codeweavers.com/crossover),[VMWare Workstation](https://www.vmware.com/products/workstation-pro.html)). Maybe in the future QEMU will be mature enough for this type of stuff.
+
+> There are some amzing people out there working on 3D acceleration and decent GPU support to QEMU. I highly suggest you to check them out! [Mesa3D VirGL](https://docs.mesa3d.org/drivers/virgl.html)
+
+An example usage:
+```bash
+$ qemu-system-x86_64 ... -device virtio-gpu,xres=1920,yres=1080 ...
+```
+
+To learn more about a _Display device_ use `-device [target],help`:
+```bash
+$ qemu-system-x86_64 -device virtio-gpu,help
+
+# Output
+> virtio-gpu-pci options:
+>  acpi-index=<uint32>    -  (default: 0)
+>  addr=<int32>           - Slot and optional function number, example: 06.0 or 06 (default: -1)
+>  ...
+>  virtio-backend=<child<virtio-gpu-device>>
+>  virtio-pci-bus-master-bug-migration=<bool> - on/off (default: false)
+>  ...
+>  xres=<uint32>          -  (default: 1280)
+>  yres=<uint32>          -  (default: 800)
+```
 
 ### Sound Devices
 
-Hello.
+Sound devices in QEMU handle the audio output and input of the guest machine. These are basically _Sound cards_ that you connect to the guest machine.
+By default, QEMU chooses the good-old `ac97`, which emulates the `AC'97` audio controller.[^63]
+
+Alternatively, you can use the `hda` (Intel High Definition Audio) sound device. This provides support for modern audio controllers and improved audio quality compared to `ac97`.[^64] So, you probably want to use `hda` all the time. Unless, of course, you want to support legacy devices or just want to do some developing/testing.
+
+There are also many more _Sound devices_ that QEMU can emulate.[^65] Here's a list of the most used ones:
+
+- `ac97`: Emulates the AC'97 audio controller.
+- `intel-hda`: Emulates the Intel High Definition Audio (HDA) controller.
+- `hda-output`: Represents a HDA output device. Emulates a playback-only audio device using the HDA controller.
+- `hda-micro`: Represents a HDA input device. Emulates a recording-only audio device using the HDA controller.
+- `hda-duplex`: Represents a HDA I/O device. Emulates **both** playback and recording audio device using the HDA controller.
+- `ich9-intel`: Emulates the Intel ICH9 HD Audio controller.
+- `usb-audio`: Represents a USB audio device. Emulates a USB audio controller, allowing **both** audio playback and recording.
+
+Altough, there seems to be many options to choose from, you rarely use anything other than `hda`. It is the most common one both in real-world and in QEMU as well. You might be confused as to why there is `intel-hda` AND `hda-*`. The `intel-hda` in and on itself does NOT provide neither audio playback or recording. It is just an audio controller. You MUST add `hda-output`, `hda-micro` or `hda-duplex` in order to get audio working on your QEMU machine.
+
+> My recommendation is to just use `intel-hda` AND `hda-duplex`, unless you want to develop/test something else. Most guest OS's has `hda` drivers out-of-box (e.g. Windows, GNU/Linux).[^66]
+
+An example usage:
+```bash
+$ qemu-system-x86_64 ... -device intel-hda -device hda-duplex ...
+```
+
+To learn more about a _Sound device_ use `-device [target],help`:
+```bash
+$ qemu-system-x86_64 -device hda-duplex,help
+
+# Output
+> hda-duplex options:
+>  audiodev=<str>         - ID of an audiodev to use as a backend
+>  cad=<uint32>           -  (default: 4294967295)
+>  debug=<uint32>         -  (default: 0)
+>  mixer=<bool>           -  (default: true)
+>  use-timer=<bool>       -  (default: true)
+```
 
 ### USB Devices
 
-Hello.
+**U**niversel **S**erial **B**us, USB, devices in QEMU is used for all kinds of purposes. QEMU can emulate a PCI UHCI, OHCI, EHCI or XHCI USB controller.[^67] How these devices can be used is up to the guest machine.
 
-## Display
+So far, we have seen some USB devices such as `usb-kbd`, `usb-storage` or `usb-audio`. These are all your typical USB devices, used for different purposes. There are many more USB devices that QEMU can also emulate. Here's some of the most popular ones.
 
-@TODO: Give information about the '-display', '-serial' and '-nographic' arguments.
+- `usb-host`: Allows you to **pass through** a USB device connected from host to guest. [^68]
+- `usb-hub`: Emulates a generic USB hub with multiple USB ports. [^69]
+- `nec-usb-xchi`:  Emulates an NEC USB eXtensible Host Controller Interface (xHCI) controller. Supports USB 3.0. [^70][^71]
+- `usb-ehci`: Emulates a USB 2.0 Enhanced Host Controller Interface (EHCI) controller. [^72]
+- `usb-storage`: Represents a USB storage device (e.g. flash drive, external hard drive).
+- `usb-mtp`: Emulates a USB Media Transfer Protocol (MTP) device. [^73]
+- `usb-net`: Emulates a generic USB network adapter (e.g. Android/iPhone network sharing /w USB).[^74]
+- `usb-kbd`: _Refer to [Input Devices](#input-devices)_
+- `usb-mouse`: _Refer to [Input Devices](#input-devices)_
+- `usb-serial`: _Refer to [Input Devices](#input-devices)_
+- `usb-wacom-tablet`: Emulates a USB Wacom tablet device. [^75]
+- `usb-audio`: _Refer to [Sound Devices](#sound-devices)_
+
+As you can see, there are many USB device that QEMU can emulate. It is pretty amazing IMO! You can learn more about USB emulation in QEMU from it's official documentation page: [USB emulation](https://qemu-project.gitlab.io/qemu/system/devices/usb.html).
+
+> The USB pass through (`usb-host`) is an extremely useful feature of QEMU. I have personally used it to pass my [Crazyflie 2.1 drone's USB dongle](https://www.bitcraze.io/products/crazyradio-pa/) from the macOS host machine to Ubuntu guest machine!
+
+> You can learn more about it here [KVM - Assiging Host USB to Guest VM](https://www.linux-kvm.org/page/USB_Host_Device_Assigned_to_Guest)
+
+An example usage:
+```bash
+$ qemu-system-x86_64 ... -device usb-host,hostbus=3,hostport=10 ...
+```
+
+To learn more about an _USB device_ use `-device [target],help`:
+```bash
+$ qemu-system-x86_64 -device usb-hub,help
+
+# Output
+> usb-hub options:
+>  attached=<bool>
+>  msos-desc=<bool>       - on/off (default: true)
+>  pcap=<str>
+>  port-power=<bool>      -  (default: false)
+>  port=<str>
+>  ports=<uint32>         -  (default: 8)
+>  serial=<str>
+```
 
 ## BIOS & UEFI
 
-@TODO: Give information about the '-bios' argument. Also talk about the OVMF project.
+**B**asic **I**nput/**O**utput **S**ystem (BIOS) and **U**nifed **E**xtensiable **F**irmware **I**nterface (UEFI) are essential components that provide the necessary initialization process for machines.[^76][^77] They are basically the 'first' program that loads when a machine powers up.
 
-### EFI Locations
+These 'programs' are generally stored on a machine's Read-only Memory (ROM). Their main function is to initialize and configure hardware components, perform a Power-On Self-Test (POST), and provide the necessary interfaces for booting the operating system.[^78]. They, in turn, give controls to other programs (a.k.a `bootloaders`) like GRUB2, SysLinux, MS-DOS.
 
-@TODO: Move this section somewhere else.
-Possible locations for EFI files on AARCH64 and x86_64 systems.
+> BIOS and UEFI are two different firmware that tries to solve the same problems.
 
-#### GNU/Linux - Debian (ARM64 | x86_64)
+QEMU, _by default_, uses a BIOS called [SeaBios](https://en.wikipedia.org/wiki/SeaBIOS). It is a pretty good option and most can be used with most bootloaders.[^79] And naturally, every guest machine is loaded with the `SeaBios` and you don't have to do anything. However, you might want, _or need_,  to use UEFI instead.
+
+> UEFI is the modern replacement of BIOS. And naturally, we want to use UEFI whenever possible;)
+
+### OVMF
+
+**O**pen **V**irtual **M**achine **F**irmware, `OVMF`, is an EDK II based project to enable UEFI support for Virtual Machines. `OVMF` contains sample UEFI firmware for QEMU and KVM. [^80]. It is an amazing project with amazing people behind it! I won't talk about it here for obvious reasons. If you want to learn more visit their GitHub repository [OVMF - FAQ](https://github.com/tianocore/tianocore.github.io/wiki/OVMF-FAQ)
+
+
+Starting from QEMU version 1.6, _which was release on December 3 2013_, the `OVMF` project comes pre-installed has as the default firmware for UEFI.[Citiation needed] Before that you had to manually obtain and install `OVMF`. The firmware itself is a binary file in `.fd` format.
+
+Each CPU architecture (e.g. aarch64, x86_64) has different UEFI firmware. You can find them under the location:
+> Also try replacing `aarch64` with another architecture.
+
+**GNU/Linux**
 
 ```bash
 $ file /usr/share/qemu-efi-aarch64/QEMU_EFI.fd
 ```
 
-#### macOS 13.0 (Ventura)
+**Windows 10/11**
 
-```bash
-$ file /opt/homebrew/Cellar/qemu/*.*/share/qemu/edk2-aarch64-code.fd
+```powershell
+$ ls 'C:\Progam Files\qemu\share\edk2-aarch64-code.fd'
 ```
 
-## Accelerator
+**macOS 13.0 (Ventura)**
 
-@TODO: Give information about the '-accel' argument. Talk about KVM, Hypervisor.framework and Hyperviser-V.
+```bash
+$ file /opt/homebrew/Cellar/qemu/8.0.0/share/qemu/edk2-aarch64-code.fd
+
+# Replace '8.0.0' with the QEMU version you installed
+```
+
+### UEFI on QEMU
+
+To enable UEFI on a QEMU machine we have to provide two things: `UEFI firmware` and `UEFI variables`. In this section I will explain how to do that, but you should know that most of the stuff here is taken from Joonas's article on [UEFI, PC boot process and UEFI with QEMU](https://joonas.fi/2021/02/uefi-pc-boot-process-and-uefi-with-qemu/)
+
+> I highly encourage you to read his writing. It is totally amazing and will give you a much better context on what we are doing here.
+
+**Step 1 - Providing the UEFI firmware itself**
+
+This is as easy as adding a `-drive` to your guest machine. The important thing here is the `-drive` is of type `pflash` and is read-only.
+```bash
+$ qemu-system-aarch64 ... -drive if=pflash,format=raw,readonly=on,file=${EFI_FLASH_PATH} ...
+
+# The EFI_FLAS_PATH can be obtained from the prevoius section
+```
+
+**Step 2 - Providing the UEFI variables**
+
+The UEFI firmware itself is readonly. We can do some configurations on it like the `Boot Order`, `Secure Boot` and `Hardware Configurations`. UEFI needs to save them _somewhere_ so that they can be accessed after a power reset. This _somewhere_ is basically a `-drive` called UEFI variables.
+
+The UEFI variables is nothing special. It is a basic image with a _very-specific_ size of 64MiB. So, we need to create a raw image!
+
+Create a raw image with size 64MiB (_Windows users can skip this_):
+```bash
+$ dd if=/dev/zero of=efi-vars.raw bs=1M count=64
+```
+
+Windows users can just retrieve it from the QEMU installation directory:
+```powershell
+$ ls 'C:\Progam Files\qemu\share\edk2-arm-vars.fd'
+
+# Replace 'arm' with 'i386' if your guest machine is x86_64 
+```
+
+Now, provide the UEFI variables image:
+```bash
+$ qemu-system-aarch64 ... -drive if=pflash,format=raw,file=${EFI_VARS_PATH} ...
+
+# The EFI_VARS_PATH is the path of the image we've just crated
+```
+
+**Step 3 - Enjoy the UEFI (Optional) 💚**
+
+Your guest machine should now boot with the UEFI firmware. To test it, just launch your machine and check if **TianaCore** appears on the boot screen.
+
 
 # Networking
 
-@TODO: The networking within QEMU is quite a big topic. Talk about it without going into much detail. Give example networks and etc. \
+@TODO: The networking within QEMU is quite a big topic. Talk about it without going into much detail. Give example networks and etc.
+
 Reference documentation: https://wiki.qemu.org/Documentation/Networking
+
+# Combining it All Together
+
+@TODO: Combine each configuration togeher and give some general tips on how to 'build' a QEMU machine.
 
 # Shortcuts / Key Bindings
 
@@ -1095,6 +1265,9 @@ Reference documentation: https://wiki.qemu.org/Documentation/Networking
 # Example VM-3: Windows 11
 
 @TODO: Give an average configration that create an example Windows machine.
+
+https://www.reddit.com/r/qemu_kvm/comments/yuvnk9/is_there_a_way_to_run_windows_11_arm64_under/
+https://news.ycombinator.com/item?id=29576518
 
 [^1]: https://www.qemu.org/docs/master/about/index.html
 [^2]: https://en.wikipedia.org/wiki/Fabrice_Bellard
@@ -1141,3 +1314,37 @@ Reference documentation: https://wiki.qemu.org/Documentation/Networking
 [^44]: https://www.qemu.org/docs/master/system/targets.html
 [^45]: https://qemu-project.gitlab.io/qemu/system/device-emulation.html
 [^46]: https://blogs.oracle.com/linux/post/introduction-to-virtio
+[^47]: https://wiki.qemu.org/Features/Q35
+[^48]: https://www.qemu.org/docs/master/system/arm/virt.html
+[^49]: https://qemu-project.gitlab.io/qemu/system/qemu-cpu-models.html
+[^50]: https://en.wikipedia.org/wiki/Symmetric_multiprocessing
+[^51]: https://en.wikibooks.org/wiki/QEMU/Devices
+[^52]: https://www.oasis-open.org/committees/virtio/
+[^53]: https://projectacrn.github.io/latest/developer-guides/hld/virtio-net.html
+[^54]: https://www.qemu.org/2021/01/19/virtio-blk-scsi-configuration/
+[^55]: https://projectacrn.github.io/latest/developer-guides/hld/virtio-blk.html
+[^56]: https://docs.oasis-open.org/virtio/virtio/v1.1/cs01/virtio-v1.1-cs01.html#x1-3200007
+[^57]: https://projectacrn.github.io/latest/developer-guides/hld/virtio-console.html
+[^58]: https://fedoraproject.org/wiki/Features/VirtioSerial
+[^59]: https://en.wikipedia.org/wiki/Network_interface_controller
+[^60]: https://learn.microsoft.com/en-us/windows/win32/apiindex/windows-api-list#user-interface
+[^61]: https://developer.apple.com/documentation/appkit
+[^62]: https://www.gtk.org
+[^63]: https://en.wikipedia.org/wiki/AC%2797
+[^64]: https://en.wikipedia.org/wiki/Intel_High_Definition_Audio
+[^65]: https://computernewb.com/wiki/QEMU/Devices/Sound_cards
+[^66]: https://github.com/torvalds/linux/blob/master/sound/pci/hda/hda_intel.c
+[^67]: https://qemu-project.gitlab.io/qemu/system/devices/usb.html
+[^68]: https://www.linux-kvm.org/page/USB_Host_Device_Assigned_to_Guest
+[^69]: https://www.kraxel.org/blog/2018/08/qemu-usb-tips/
+[^70]: https://en.wikipedia.org/wiki/NEC
+[^71]: https://en.wikipedia.org/wiki/Extensible_Host_Controller_Interface
+[^72]: http://www.intel.com/content/www/us/en/io/universal-serial-bus/ehci-specification.html
+[^73]: https://en.wikipedia.org/wiki/Media_Transfer_Protocol
+[^74]: https://en.wikipedia.org/wiki/Ethernet_over_USB
+[^75]: https://www.wacom.com/en-us
+[^76]: https://en.wikipedia.org/wiki/BIOS
+[^77]: https://en.wikipedia.org/wiki/UEFI
+[^78]: https://en.wikipedia.org/wiki/Power-on_self-test
+[^79]: https://en.wikipedia.org/wiki/SeaBIOS#Development
+[^80]: https://github.com/tianocore/tianocore.github.io/wiki/OVMF
