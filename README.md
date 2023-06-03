@@ -4,8 +4,6 @@ This guide welcomes all adventurers seeking knowledge and excitement in the worl
 
 # Quick Access
 
-@TODO: This is too long.. :( What should I do?
-
 - [Motivation](#motivation)
 - [Quick Access](#quick-access)
 - [Terminology](#terminology)
@@ -33,7 +31,6 @@ This guide welcomes all adventurers seeking knowledge and excitement in the worl
   - [Devices](#devices)
   - [Display](#display)
   - [BIOS \& UEFI](#bios--uefi)
-  - [Accelerator](#accelerator)
 - [Networking](#networking)
 - [Example VM-1: Ubuntu 22.04](#example-vm-1-ubuntu-2204)
 - [Example VM-2: ArchLinux](#example-vm-2-archlinux)
@@ -1040,7 +1037,7 @@ Here's some of the most commonly used _Displays_:
 
 Most of the time you will be fine using the default _display device_, `qxl-vga`. If your intention is to use QEMU to do some 'heavy' GPU stuff (DirectX, Vulkan, Tensor), just don't. That's why other emulation/virtualization services exist (e.g. [Parallels](https://www.parallels.com), [Crossover](https://www.codeweavers.com/crossover),[VMWare Workstation](https://www.vmware.com/products/workstation-pro.html)). Maybe in the future QEMU will be mature enough for this type of stuff.
 
-> There are some amazing people out there working on 3D acceleration and decent GPU support to QEMU. I highly suggest you to check them out! [Mesa3D VirGL](https://docs.mesa3d.org/drivers/virgl.html) [ArchLinux Guest Graphics Acceleration](https://wiki.archlinux.org/title/QEMU/Guest_graphics_acceleration) [Kraxel Display Devices in QEMU](https://www.kraxel.org/blog/2019/09/display-devices-in-qemu/)
+> There are some amazing people out there working on 3D acceleration and decent GPU support to QEMU. I highly suggest you to check them out! [Mesa3D VirGL](https://docs.mesa3d.org/drivers/virgl.html), [ArchLinux Guest Graphics Acceleration](https://wiki.archlinux.org/title/QEMU/Guest_graphics_acceleration), [Kraxel Display Devices in QEMU](https://www.kraxel.org/blog/2019/09/display-devices-in-qemu/)
 
 An example usage:
 ```bash
@@ -1125,7 +1122,7 @@ As you can see, there are many USB device that QEMU can emulate. It is pretty am
 
 > The USB pass through (`usb-host`) is an extremely useful feature of QEMU. I have personally used it to pass my [Crazyflie 2.1 drone's USB dongle](https://www.bitcraze.io/products/crazyradio-pa/) from the macOS host machine to Ubuntu guest machine!
 
-> You can learn more about it here [KVM - Assiging Host USB to Guest VM](https://www.linux-kvm.org/page/USB_Host_Device_Assigned_to_Guest)
+> You can learn more about it here on [KVM - Assiging Host USB to Guest VM](https://www.linux-kvm.org/page/USB_Host_Device_Assigned_to_Guest)
 
 An example usage:
 ```bash
