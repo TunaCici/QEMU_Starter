@@ -29,7 +29,6 @@ This guide welcomes all adventurers seeking knowledge and excitement in the worl
   - [Memory](#memory)
   - [Disks](#disks)
   - [Devices](#devices)
-  - [Display](#display)
   - [BIOS \& UEFI](#bios--uefi)
 - [Networking](#networking)
 - [Example VM-1: Ubuntu 22.04](#example-vm-1-ubuntu-2204)
