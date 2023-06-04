@@ -40,14 +40,15 @@ This guide welcomes all adventurers seeking knowledge and excitement in the worl
 There are many terminologies used in the guide. Here are some of the most important ones. Do note that these definitions are not 100% formal and only gives an abstract view.
 
 ```plain
-Machine: The real-world hardware that the host runs on.
-Host: The OS/machine running the emulation/virtualization. (Ex. MacOS/MacBook)
-Guest: The virtualized/emulated software that runs on the host operating system. (Ex. Windows XP)
+Host: The OS/machine running the emulation/virtualization.
+Guest: The virtualized/emulated machine that runs on the host operating system.
 ```
+
+> The terms 'operating system' and 'machine' are sometimes used interchangeably. (e.g. 'Windows machine' == 'Windows The Operating System') This is done intentionally to simplify the phrases used in this pseudo-wiki.
 
 # What is QEMU?
 
-Quick EMUlator (QEMU) is a generic Free and Open-Source machine emulator and virtualizer[^1]. It was first developed by the genius `Fabrice Bellard` and is now maintained by the contributers all over the world. [^2]
+**Q**uick **EMU**lator (QEMU) is a generic Free and Open-Source machine emulator and virtualizer[^1]. It was first developed by the genius `Fabrice Bellard` and is now maintained by the contributers all over the world. [^2]
 
 QEMU can fully emulate CPUs, Instruction Sets, I/O Devices and other common hardware devices. It supports virtualization with near-native performance using accelerators such as Linux's `KVM`, Apple's `Hypervisor.Framework` and Microsoft's `Hyper-V`. [^3]
 
@@ -91,7 +92,7 @@ Virtualization [in computers] is the method of creating isolated versions of a s
 
 > We can't directly compare emulation and virtualization, because they are two different methods for different purposes. For simplicity's sake you can think of `virtualization` as software/system centric and `emulation` as more machine/hardware centric.
 
-There are two kinds of virtualizations: [^12] [^13]
+There are two kinds of virtualizations:[^12] [^13]
 
 - **Full Virtualization**: The software/system is fully isolated and virtualized (OS/Kernel, hardware and etc.). (Guest doesn't know it is being virtualized) [^14]
 - **Paravirtualization**: The software/system is partially isolated (Only the applications are). (Guest does know that it is being virtualized) [^15]
@@ -741,7 +742,29 @@ $ qemu-system-aarch64 -cpu cortex-a53 -smp 8
 
 ### Accelerator
 
-@TODO: Give information about the '-accel' argument.
+The `-accel [hypervisor]` option in QEMU defines the Hypervisor to be used. This uses [Hardware Acceleration (Optional)](#hardware-acceleration-optional) to spede up the `-cpu` substantially. Refer to the previous sections for more information about accelerators and Hypervisors.
+
+In order to use the `-accel` option, the compatible `-cpu` option needs to be defined. Also, the `qemu-system-*` you are using MUST be similiar to your host's architecture. For example, `qemu-system-x86_64` can only be used with `-accel` option if your host CPU is also x86_64.
+
+Here's a quick checklist to see if your guest machine can be used with `-accel` option or not.
+
+- **host machine supports it:** Refer to [Hardware Acceleration (Optional)](#hardware-acceleration-optional)
+- **guest cpu supports it:** Currently only the `-cpu host` is available.[Citation needed]
+
+If you pass both of these, then you can safely use the `-accel` option. By the way, this is also knows as virtualization. It is a big topic, I know. Refer to previous sections for more info on this.
+
+The `-accel [hypervisor]` needs to know which Hypervisor to use. Here's the current list of Hypervisors supported by QEMU:
+
+- `kvm`: On GNU/Linux systems (a.k.a Linux-KVM)
+- `whpx`: On Windows 10/11 systems (a.k.a Hyper-V)
+- `hpf`: On Apple macOS systems (a.k.a Hypervisor.Framework)
+
+> Again, refer to [Hardware Acceleration (Optional)](#hardware-acceleration-optional) for more information on them.
+
+An example usage of `-accel [hypervısor]`:
+```bash
+$ qemu-system-aarch64 -cpu host -smp 4 -accel hvf
+```  
 
 ## Memory
 
