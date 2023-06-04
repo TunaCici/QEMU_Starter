@@ -742,7 +742,7 @@ $ qemu-system-aarch64 -cpu cortex-a53 -smp 8
 
 ### Accelerator
 
-The `-accel [hypervisor]` option in QEMU defines the Hypervisor to be used. This uses [Hardware Acceleration (Optional)](#hardware-acceleration-optional) to spede up the `-cpu` substantially. Refer to the previous sections for more information about accelerators and Hypervisors.
+The `-accel [hypervisor]` option in QEMU defines the Hypervisor to be used. This uses [Hardware Acceleration (Optional)](#hardware-acceleration-optional) to speed up the `-cpu` substantially. Refer to the previous sections for more information about accelerators and Hypervisors.
 
 In order to use the `-accel` option, the compatible `-cpu` option needs to be defined. Also, the `qemu-system-*` you are using MUST be similiar to your host's architecture. For example, `qemu-system-x86_64` can only be used with `-accel` option if your host CPU is also x86_64.
 
@@ -757,7 +757,7 @@ The `-accel [hypervisor]` needs to know which Hypervisor to use. Here's the curr
 
 - `kvm`: On GNU/Linux systems (a.k.a Linux-KVM)
 - `whpx`: On Windows 10/11 systems (a.k.a Hyper-V)
-- `hpf`: On Apple macOS systems (a.k.a Hypervisor.Framework)
+- `hvf`: On Apple macOS systems (a.k.a Hypervisor.Framework)
 
 > Again, refer to [Hardware Acceleration (Optional)](#hardware-acceleration-optional) for more information on them.
 
