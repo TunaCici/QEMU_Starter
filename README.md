@@ -1159,37 +1159,37 @@ QEMU, _by default_, uses a BIOS called [SeaBios](https://en.wikipedia.org/wiki/S
 
 **O**pen **V**irtual **M**achine **F**irmware, `OVMF`, is an EDK II based project to enable UEFI support for Virtual Machines. `OVMF` contains sample UEFI firmware for QEMU and KVM. [^80]. It is an amazing project with amazing people behind it! I won't talk about it here for obvious reasons. If you want to learn more visit their GitHub repository [OVMF - FAQ](https://github.com/tianocore/tianocore.github.io/wiki/OVMF-FAQ)
 
+Starting from QEMU version 1.6, _which was release on December 3 2013_, the `OVMF` project comes pre-installed with many QEMU installations (e.g. Windows). However, package managers like `pacman` does NOT include it! So, you have to manually install `OVMF` firmwares.
 
-Starting from QEMU version 1.6, _which was release on December 3 2013_, the `OVMF` project comes pre-installed has as the default firmware for UEFI.[Citiation needed] Before that you had to manually obtain and install `OVMF`. The firmware itself is a binary file in `.fd` format.
+> By time time I'm writing this, your package manager might be updated to also include OVMF packages.
 
-Each CPU architecture (e.g. aarch64, x86_64) has different UEFI firmware. You can find them under the location:
-> Also try replacing `aarch64` with another architecture.
+To install the `OVMF` UEFI firmwares (_if you don't have it already_):
 
 **GNU/Linux**
 
 ```bash
-$ file /usr/share/qemu-efi-aarch64/QEMU_EFI.fd
+# For 'apt' based distros (e.g. Debian, Ubuntu)
+$ apt install qemu-efi-aarch64
+
+# For 'pacman' or 'yay' based distros (e.g. ArchLinux)
+$ pacman -S edk2-ovmf
 ```
 
 **Windows 10/11**
 
-```powershell
-$ ls 'C:\Progam Files\qemu\share\edk2-aarch64-code.fd'
-```
+Comes pre-installed with the `MSI Installer`.
 
 **macOS 13.0 (Ventura)**
 
-```bash
-$ file /opt/homebrew/Cellar/qemu/8.0.0/share/qemu/edk2-aarch64-code.fd
+Comes pre-installed with `Homebrew`.
 
-# Replace '8.0.0' with the QEMU version you installed
-```
+Each CPU architecture (e.g. aarch64, x86_64) has different `OVMF` firmware. You can see which ones are installed on your system by checking their file locations. Their locations can be found under this repositorie's `/Firmwares` folder. Access it here [Firmwares](https://github.com/TunaCici/QEMU_Starter/tree/main/Firmwares)
 
 ### UEFI on QEMU
 
-To enable UEFI on a QEMU machine we have to provide two things: `UEFI firmware` and `UEFI variables`. In this section I will explain how to do that, but you should know that most of the stuff here is taken from Joonas's article on [UEFI, PC boot process and UEFI with QEMU](https://joonas.fi/2021/02/uefi-pc-boot-process-and-uefi-with-qemu/)
+To enable UEFI on a QEMU machine we have to provide two things: `UEFI firmware` and `UEFI variables`. In this section I will explain how to do that, but you should know that most of the stuff here is taken from Joonas's article on [UEFI, PC boot process and UEFI with QEMU](https://joonas.fi/2021/02/uefi-pc-boot-process-and-uefi-with-qemu/) and [Arch Linux Wiki](https://wiki.archlinux.org/title/QEMU#Booting_in_UEFI_mode).
 
-> I highly encourage you to read his writing. It is totally amazing and will give you a much better context on what we are doing here.
+> I highly encourage you to read Joonas's writing. It is totally amazing and will give you a much better context on what we are doing here.
 
 **Step 1 - Providing the UEFI firmware itself**
 
