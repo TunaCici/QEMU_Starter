@@ -1,0 +1,2 @@
+# Must be installed with 'apt install qemu-efi-aarch64'
+/usr/share/qemu-efi-aarch64/QEMU_EFI.fd

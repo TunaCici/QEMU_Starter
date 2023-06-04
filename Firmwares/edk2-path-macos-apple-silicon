@@ -1,0 +1,2 @@
+# Change the ${QEMU_VERSION} to yours (e.g `qemu-img --version`)
+/opt/homebrew/Cellar/qemu/${QEMU_VERSION}/share/qemu/edk2-aarch64-code.fd

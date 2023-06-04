@@ -1,0 +1,2 @@
+# Must be installed with 'pacman -S edk2-ovmf'
+/usr/share/edk2-ovmf/aarch64/QEMU_EFI.fd
