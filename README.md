@@ -1289,7 +1289,7 @@ TAP network overcomes all of the limitations of user-mode networking, but requir
 
 ## Modes
 
-Here are some of the network modes that can be configured in QEMU.[^91]
+Here are some of the most used network modes that can be configured in QEMU.[^91]
 
 ### Shared Network (Default)
 In the shared network mode, the back end acts as a Network Addres Translation (NAT) gateway between the guest machine and the external network.[^92] The back end network assigns private IP addresses to the guest machines and performs the translation of network traffic between the guest and the external network (e.g. the Internet).[^93]
