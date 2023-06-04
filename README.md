@@ -1254,30 +1254,30 @@ Note the `netdev=mynetdev` option above. It specifies the **back end** network i
 
 On the other hand, back end represents the **network backend** that interacts with the [front end] emulated NIC (e.g. puts packets onto the host's network). You can also think if this part as the one that _listens to the front end handles network packetes (e.g. `TCP/IP`)_ and talks with the host machine. It's like a 'proxy server' for emulators![^85]
 
-> For more information on this topic refer to official QEMU documentation on [Network Basic](https://wiki.qemu.org/Documentation/Networking#Network_Basics).
+> For more information on this topic refer to official QEMU documentation on [Networking Basics](https://wiki.qemu.org/Documentation/Networking#Network_Basics).
 
-To configure the back end, we will use the `-netdev` option followed by the TYPE of the network backend and its parameters.
+To configure the back end, we use the `-netdev` option followed by the TYPE of the network backend and its parameters.
 
-Usage:
+Defining a back end:
 ```bash
 $ qemu-system-x86_64 ... -netdev type=[TYPE],id=[NAME],...
 ```
 
-The `id=[NAME]` options, _as you might've gussed_, is the identifier of back end network. The front end device is going to use this `id` to connect to the back end. The `type=[TYPE]` here There are many back end TYPEs out there, however I will only go over some of the most used ones: `user` and `tap`.[^86]
+The `id=[NAME]` options, _as you might've guessed_, is the back end network identifier. The front end device is going to use this `id` to connect to the back end. The `type=[TYPE]` defines the TYPE of network to be used. Now, there are many back end TYPEs out there, however I will only go over some of the most used ones: `user` and `tap`.[^86]
 
 ### `user`
 
-The user-mode networking, is the default networking backend and generally is the easiest to use. It is implemented using "SLIRP", which provides a full TCP/IP stack within QEMU and uses that stack to implement a virtual NAT'd network. [^87]
+The user-mode networking, is the default networking back end and is the easiest one to use. It is implemented using "SLIRP", which provides a full TCP/IP stack within QEMU and uses that stack to implement a virtual NAT'd network. [^87]
 
 > Shameless plug: [More [ELI5] information on NAT](https://medium.com/@tunacici7/linux-networking-eli5-part-1-networks-interfaces-b912826d699b)
 
-Most of the time it is enough to just use `user`. It is enabled by default and you don't have to do many configurations to use it.[^88]. However, according to the official [QEMU documentations](https://wiki.qemu.org/Documentation/Networking#User_Networking_(SLIRP)), it has the following limitations:
+Most of the time it is enough to just use `user`. It is enabled by default and you don't have to do many configurations to use it.[^88] However, according to the official [QEMU documentations](https://wiki.qemu.org/Documentation/Networking#User_Networking_(SLIRP)), it has the following limitations:
 
 - there is a lot of overhead so the performance is poor
 - in general, ICMP traffic does not work (so you cannot use ping within a guest)
 - the guest is not directly accessible from the host or the external network
 
-Some of the above limitations can be overcomed (e.g. via port-forwarding), but other things like _relatively 'poor' performance_ is unavoidable. The only [network mode](#modes) available with `user` is the [Shared Network](#shared-network).
+Some of the above limitations can be overcomed (e.g. via [port-forwarding](https://wiki.archlinux.org/title/QEMU#QEMU's_port_forwarding)), but other things like _relatively 'poor' performance_ is unavoidable. The only [network mode](#modes) available with `user` is the [Shared Network](#shared-network).
 
 ### `tap`
 
@@ -1291,8 +1291,8 @@ TAP network overcomes all of the limitations of user-mode networking, but requir
 
 Here are some of the network modes that can be configured in QEMU.[^91]
 
-### Shared Network
-In the shared network mode, the back end acts as a Network Addres Translatio (NAT) gateway between the guest machine and the external network.[^92] The back end network assigns private IP addresses to the guest machines and performs the translation of network traffic between the guest and the external network (e.g. the Internet).[^93]
+### Shared Network (Default)
+In the shared network mode, the back end acts as a Network Addres Translation (NAT) gateway between the guest machine and the external network.[^92] The back end network assigns private IP addresses to the guest machines and performs the translation of network traffic between the guest and the external network (e.g. the Internet).[^93]
 
 To create a shared network using `-netdev`:
 ```bash
@@ -1308,7 +1308,7 @@ $ qemu-system-aarch64 -netdev type=user,id=my-shrd-net -device virtio-net-device
 
 ### Bridged
 
-In the bridged network mode, the back end is connected directly to the host's physical network interface (e.g. NIC). This allows the guest machine to appear as a separate node on the network (e.g. your home network), with its own IP address assigned by the router's DHCP server. The guest can communicate with other nodes on the network and can be accessed by other devices.[^94]
+In the bridged network mode, the back end is connected directly to the host's physical network interface (e.g. `eth0`). This allows the guest machine to appear as a separate node on the network (e.g. your home network), with its own IP address assigned by the router's DHCP server. The guest can communicate with other nodes on the network and can be accessed by other devices.[^94]
 
 > **Warning (_from [ArchLinux Wiki](https://wiki.archlinux.org/title/QEMU#Tap_networking_with_QEMU)_):** If you bridge together a guest [network] device and some host interface, such as `eth0`, your machines will appear directly on the external network, which will expose them to possible attack. ... a better solution might be to use [Host Only](#host-only) networking mode and set up NAT. 
 
@@ -1317,7 +1317,7 @@ This mode can be useful if you want:
 - **full network access:** Guest machines will have their own IP addresses on the external network, enabling them to communicate with other devices.
 - **quickly develop/test drivers:** Guest machine's network `-device` will act like a real NIC. This makes testing drivers or operating systems quick and easy.
 
-To set up a bridged network in QEMU, the process can vary slightly depending on your host OS. I will only give some of the useful guides I found on the internet here. Maybe in the future I can expand on them a bit more.
+To set up a bridged network in QEMU, the process can vary slightly depending on your host OS. Sadly, I won't be explaining that here (due to complexity). I will only give links to other useful guides I found on the internet here for you to follow. Maybe in the future I can expand on them a bit more.
 
 > Reminder, you can always contribute and help me/others <3
 
