@@ -48,7 +48,7 @@ Guest: The virtualized/emulated machine that runs on the host operating system.
 
 # What is QEMU?
 
-**Q**uick **EMU**lator (QEMU) is a generic Free and Open-Source machine emulator and virtualizer[^1]. It was first developed by the genius `Fabrice Bellard` and is now maintained by the contributers all over the world. [^2]
+**Q**uick **EMU**lator (QEMU) is a generic Free and Open-Source machine emulator and virtualizer[^1]. It was first developed by the genius `Fabrice Bellard` and is now maintained by the contributors all over the world. [^2]
 
 QEMU can fully emulate CPUs, Instruction Sets, I/O Devices and other common hardware devices. It supports virtualization with near-native performance using accelerators such as Linux's `KVM`, Apple's `Hypervisor.Framework` and Microsoft's `Hyper-V`. [^3]
 
@@ -69,7 +69,7 @@ Basically: it Depends™. QEMU is an extremely versatile tool. It has a very ste
 
 ## Who is QEMU Not For?
 
-Anyone who is looking for a Quick™ and headache-free experince to create Virtual Machines and/or Emulated Systems.
+Anyone who is looking for a Quick™ and headache-free experience to create Virtual Machines and/or Emulated Systems.
 
 > If you are looking for an easy-to-use virtual machine QEMU is not the place. There are other great tools out there in the wild (ex. VirtualBox[^4], VMWare[^5], Parallels[^6], UTM[^81]).
 
@@ -99,7 +99,7 @@ There are two kinds of virtualizations:[^12] [^13]
 
 > You can think of `Full Virtualization` as running Ubuntu like in a normal computer and `Paravirtualization` as running Docker containers.
 
-The virtualization happens using the help of `Hypervisors`. Since the software/system is isolated it requires a layer to interact with the real hardware. This layer is provided by the `Hypervisors`. They provide the guest a virtualized hardware platfrom to run on. [^16]
+The virtualization happens using the help of `Hypervisors`. Since the software/system is isolated it requires a layer to interact with the real hardware. This layer is provided by the `Hypervisors`. They provide the guest a virtualized hardware platform to run on. [^16]
 
 > Virtualization wouldn't be possible without an `Hypervisor`. [^17]
 
@@ -109,7 +109,7 @@ Each host OS provides their own `Hypervisor` layers:
 - **Hypervisor.Framework**: Provided by Apple for the macOS. [^19]
 - **Hyper-V**: Provided by Microsoft for Windows systems. [^20]
 
-QEMU supports `Full Virtualization` on almost every platform via the `Hypervisors` specifed above. This allows it to be used as a virtual machine.
+QEMU supports `Full Virtualization` on almost every platform via the `Hypervisors` specified above. This allows it to be used as a virtual machine.
 
 > Shameless Plug: [Additional [ELI5] Info on Emulation/Virtualization](https://medium.com/@tunacici7/virtualization-vs-emulation-4ab2afdb1b90)
 
@@ -142,7 +142,7 @@ Here is the list of common QEMU binaries/packages [^24]:
 
 ## Hardware Acceleration (Optional)
 
-By default, QEMU emulates everything and that includes the CPU. Emulating a CPU is extremely hard and brings lots of overheads ([tho it's a fascinating thing!](http://www.emulator101.com/a-quick-introduction-to-a-cpu.html)). The emulated machine is, naturally, slow and becames unpractical to use.
+By default, QEMU emulates everything and that includes the CPU. Emulating a CPU is extremely hard and brings lots of overheads ([tho it's a fascinating thing!](http://www.emulator101.com/a-quick-introduction-to-a-cpu.html)). The emulated machine is, naturally, slow and becomes unpractical to use.
 
 > Hardware acceleration is not necessary to use QEMU. Though it is **highly recommended!** as it speeds up the machine by a factor of 10x or more..
 
@@ -202,7 +202,7 @@ Launch `Task Manager`, switch to `Performance` tab and check the value of `Virtu
 💚 If the `Virtualization` is **Enabled** then congrats your Windows 10/11 is ready! 💚 \
 🔴 If it is **Disabled** or not showing up, try Google.. Sorry :( 🔴
 
-> The above steps are taken directly from Microsoft's offical guide. [^38]
+> The above steps are taken directly from Microsoft's official guide. [^38]
 
 # Installation
 
@@ -210,13 +210,13 @@ The following sections gives a step-by-step tutorial on how to install QEMU and 
 
 ## GNU/Linux
 
-Each distro uses different package managers. In the following sections only the most 'popular' distros are given. However, they are all very similiar and you should be able to adapt them to your own distro/package-manager.
+Each distro uses different package managers. In the following sections only the most 'popular' distros are given. However, they are all very similar and you should be able to adapt them to your own distro/package-manager.
 
 > Tested on ArchLinux (19 May 2023), Ubuntu 22.04 LTS, Windows 11 22H2 and macOS 13.3.
 
 ### ArchLinux (pacman)
 
-The below commands should be run as the `root` user. Proceed with cauiton!
+The below commands should be run as the `root` user. Proceed with caution!
 
 **Step 1 - Update your sources**
 
@@ -236,8 +236,8 @@ This will install everything QEMU has to offer. EFI, GUI, user-mode emulation an
 ```bash
 $ pacman -S qemu-full
 
-# Output will look similiar to this
-> resolving dependecies...
+# Output will look similar to this
+> resolving dependencies...
 > looking for conflicting packages..
 
 > Packages (41) edk2-aarch64-202302-1 ....
@@ -245,7 +245,7 @@ $ pacman -S qemu-full
 >               qemu-full-8.0.0-1
 >
 > Total Download Size:      105.25 MiB
-> Total INstalled Size:     785.45 MiB
+> Total Installed Size:     785.45 MiB
 >
 > :: Proceed with installation? [Y/n] y
 ```
@@ -278,7 +278,7 @@ $ qemu-aarch64 --version
 > Copyright (c) 2003-2022 Fabrice Bellard and the QEMU Project developers
 ```
 
-💚 If the above commands **worked** then congrats, you successfuly installed QEMU! 💚 \
+💚 If the above commands **worked** then congrats, you successfully installed QEMU! 💚 \
 🔴 If you ran into any **problems** feel free to contact me or create an issue. 🔴
 
 ### Ubuntu/Debian (apt)
@@ -305,9 +305,9 @@ $ apt update
 ```bash
 $ apt install qemu-system qemu-user qemu-utils
 
-# Output will look similiar to this
+# Output will look similar to this
 > ...
-> The folowing NEW packages will be installed:
+> The following NEW packages will be installed:
 >   ibverbs-providers ipxe-qemu ...
 >   ...
 >   qemu-system-x86 qemu-user qemu-utils seabios
@@ -345,14 +345,14 @@ $ qemu-aarch64 --version
 > Copyright (c) 2003-2021 Fabrice Bellard and the QEMU Project developers
 ```
 
-💚 If the above commands **worked** then congrats, you successfuly installed QEMU! 💚 \
+💚 If the above commands **worked** then congrats, you successfully installed QEMU! 💚 \
 🔴 If you ran into any **problems** feel free to contact me or create an issue. 🔴
 
 ## Windows 10/11
 
-There are fundemantally two ways to 'natively' install QEMU on Windows platforms: `MSYS2` or `Installers`. We will use the latter one, as it's easier and more straightforward.
+There are fundamentally two ways to 'natively' install QEMU on Windows platforms: `MSYS2` or `Installers`. We will use the latter one, as it's easier and more straightforward.
 
-> The `binaries/installers` are provided by Stefen Weil [^39]
+> The `binaries/installers` are provided by Stefan Weil [^39]
 
 **Step 1 - Download the `Installer` from QEMU's File Servers** \
 For Windows 32-Bit: https://qemu.weilnetz.de/w32 \
@@ -414,9 +414,9 @@ $ qemu-system-x86_64.exe --version
 
 > Unfortunately, QEMU does not support user-mode emulation on Windows 10/11 yet.[^40]
 
-> You might get an error like _'qemu-img' is not recognized as an internal or extarnel command,..._ Make sure that your `PATH` variable is set-up correctly.
+> You might get an error like _'qemu-img' is not recognized as an internal or external command,..._ Make sure that your `PATH` variable is set-up correctly.
 
-💚 If the above commands **worked** then congrats, you successfuly installed QEMU! 💚 \
+💚 If the above commands **worked** then congrats, you successfully installed QEMU! 💚 \
 🔴 If you ran into any **problems** feel free to contact me or create an issue. 🔴
 
 ## macOS 11+ (Big Sur)
@@ -461,7 +461,7 @@ $ qemu-system-aarch64 --version
 
 > Unfortunately, QEMU does not support user-mode emulation on macOS yet.[^40]
 
-💚 If the above commands **worked** then congrats, you successfuly installed QEMU! 💚 \
+💚 If the above commands **worked** then congrats, you successfully installed QEMU! 💚 \
 🔴 If you ran into any **problems** feel free to contact me or create an issue. 🔴
 
 
@@ -540,7 +540,7 @@ There are many `tools` provided by QEMU that are used to create, configure and '
 
 It would be unpractical to list and explain all of them here. For that, only the most popular and used `tools` are listed. _Who knows, maybe I will document other ones in the future:)_
 
-> If your `shell` supports _completions_, then you can list most of the QEMU tools by typing `qemu-` and presing `Tab`!
+> If your `shell` supports _completions_, then you can list most of the QEMU tools by typing `qemu-` and pressing `Tab`!
 
 ## qemu-img
 
@@ -676,9 +676,9 @@ Like every machine in the real-world, every QEMU machine can be different. The C
 
 > You can basically create your own machine. Just like building a custom computer!
 
-QEMU is capable of emulating many devices and CPUs![^45] However, as you know already, emulation is expensive! If your intention is to have a performant, _maybe even near-native_, machines then using emulated devices is not a good choice. Espacially emulating a CPU architecture.
+QEMU is capable of emulating many devices and CPUs![^45] However, as you know already, emulation is expensive! If your intention is to have a performant, _maybe even near-native_, machines then using emulated devices is not a good choice. Especially emulating a CPU architecture.
 
-To achive good performance QEMU needs to act like a `Virtual Machine` with the help of configurations like `Accelerators` and `Virtio` devices. Now, at this exact point we are faced with two options:
+To achieve good performance QEMU needs to act like a `Virtual Machine` with the help of configurations like `Accelerators` and `Virtio` devices. Now, at this exact point we are faced with two options:
 
 - **Use QEMU as an Emulator:** In this approach, QEMU emulates all the hardware devices and the CPU architecture. This is the _default mode_ of operation and is suitable for compatibility with a wide range of guest operating systems and architectures. However, the performance might not be optimal due to the overhead of emulation.
 - **Use QEMU as a Virtual Machine:** In this approach, QEMU is _configured_ to take advantage of Accelerators, such as `KVM` or leverage hardware device virtualization (aka. `virtIO`). `VirtIO` devices are paravirtualized devices that offer efficient communication between the guest and host OS.[^46] By using these technologies, QEMU can achieve significantly better performance and reduce the emulation overhead.
@@ -718,7 +718,7 @@ $ qemu-system-x86_64 -cpu [target],[features]
 
 Specifies which the CPU to be emulated. Defines the CPU architecture (ARMv8, x86...), ABI, layout (NUMA), core count, caches, registers, and feature flags. For example `Cortex A53`, will define an `ARMv8-A` CPU with `2 Cores @ 2.00GHz` and `L1-2-3 Caches`. The exact numbers and CPu features depends on your QEMU version and the type of machine you use.
 
-Additionally, you can set some CPUID feature flags. Each CPU has different features that can be enbaled/disabled. The `code snippet` at the start will also list all avaialble CPUID flags. For example, to define a `Intel Core i7-8700K` CPU with  `AVX (Advanced Vector Extensions)` use:
+Additionally, you can set some CPUID feature flags. Each CPU has different features that can be enabled/disabled. The `code snippet` at the start will also list all available CPUID flags. For example, to define a `Intel Core i7-8700K` CPU with  `AVX (Advanced Vector Extensions)` use:
 
 ```bash
 $ qemu-system-x86_64 -cpu SandyBridge,+avx
@@ -744,7 +744,7 @@ $ qemu-system-aarch64 -cpu cortex-a53 -smp 8
 
 The `-accel [hypervisor]` option in QEMU defines the Hypervisor to be used. This uses [Hardware Acceleration (Optional)](#hardware-acceleration-optional) to speed up the `-cpu` substantially. Refer to the previous sections for more information about accelerators and Hypervisors.
 
-In order to use the `-accel` option, the compatible `-cpu` option needs to be defined. Also, the `qemu-system-*` you are using MUST be similiar to your host's architecture. For example, `qemu-system-x86_64` can only be used with `-accel` option if your host CPU is also x86_64.
+In order to use the `-accel` option, the compatible `-cpu` option needs to be defined. Also, the `qemu-system-*` you are using MUST be similar to your host's architecture. For example, `qemu-system-x86_64` can only be used with `-accel` option if your host CPU is also x86_64.
 
 Here's a quick checklist to see if your guest machine can be used with `-accel` option or not.
 
@@ -761,7 +761,7 @@ The `-accel [hypervisor]` needs to know which Hypervisor to use. Here's the curr
 
 > Again, refer to [Hardware Acceleration (Optional)](#hardware-acceleration-optional) for more information on them.
 
-An example usage of `-accel [hypervısor]`:
+An example usage of `-accel [hypervisor]`:
 ```bash
 $ qemu-system-aarch64 -cpu host -smp 4 -accel hvf
 ```  
@@ -777,7 +777,7 @@ Specifies the amount of memory (RAM) allocated to the guest. The amount of memor
 
 The important thing to note here is that the amount of memory you specify **should be within the limits of your host system's available physical memory**. Allocating excessive memory to the virtual machine may impact the performance of both the host and the guest.
 
-The default `[size]` unit is `Mebibyte (MiB)`. Meaning `-m 1024` will be equal `1024 MiB (1GiB)`. You can, however, specify the memory size using `suffixes` like `k, M, G, T`. They, _in order_, refer to `kibibyte`, `Mebibyte`, `Gigibyte` and `Tebibyte`. 
+The default `[size]` unit is `Mebibyte (MiB)`. Meaning `-m 1024` will be equal `1024 MiB (1GiB)`. You can, however, specify the memory size using `suffixes` like `k, M, G, T`. They, _in order_, refer to `kibibyte`, `Mebibyte`, `Gibibyte` and `Tebibyte`. 
 
 An example machine with `4GiB` would use:
 ```bash
@@ -791,7 +791,7 @@ Usage (for `help` refer to [QEMU Source Code](https://github.com/qemu/qemu/blob/
 $ qemu-system-x86_64 -drive [option],[option],[...]
 ```
 
-Specifies a new drive. Generally defines a storage device, such as a disk image, that can be attached to the machine. It allows you to configure the storage options and provide access to files or block devices within the machine. You can specifiy more than one drives.
+Specifies a new drive. Generally defines a storage device, such as a disk image, that can be attached to the machine. It allows you to configure the storage options and provide access to files or block devices within the machine. You can specify more than one drives.
 
 > Sound complicated? Well, think of this options as an `SSD`, `HDD` or any type of `Storage` device that is attached to the machine.
 
@@ -806,7 +806,7 @@ Specifies the `path` to the disk image file. An example usage would be:
 $ qemu-system-x86_64 -drive file=/home/mike/machines/disks/archlinux0.img
 ```
 index: Specifies the index or position of the drive attachment.
-media: Specifies the type of media, such as disk, cdrom, etc.
+media: Specifies the type of media, such as disk, CD-ROM, etc.
 snapshot: Enables snapshot mode for the drive.
 
 ### `format=[option]`
@@ -821,7 +821,7 @@ $ qemu-system-x86_64 -drive file=archlinux0.qcow2,format=qcow2
 
 ### `if=[option]`
 
-Specifies the interface type of the storage device. The guest must include the necessary driver. Commonly used interfaces include `IDE`, `SCSCI`, `VIRTIO`, `PFLASH`etc. An example usage would be:
+Specifies the interface type of the storage device. The guest must include the necessary driver. Commonly used interfaces include `IDE`, `SCSCI`, `VIRTIO`, `PFLASH` etc. An example usage would be:
 ```bash
 $ qemu-system-x86_64 -drive file=archlinux0.qcow2,format=qcow2,if=virtio
 ```
@@ -845,7 +845,7 @@ $ qemu-system-x86_64 -drive file=windows11_setup.img,format=raw,if=virtio,index=
 
 ### `readonly=[option]`
 
-Specifies if the drive should be marked as **readonly**. This is generally used with `cdrom` medis or `PFLASH` drives as to protect the drive. You can set this value to `on` to mark that drive as readonly. An example usage would be:
+Specifies if the drive should be marked as **readonly**. This is generally used with `CD-ROM` medias or `PFLASH` drives as to protect the drive. You can set this value to `on` to mark that drive as readonly. An example usage would be:
 ```bash
 $ qemu-system-x86_64 -drive file=efi.fd,format=raw,if=pflash,readonly=on
 ```
@@ -853,7 +853,7 @@ $ qemu-system-x86_64 -drive file=efi.fd,format=raw,if=pflash,readonly=on
 > If not specified, the drive will be both **readable** and **writable**.
 
 
-Now, there are many possibilities with the `-drive`. You can have specifiy many drives, roms, storage devices and etc. It might be confusing to decide which option to use and where. So, I wrote some of the most common use cases to help you decide.
+Now, there are many possibilities with the `-drive`. You can have specify many drives, ROMs, storage devices and etc. It might be confusing to decide which option to use and where. So, I wrote some of the most common use cases to help you decide.
 
 - **General Drive (SSD/HDD):**  Use this type for large storage devices. (e.g. Install OS, Backup files) 
 - **Optical Drive (CD/DVD):** Use this for installation images. (e.g. ubuntu-arm64.iso, archboot.aarch64.iso)
@@ -912,11 +912,11 @@ Here are some of the most commonly used ones:
 - **Console `virtio-console`** [^57]
 - **Serial `virto-serial`** [^58]
 
-Unlike other devices in QEMU (`Intel E1000 Network Card`), the above `virtIO` devices are very minimal. This is because most of the operations like setup and maintainance is handled by the host. This makes `virtIO` very simple and straightforward to use within the guest.
+Unlike other devices in QEMU (`Intel E1000 Network Card`), the above `virtIO` devices are very minimal. This is because most of the operations like setup and maintenance is handled by the host. This makes `virtIO` very simple and straightforward to use within the guest.
 
 `virtIO` devices are pretty cool. If you are interested about how they work and implemented check out Oracle's [Introduction to VirtIO](https://blogs.oracle.com/linux/post/introduction-to-virtio). For now, all we need to know is that _they are special devices designed to be used in virtual machines_.
 
-> Each `virtIO` device deserve its own wiriting. I will only talk about _some_ of them here. If you want to learn more, check out the _references_ linked in the above list.
+> Each `virtIO` device deserve its own writing. I will only talk about _some_ of them here. If you want to learn more, check out the _references_ linked in the above list.
 
 ### Input Devices
 
@@ -931,7 +931,7 @@ Input devices in QEMU refer to the devices that allow users to interact with the
 - `virtio-serial`: Virtual serial communication that uses the `VirtIO` specification.
 - `virtio-tablet`: Virtual table for touch inputs that uses the `VirtIO` specification.
 
-There are many more _Input devices_ that can be speficied in QEMU. But most of the time you will only be using the ones above. The importing to note here is the difference between the `usb-*` and `virtio-*` devices. Essentially, **both** achieves the same thing. The only difference is their implementation (_guest driver and host device_).
+There are many more _Input devices_ that can be specified in QEMU. But most of the time you will only be using the ones above. The importing to note here is the difference between the `usb-*` and `virtio-*` devices. Essentially, **both** achieves the same thing. The only difference is their implementation (_guest driver and host device_).
 
 If you want an efficient input device, then simply use `virtio-*` devices. However, if you really need `usb-*` devices (when developing/testing drivers), then use that as you wish.
 
@@ -1006,7 +1006,7 @@ Here are some of the most commonly used storage devices in QEMU:
 - `virtio-blk`: A virtual block device that uses `VirtIO` specification.
 - `virtio-scsi`: A virtual storage device uses the SCSI protocol and the `VirtIO` specification.
 
-You might be confused, because we already have `-drive` to give storage access to the guest machine (Refer to [Disks](#disks)). Why do we have another way to add a storage device? You are totally right, the differecen between a `-device [storage_dev]` and a `-drive` is somewhat blurry. But they DO have different purposes.
+You might be confused, because we already have `-drive` to give storage access to the guest machine (Refer to [Disks](#disks)). Why do we have another way to add a storage device? You are totally right, the difference between a `-device [storage_dev]` and a `-drive` is somewhat blurry. But they DO have different purposes.
 
 The storage devices (`-device [storage_dev]`) gives the guest machine just an interface. The _storage_ part of if does not exist until you specify one using the `-drive`. This might be useful when developing/testing a driver. Now, let's go over an example to understand this better.
 
@@ -1046,14 +1046,14 @@ Display devices in QEMU handle the graphical output of the guest machine. When c
 
 By default, a QEMU machine is launched with a `qxl-vga` _display device_. However, you can disable this via configurations like `-nographic`. This way you will be **disabling the display** and other host GUI elements!
 
-> Disabling the display might be useful if you don't intent to interact with the guest via a GUI (e.g. mouse clicks). For example, servers and headless computers choose to use SSH and/or VNC insted of an actual _display device_.
+> Disabling the display might be useful if you don't intent to interact with the guest via a GUI (e.g. mouse clicks). For example, servers and headless computers choose to use SSH and/or VNC instead of an actual _display device_.
 
 Here's some of the most commonly used _Displays_:
 
 - `vga`: Emulates a very simple and generic VGA display.
-- `bochs-display`: Emulates a generic VGA display. Similiar to `vga`.
+- `bochs-display`: Emulates a generic VGA display. Similar to `vga`.
 - `virtio-vga`: A virtual VGA display device using the `VirtIO` specification.
-- `virtio-gpu`: A virtual GPU display device using the `VirtIO` specification. Similiar to `virtio-vga`.
+- `virtio-gpu`: A virtual GPU display device using the `VirtIO` specification. Similar to `virtio-vga`.
 - `qxl-vga`: Emulates a QXL VGA display. Provides accelerated graphics capabilities for virtual machines. Good for Windows.
 - `ramfb`: Emulates a framebuffer device backed by host RAM. Provides a simple display output. 
 
@@ -1099,7 +1099,7 @@ There are also many more _Sound devices_ that QEMU can emulate.[^65] Here's a li
 - `ich9-intel`: Emulates the Intel ICH9 HD Audio controller.
 - `usb-audio`: Represents a USB audio device. Emulates a USB audio controller, allowing **both** audio playback and recording.
 
-Altough, there seems to be many options to choose from, you rarely use anything other than `hda`. It is the most common one both in real-world and in QEMU as well. You might be confused as to why there is `intel-hda` AND `hda-*`. The `intel-hda` in and on itself does NOT provide neither audio playback or recording. It is just an audio controller. You MUST add `hda-output`, `hda-micro` or `hda-duplex` in order to get audio working on your QEMU machine.
+Although, there seems to be many options to choose from, you rarely use anything other than `hda`. It is the most common one both in real-world and in QEMU as well. You might be confused as to why there is `intel-hda` AND `hda-*`. The `intel-hda` in and on itself does NOT provide neither audio playback or recording. It is just an audio controller. You MUST add `hda-output`, `hda-micro` or `hda-duplex` in order to get audio working on your QEMU machine.
 
 > My recommendation is to just use `intel-hda` AND `hda-duplex`, unless you want to develop/test something else. Most guest OS's has `hda` drivers out-of-box (e.g. Windows, GNU/Linux).[^66]
 
@@ -1144,7 +1144,7 @@ As you can see, there are many USB device that QEMU can emulate. It is pretty am
 
 > The USB pass through (`usb-host`) is an extremely useful feature of QEMU. I have personally used it to pass my [Crazyflie 2.1 drone's USB dongle](https://www.bitcraze.io/products/crazyradio-pa/) from the macOS host machine to Ubuntu guest machine!
 
-> You can learn more about it here on [KVM - Assiging Host USB to Guest VM](https://www.linux-kvm.org/page/USB_Host_Device_Assigned_to_Guest)
+> You can learn more about it here on [KVM - Assigning Host USB to Guest VM](https://www.linux-kvm.org/page/USB_Host_Device_Assigned_to_Guest)
 
 An example usage:
 ```bash
@@ -1220,7 +1220,7 @@ This is as easy as adding a `-drive` to your guest machine. The important thing 
 ```bash
 $ qemu-system-aarch64 ... -drive if=pflash,format=raw,readonly=on,file=${EFI_FLASH_PATH} ...
 
-# The EFI_FLAS_PATH can be obtained from the prevoius section
+# The EFI_FLAS_PATH can be obtained from the previous section
 ```
 
 **Step 2 - Providing the UEFI variables**
@@ -1275,7 +1275,7 @@ Note the `netdev=mynetdev` option above. It specifies the **back end** network i
 
 ## Back End
 
-On the other hand, back end represents the **network backend** that interacts with the [front end] emulated NIC (e.g. puts packets onto the host's network). You can also think if this part as the one that _listens to the front end handles network packetes (e.g. `TCP/IP`)_ and talks with the host machine. It's like a 'proxy server' for emulators![^85]
+On the other hand, back end represents the **network backend** that interacts with the [front end] emulated NIC (e.g. puts packets onto the host's network). You can also think if this part as the one that _listens to the front end handles network packets (e.g. `TCP/IP`)_ and talks with the host machine. It's like a 'proxy server' for emulators![^85]
 
 > For more information on this topic refer to official QEMU documentation on [Networking Basics](https://wiki.qemu.org/Documentation/Networking#Network_Basics).
 
@@ -1351,7 +1351,7 @@ To set up a bridged network in QEMU, the process can vary slightly depending on 
 
 #### Windows 10/11
 
-- **OpenVPN's TAP Drivers:** [Managin Windows TAP Drivers](https://community.openvpn.net/openvpn/wiki/ManagingWindowsTAPDrivers)
+- **OpenVPN's TAP Drivers:** [Managing Windows TAP Drivers](https://community.openvpn.net/openvpn/wiki/ManagingWindowsTAPDrivers)
 
 > There seems to be NO ACTUL GUIDES on this. I was not able to found anything useful.. Sorry.
 
@@ -1365,19 +1365,19 @@ To set up a bridged network in QEMU, the process can vary slightly depending on 
 
 In the host-only mode, the back end provides network connectivity **only** between the guest machine and the host machine. The guest machines can communicate with each other and with the host, but they are **isolated** from the external network.
 
-The **isolation** this mode brings is great for security since the guest doesn't have any acces to the external network. It is actually **similiar** to [Bridged](#bridged) in terms of how it is configured and used. From the [ArchLinux's Wiki](https://wiki.archlinux.org/title/QEMU#Host-only_networking):
+The **isolation** this mode brings is great for security since the guest doesn't have any access to the external network. It is actually **similar** to [Bridged](#bridged) in terms of how it is configured and used. From the [ArchLinux's Wiki](https://wiki.archlinux.org/title/QEMU#Host-only_networking):
 
 > If the bridge is given an IP address and traffic destined for it is allowed,**but no real interface (e.g. `eth0`) is connected to the bridge**, then the virtual machines will be able to talk to each other and the host system. However, they will not be able to talk to anything on the external network, provided that you do not set up IP masquerading on the physical host. This configuration is called [Host Only](#host-only) networking...
 
 This mode can be useful if you want:
 
-- **isolated network environment**: Guest machine(s) does not have acces to the externel network (e.g. Internet).
+- **isolated network environment**: Guest machine(s) does not have access to the external network (e.g. Internet).
 
-The setup is very similiar to [Bridged](#bridged). Just follow the instuctions there, but do NOT assign an interface to your bridge. After that, you will have host-only networking!
+The setup is very similar to [Bridged](#bridged). Just follow the instructions there, but do NOT assign an interface to your bridge. After that, you will have host-only networking!
 
 # Combining it All Together
 
-@TODO: Combine each configuration togeher and give some general tips on how to 'build' a QEMU machine.
+@TODO: Combine each configuration together and give some general tips on how to 'build' a QEMU machine.
 
 # Shortcuts / Key Bindings
 
@@ -1385,15 +1385,15 @@ The setup is very similiar to [Bridged](#bridged). Just follow the instuctions t
 
 # Example VM-1: Ubuntu 22.04
 
-@TODO: Give an average configration that creates an example Ubuntu machine.
+@TODO: Give an average configuration that creates an example Ubuntu machine.
 
 # Example VM-2: ArchLinux
 
-@TODO: Give an average configration that creates an example machine that is able to boot ArchLinux.
+@TODO: Give an average configuration that creates an example machine that is able to boot ArchLinux.
 
 # Example VM-3: Windows 11
 
-@TODO: Give an average configration that create an example Windows machine.
+@TODO: Give an average configuration that create an example Windows machine.
 
 https://www.reddit.com/r/qemu_kvm/comments/yuvnk9/is_there_a_way_to_run_windows_11_arm64_under/
 https://news.ycombinator.com/item?id=29576518
