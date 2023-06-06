@@ -1,86 +1,77 @@
 #!/usr/bin/env bash
 
-set -x
-
-function print_msg() {
-    local msg="$1"
-    local symbol="$2"
-
-    printf "[%s] " "$timestamp"
-    
-    if [ "$symbol" == "x" ]; then
-        printf "[\e[32m%s\e[0m] %s\n" "OK" "$msg"
-    elif [ "$symbol" == "*" ]; then
-        printf "[\e[33m%s\e[0m] %s\n" "ACTION" "$msg"
-    elif [ "$symbol" == "!" ]; then
-        printf "[\e[31m%s\e[0m] %s\n" "ERROR" "$msg"
-    else
-        printf "[%s] %s\n" "$symbol" "$msg" 2> stderr
-    fi
-}
-
 #
-# Host Settings
+# Host
 #
 
 QEMU_BIN=qemu-system-aarch64
 
-ISO_PATH="../ISOs/ubuntu-22.04.1-live-server-arm64.iso"
-DISK_PATH="./disk0.qcow2"
+# END Host
 
+#
+# Guest
+#
+
+# 0. Meta
+NAME="-name QEMU_Starter_Ubuntu"
+
+# 1. Machine selection
+MACHINE="-machine virt"
+
+# 2. CPU override
+CPU="-cpu host"
+SMP="-smp 2"
+ACCELERATOR="-accel hvf"
+
+# 3. Memory override
+MEMORY="-m 4G"
+
+# 4. BIOS/UEFI settings
 EFI_FLASH_PATH="../Firmwares/edk2-aarch64-code.fd"
 EFI_VARS_PATH="../Firmwares/efi-vars.raw"
 
-# END Host Settings
+EFI_FLASH_DRV="-drive if=pflash,format=raw,readonly=on,file=${EFI_FLASH_PATH}"
+EFI_VARS_DRV="-drive if=pflash,format=raw,file=${EFI_VARS_PATH}"
 
-#
-# Guest Settins
-#
+# 5. Device selection
+# 5.1. Input
+INPUT_DEV="-device usb-ehci -device usb-kbd -device usb-mouse"
 
-NAME="-name QEMU_Starter"
-MACHINE="-machine virt"
-ACCELERATOR="-accel hvf"
+# 5.2. Network
+NETWORK_DEV="-device virtio-net-device,netdev=net0 -netdev user,id=net0"
 
-CPU="-cpu host"
-SMP="-smp 2"
+# 5.3 Storage
+STORAGE_DEV="-device nvme,drive=hd0,serial=super-fast-boi"
 
-MEMORY="-m 4G"
+# 5.4. Display
+DISPLAY_DEV="-device virtio-gpu,xres=1280,yres=720"
 
-EFI_FLASH="-drive if=pflash,format=raw,readonly=on,file=${EFI_FLASH_PATH}"
-EFI_VARS="-drive if=pflash,format=raw,file=${EFI_VARS_PATH}"
+# 5.5. Sound
+SOUND_DEV="-device intel-hda"
 
-DISK_0="-drive media=cdrom,file=${ISO_PATH}"
-DISK_1="-drive id=hd0,format=qcow2,if=virtio,file=${DISK_PATH}"
+# 5.6. Misc
+MISC_DEV=""
 
-# @TODO: Store them inside an array (?)
-NETWORK_DEV_0="-device virtio-net-device,netdev=net0 -netdev user,id=net0"
-NETWORK_DEV_1=""
-NETWORK_DEV_2=""
+# 6. Drive settings (a.k.a disk images)
+ISO_PATH="../ISOs/ubuntu-22.04.1-live-server-arm64.iso"
+DISK_PATH="./example.qcow2"
 
-# @TODO: Store them inside an array (?)
-DEVICE_0="-device usb-ehci"
-DEVICE_1="-device usb-kbd"
-DEVICE_2="-device usb-mouse"
-DEVICE_3="-device virtio-gpu"
+CD_DRV="-drive id=cd0,media=cdrom,file=${ISO_PATH}"
+MAIN_DRV="-drive id=hd0,if=none,format=qcow2,file=${DISK_PATH}"
 
-EXTRA_0="-nographic"
-EXTRA_1=""
+# END Guest
 
-# END Guest Settings
-
-function check_qemu ()
-{
-  if [[ -x "$(command -v ${QEMU_BIN})" ]]; then
-    print_msg "Found ${QEMU_BIN}" "x"
+if [[ -x "$(command -v ${QEMU_BIN})" ]]; then
+    echo "[x] Found ${QEMU_BIN}"
     ${QEMU_BIN} --version
-  else
-    print_msg "${QEMU_BIN} not found on the system! Make sure it is installed" "!"
+else
+    echo "[!] ${QEMU_BIN} not found on the system! Make sure it is installed"
     exit -1
-  fi
-}
-
-check_qemu
+fi
 
 # Launch the machine
-${QEMU_BIN} ${NAME} ${MACHINE} ${ACCELERATOR} ${CPU} ${SMP} ${MEMORY} ${EFI_FLASH} ${EFI_VARS} ${DISK_0} ${DISK_1} ${NETWORK_DEV_0} ${DEVICE_0} ${DEVICE_1} ${DEVICE_2} ${DEVICE_3} ${EXTRA_0} ${EXTRA_1}
+set -x
 
+${QEMU_BIN} ${NAME} ${MACHINE} ${CPU} ${SMP} ${ACCELERATOR} ${MEMORY} \
+    ${EFI_FLASH_DRV} ${EFI_VARS_DRV} ${INPUT_DEV} ${NETWORK_DEV} ${STORAGE_DEV} ${DISPLAY_DEV} ${SOUND_DEV} ${MISC_DEV} \
+    ${CD_DRV} ${MAIN_DRV}
