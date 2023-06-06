@@ -1,0 +1,36 @@
+#
+# Author: Tuna Cici
+# Date: 6 June 2023
+#
+# File: README
+# Description: How to use the launch scripts.
+#
+
+# 1. Edit the launch script you want to use (via vim, nano, whatev.)
+
+# 1.1. Here's the sections you MUST edit:
+    EFI_FLASH_PATH=""   : Path to the UEFI firmware (refer to /Firmwares/README)
+    EFI_VARS_PATH=""    : Path to the UEFI variables (refer to /Firmwares/README)
+    ISO_PATH=""         : Path to the ISO file (refer to /ISOs/README) 
+    DISK_PATH=""        : Path to the disk image (refer to /Disks/README)
+# 1.2 Here's the sections you SHOULD edit:
+    CPU=""              : CPU to be used
+    SMP=""              : CPU core count
+    MEMORY=""           : Amount of memory for the guest
+    ACCELERATOR=""      : Hypervisor to be used
+
+# 1.3. GO WILD! Modify the script however you want.
+
+# 2. Launch like normal (do NOT use 'sudo' or smth.)
+```bash
+./launch-*.sh
+```
+# 2.1 Any additional arguments will be passed on to the QEMU.
+```bash
+# To disable display and use stdio
+./launch-*.sh -nographic
+```
+
+#
+# NOTE: Refer to main README.md for more information on launch scripts.
+#

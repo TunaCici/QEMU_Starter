@@ -1,0 +1,18 @@
+#
+# Author: Tuna Cici
+# Date: 6 June 2023
+#
+# File: README
+# Description: Where to find and retrieve UEFI firmwares (a.k.a EDK2/OVMF).
+#
+
+#
+# 1. Check this folder (./Firmware) to learn where they are located
+#
+```bash
+ $ cat edk2-path-*
+```
+
+#
+# NOTE: Refer to main README.md for more information on BIOS/UEFI.
+#
