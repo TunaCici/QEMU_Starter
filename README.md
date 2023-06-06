@@ -1381,7 +1381,7 @@ The setup is very similar to [Bridged](#bridged). Just follow the instructions t
 
 @TODO: Combine each configuration together and give some general tips on how to 'build' a QEMU machine.
 
-# Shortcuts / Key Bindings
+# Shortcuts & Key Bindings
 
 @TODO: While running with `-nographic` QEMU can be controlled via the QEMU Shell and key binding. Talk about them here.
 
