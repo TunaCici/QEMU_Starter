@@ -6,6 +6,14 @@
 
 QEMU_BIN=qemu-system-aarch64
 
+if [[ -x "$(command -v ${QEMU_BIN})" ]]; then
+    echo "[x] Found ${QEMU_BIN}"
+    ${QEMU_BIN} --version
+else
+    echo "[!] ${QEMU_BIN} not found on the system! Make sure it is installed"
+    exit -1
+fi
+
 # END Host
 
 #
@@ -60,14 +68,6 @@ CD_DRV="-drive id=cd0,media=cdrom,file=${ISO_PATH}"
 MAIN_DRV="-drive id=hd0,if=none,format=qcow2,file=${DISK_PATH}"
 
 # END Guest
-
-if [[ -x "$(command -v ${QEMU_BIN})" ]]; then
-    echo "[x] Found ${QEMU_BIN}"
-    ${QEMU_BIN} --version
-else
-    echo "[!] ${QEMU_BIN} not found on the system! Make sure it is installed"
-    exit -1
-fi
 
 # Launch the machine
 set -x
