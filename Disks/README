@@ -1,0 +1,26 @@
+#
+# Author: Tuna Cici
+# Date: 6 June 2023
+#
+# File: README
+# Description: Quick-start guide on how to use 'qemu-img' to create disk images. 
+#
+
+#
+# Title: Operating on a '.qcow2' disk image with size 32GiB
+#
+
+# 1. Create
+```bash
+$ qemu-img create -f qcow2 mydisk.qcow2 32G
+```
+
+# 2. Resize
+```bash
+$ qemu-img create mydisk.qcow2 64G
+``
+
+# 3. Convert
+```bash
+$ qemu-img convert -f qcow2 -O vdi mydisk.qcow2 mydisk.vdi
+```
