@@ -31,6 +31,8 @@ This guide welcomes all adventurers seeking knowledge and excitement in the worl
   - [Devices](#devices)
   - [BIOS \& UEFI](#bios--uefi)
 - [Networking](#networking)
+- [Combining it All Together](#combining-it-all-together)
+- [Shortcuts \& Key Bindings](#shortcuts---key-bindings)
 - [Example VM-1: Ubuntu 22.04](#example-vm-1-ubuntu-2204)
 - [Example VM-2: ArchLinux](#example-vm-2-archlinux)
 - [Example VM-3: Windows 11](#example-vm-3-windows-11)
