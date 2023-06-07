@@ -1469,7 +1469,17 @@ As for you, I have created some example launch scripts that I personally use. Ch
 
 # Shortcuts & Key Bindings
 
-@TODO: While running with `-nographic` QEMU can be controlled via the QEMU Shell and key binding. Talk about them here.
+QEMU defines some shortcuts for you to control the guest machine. Here are some of the ones I found to be useful.
+
+> When launched with a display windows, QEMU offers some basic controls on the taskbar. Be sure to check that out as well.
+
+- **Release mouse (Display only):** GNU/Linux & Windows: `CTRL + ALT + G`, macOS: `control + option + G`
+- **Switch to guest (Display only)** GNU/Linux & Windows: `CTRL + ALT + 1`, macOS: `control + option + 1`
+- **Switch to QEMU Monitor (Display only)** GNU/Linux & Windows: `CTRL + ALT + 2`, macOS: `control + option + 2`
+- **Toggle between guest & QEMU Monitor (`-nographic` only)** All systems: `CTRL + A` then `C`
+- **Terminate machine (`-nographic` only):** All systems: `CTRL + A` then `X`
+
+> QEMU Monitor is an amazing feature that QEMU offers. It is an advanced topic that is targated for developers. For this reasons, I won't be explaining it here. Maybe down the road I will... If you are really curious, check out the official documentation [QEMU Monitor](https://qemu-project.gitlab.io/qemu/system/monitor.html).
 
 # Example VM-1: Ubuntu 22.04
 
