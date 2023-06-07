@@ -1412,7 +1412,7 @@ Now, after that _boring AF_ talk let's get to work. In the [Configurations](#con
 
 Before you start using QEMU straightaway, **think and design what you want your machine to be**. I can only give some guidance here and not actual steps to follow. Think about these things (in order):
 
-- **OS/Kernel**: Which operating system you want to use? (e.g. GNU/Linux, Windows, Custom?!)
+- **OS/Kernel**: Which operating system you want to use? (e.g. GNU/Linux, Windows, Your Own?!)
 - **System to emulate**: Which system do you need? (e.g. i368, x86_64, ARM, AARC64, PowerPC)
 - **Machine type**: What is your target machine? (e.g. Raspi3, virt, q35, pc, custom)
 - **CPU to use**: Do you want to override your machine's CPU? (e.g. host, EPYC, Skylake, Cortex-A72)
