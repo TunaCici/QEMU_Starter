@@ -20,9 +20,10 @@ This guide welcomes all adventurers seeking knowledge and excitement in the worl
   - [Windows 10/11](#windows-1011)
   - [macOS 11+ (Big Sur)](#macos-11-big-sur)
 - [Hello World](#hello-world)
-- [Tools](#tools)
+- [Tools/Binaries](#toolsbinaries)
   - [qemu-img](#qemu-img)
   - [qemu-system-x86_64](#qemu-system-x86_64)
+  - [qemu-system-aarch64](#qemu-system-aarch64)
 - [Configurations](#configurations)
   - [Machine](#machine)
   - [CPU](#cpu)
@@ -536,7 +537,7 @@ QEMU traps your mouse inside the display. Release it by pressing `CTRL + ALT + G
 💚 If the Linux kernel ended with a **panic** then congrats! 💚 \
 🔴 If the QEMU somehow **failed to launch**, feel free to contact me or create an issue. 🔴
 
-# Tools
+# Tools/Binaries
 
 There are many `tools` provided by QEMU that are used to create, configure and 'launch' machines. I call them tools, _but in fact_, all they are all `binaries`. For simplicity sakes, assume that a `tool` is just a `binary` executable.
 
@@ -669,6 +670,14 @@ $ qemu-system-x86_64 \
   # Serial & Terminal
   -serial stdio
 ```
+
+## qemu-system-aarch64
+
+Similar to [qemu-system-x86_64](#qemu-system-x86_64), but for the `AARCH64` architecture. Meaning most of the configuration settings between  `qemu-system-aarch64` and the `qemu-system-x86_64` will be the same. The only difference is going to be the availability of `-machine` and `-cpu` options.
+
+All of the things in this pseudo-wiki applies to both  `qemu-system-aarch64` and  `qemu-system-x86_64`. So, you can follow without worrying about which one to use.
+
+> I will make use of both of them throughout this entire pseudo-wiki. But, feel free to use whichever one you prefer!
 
 If you're feeling ready for the main event, let's begin!
 
