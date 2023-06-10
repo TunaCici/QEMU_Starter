@@ -1,4 +1,4 @@
-**Previous Section** [4. Devices, VirtIO and more](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_4_Devices.md)
+**Previous Part** [4. Devices, VirtIO and more](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_4_Devices.md)
 
 # BIOS & UEFI
 
@@ -90,7 +90,7 @@ $ qemu-system-aarch64 ... -drive if=pflash,format=raw,file=${EFI_VARS_PATH} ...
 
 Your guest machine should now boot with the UEFI firmware. To test it, just launch your machine and check if **TianaCore** appears on the boot screen.
 
-**Next Section** [6. Networking](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_6_Networking.md)
+**Next Part** [6. Networking](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_6_Networking.md)
 
 [^76]: https://en.wikipedia.org/wiki/BIOS
 [^77]: https://en.wikipedia.org/wiki/UEFI
