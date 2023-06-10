@@ -217,3 +217,7 @@ All of the things in this pseudo-wiki applies to both `qemu-system-aarch64` and 
 
 If you're feeling ready for the main event, let's begin!
 
+[^41]: https://en.wikibooks.org/wiki/QEMU/Monitor
+[^42]: https://qemu.readthedocs.io/en/latest/tools/qemu-img.html
+[^43]: https://www.qemu.org/docs/master/system/invocation.html
+[^44]: https://www.qemu.org/docs/master/system/targets.html

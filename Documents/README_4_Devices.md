@@ -303,3 +303,29 @@ $ qemu-system-x86_64 -device usb-hub,help
 >  ports=<uint32>         -  (default: 8)
 >  serial=<str>
 ```
+
+[^51]: https://en.wikibooks.org/wiki/QEMU/Devices
+[^52]: https://www.oasis-open.org/committees/virtio/
+[^53]: https://projectacrn.github.io/latest/developer-guides/hld/virtio-net.html
+[^54]: https://www.qemu.org/2021/01/19/virtio-blk-scsi-configuration/
+[^55]: https://projectacrn.github.io/latest/developer-guides/hld/virtio-blk.html
+[^56]: https://docs.oasis-open.org/virtio/virtio/v1.1/cs01/virtio-v1.1-cs01.html#x1-3200007
+[^57]: https://projectacrn.github.io/latest/developer-guides/hld/virtio-console.html
+[^58]: https://fedoraproject.org/wiki/Features/VirtioSerial
+[^59]: https://en.wikipedia.org/wiki/Network_interface_controller
+[^60]: https://learn.microsoft.com/en-us/windows/win32/apiindex/windows-api-list#user-interface
+[^61]: https://developer.apple.com/documentation/appkit
+[^62]: https://www.gtk.org
+[^63]: https://en.wikipedia.org/wiki/AC%2797
+[^64]: https://en.wikipedia.org/wiki/Intel_High_Definition_Audio
+[^65]: https://computernewb.com/wiki/QEMU/Devices/Sound_cards
+[^66]: https://github.com/torvalds/linux/blob/master/sound/pci/hda/hda_intel.c
+[^67]: https://qemu-project.gitlab.io/qemu/system/devices/usb.html
+[^68]: https://www.linux-kvm.org/page/USB_Host_Device_Assigned_to_Guest
+[^69]: https://www.kraxel.org/blog/2018/08/qemu-usb-tips/
+[^70]: https://en.wikipedia.org/wiki/NEC
+[^71]: https://en.wikipedia.org/wiki/Extensible_Host_Controller_Interface
+[^72]: http://www.intel.com/content/www/us/en/io/universal-serial-bus/ehci-specification.html
+[^73]: https://en.wikipedia.org/wiki/Media_Transfer_Protocol
+[^74]: https://en.wikipedia.org/wiki/Ethernet_over_USB
+[^75]: https://www.wacom.com/en-us

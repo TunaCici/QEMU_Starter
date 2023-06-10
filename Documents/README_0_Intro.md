@@ -75,3 +75,24 @@ Each host OS provides their own `Hypervisor` layers:
 QEMU supports `Full Virtualization` on almost every platform via the `Hypervisors` specified above. This allows it to be used as a virtual machine.
 
 > Shameless Plug: [Additional [ELI5] Info on Emulation/Virtualization](https://medium.com/@tunacici7/virtualization-vs-emulation-4ab2afdb1b90)
+
+[^1]: https://www.qemu.org/docs/master/about/index.html
+[^2]: https://en.wikipedia.org/wiki/Fabrice_Bellard
+[^3]: https://en.wikipedia.org/wiki/QEMU#Accelerator
+[^4]: https://www.virtualbox.org
+[^5]: https://www.vmware.com/products/workstation-player.html
+[^6]: https://www.parallels.com
+[^7]: https://en.wikipedia.org/wiki/QEMU#Operating_modes
+[^8]: https://wiki.qemu.org/Documentation/TCG
+[^9]: https://qemu.readthedocs.io/en/latest/user/main.html
+[^10]: https://qemu.readthedocs.io/en/latest/system/device-emulation.html
+[^11]: https://qemu.readthedocs.io/en/latest/system/index.html#
+[^12]: https://en.wikipedia.org/wiki/Virtualization#Hardware_virtualization
+[^13]: https://www.youtube.com/watch?v=fgrV-mu6JQw
+[^14]: https://en.wikipedia.org/wiki/Full_virtualization
+[^15]: https://en.wikipedia.org/wiki/Paravirtualization
+[^16]: https://en.wikipedia.org/wiki/Hypervisor
+[^17]: https://ubuntu.com/blog/containerization-vs-virtualization
+[^18]: https://www.linux-kvm.org/page/Main_Page
+[^19]: https://developer.apple.com/documentation/hypervisor
+[^20]: https://en.wikipedia.org/wiki/Hyper-V

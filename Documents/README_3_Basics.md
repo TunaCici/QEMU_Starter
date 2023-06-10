@@ -213,3 +213,10 @@ Here's a simple usage:
 -drive file=disk0.qcow2,format=qcow2,if=virtio,index=3
 -drive file=disk1.vdi,format=vdi,if=virtio,index=4
 ```
+
+[^45]: https://qemu-project.gitlab.io/qemu/system/device-emulation.html
+[^46]: https://blogs.oracle.com/linux/post/introduction-to-virtio
+[^47]: https://wiki.qemu.org/Features/Q35
+[^48]: https://www.qemu.org/docs/master/system/arm/virt.html
+[^49]: https://qemu-project.gitlab.io/qemu/system/qemu-cpu-models.html
+[^50]: https://en.wikipedia.org/wiki/Symmetric_multiprocessing

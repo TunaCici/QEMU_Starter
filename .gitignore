@@ -8,3 +8,6 @@
 # Data files
 *.raw
 *.fd
+
+# macOS 
+.DS_Store

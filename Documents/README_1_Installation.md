@@ -348,3 +348,23 @@ $ qemu-system-aarch64 --version
 
 💚 If the above commands **worked** then congrats, you successfully installed QEMU! 💚 \
 🔴 If you ran into any **problems** feel free to contact me or create an issue. 🔴
+
+[^21]: https://wiki.qemu.org/Hosts/Linux
+[^22]: https://wiki.qemu.org/Hosts/W32
+[^23]: https://wiki.qemu.org/Hosts/Mac
+[^24]: https://archlinux.org/packages/extra/x86_64/qemu-full/
+[^25]: https://qemu.readthedocs.io/en/latest/tools/qemu-img.html
+[^26]: https://www.qemu.org/docs/master/system/target-i386.html
+[^27]: https://www.qemu.org/docs/master/system/target-arm.html
+[^28]: https://www.qemu.org/docs/master/user/main.html
+[^30]: https://qemu.readthedocs.io/en/latest/tools/qemu-nbd.html
+[^31]: https://wiki.qemu.org/Features/KVM
+[^32]: https://qemu.readthedocs.io/en/latest/tools/qemu-storage-daemon.html
+[^33]: https://qemu.readthedocs.io/en/latest/tools/qemu-trace-stap.html
+[^34]: https://en.wikipedia.org/wiki/X86_virtualization#Intel_virtualization_(VT-x)
+[^35]: https://en.wikipedia.org/wiki/X86_virtualization#AMD_virtualization_(AMD-V)
+[^36]: https://www.cyberciti.biz/faq/linux-xen-vmware-kvm-intel-vt-amd-v-support/
+[^37]: https://wiki.archlinux.org/title/KVM
+[^38]: https://support.microsoft.com/en-us/windows/enable-virtualization-on-windows-11-pcs-c5578302-6e43-4b4b-a449-8ced115f58e1
+[^39]: https://www.qemu.org/download/#windows
+[^40]: https://qemu.readthedocs.io/en/latest/user/main.html#supported-operating-systems

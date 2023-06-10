@@ -102,7 +102,6 @@ QEMU defines some shortcuts for you to control the guest machine. Here are some 
 
 > QEMU Monitor is an amazing feature that QEMU offers. It is an advanced topic that is targeted to developers. For this reasons, I won't be explaining it here. Maybe down the road I will... If you are really curious, check out the official documentation [QEMU Monitor](https://qemu-project.gitlab.io/qemu/system/monitor.html).
 
-
 # Example VM-1: ArchLinux
 
 ArxhLinux is a simple and lightweight Linux distribution which follows a rolling release-model for it's packages.[^95]. The official wiki has an amazing [Installation guide](https://wiki.archlinux.org/title/Installation_guide) that I suggest anyone who is interested to at least check out.
@@ -175,3 +174,5 @@ On the _UEFI firmware settings_ screen you can customize your boot order OR simp
 Creating a QEMU _macOS_ guest machine is a bit tricky. I am nowhere near smrat enough to achieve it. There are also legal considirations as Apple VM's are only supported on Parallels and XCode Virtual Machines. So, I won't be personally explaining how to do that here. Although, it is very much possible to do so.
 
 Check out [Dhiru Kholia's amazing GitHub repository](https://github.com/kholia/OSX-KVM) on how to run _macOS_ on QEMU with KVM. It is an interesting work.
+
+[^95]: https://wiki.archlinux.org/title/Arch_Linux

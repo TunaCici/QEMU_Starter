@@ -87,3 +87,9 @@ $ qemu-system-aarch64 ... -drive if=pflash,format=raw,file=${EFI_VARS_PATH} ...
 **Step 3 - Enjoy the UEFI (Optional) 💚**
 
 Your guest machine should now boot with the UEFI firmware. To test it, just launch your machine and check if **TianaCore** appears on the boot screen.
+
+[^76]: https://en.wikipedia.org/wiki/BIOS
+[^77]: https://en.wikipedia.org/wiki/UEFI
+[^78]: https://en.wikipedia.org/wiki/Power-on_self-test
+[^79]: https://en.wikipedia.org/wiki/SeaBIOS#Development
+[^80]: https://github.com/tianocore/tianocore.github.io/wiki/OVMF

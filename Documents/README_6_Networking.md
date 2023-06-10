@@ -125,3 +125,17 @@ This mode can be useful if you want:
 - **isolated network environment**: Guest machine(s) does not have access to the external network (e.g. Internet).
 
 The setup is very similar to [Bridged](#bridged). Just follow the instructions there, but do NOT assign an interface to your bridge. After that, you will have host-only networking!
+
+[^82]: https://kb.parallels.com/4948
+[^83]: https://en.wikipedia.org/wiki/VLAN
+[^84]: https://wiki.qemu.org/Documentation/Networking#Network_Basics
+[^85]: https://en.wikipedia.org/wiki/Proxy_server
+[^86]: https://wiki.archlinux.org/title/QEMU#Networking
+[^87]: https://wiki.qemu.org/Documentation/Networking#User_Networking_(SLIRP)
+[^88]: https://wiki.archlinux.org/title/QEMU#User-mode_networking
+[^89]: https://wiki.qemu.org/Documentation/Networking#Tap
+[^90]: https://gist.github.com/extremecoders-re/e8fd8a67a515fee0c873dcafc81d811c
+[^91]: https://www.linux-kvm.org/page/Networking
+[^92]: https://en.wikipedia.org/wiki/Network_address_translation
+[^93]: https://wiki.archlinux.org/title/QEMU#User-mode_networking
+[^94]: https://wiki.archlinux.org/title/QEMU#Bridged_networking_using_qemu-bridge-helper
