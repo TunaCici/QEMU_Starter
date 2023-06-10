@@ -1,6 +1,12 @@
 # Motivation
 
-This guide welcomes all adventurers seeking knowledge and excitement in the world of QEMU! While it may seem challenging at first, the journey will be worth it [and fun], teaching you valuable lessons along the way <3
+You might expect that with the _invention_ of the internet, the access to the information has became extremely easy. Although, it is true that we have _overwhelming_ amount of information available, the ease of access to them is still _pretty bad_.[^TODO:https://en.wikipedia.org/wiki/Information_overload] This is particularly evident when it comes to technical documentation for _complex software systems_ like QEMU. [^TODO:https://news.ycombinator.com/item?id=19736528]
+
+The information from the official QEMU documentation and communities like StackOverFlow is pretty fragmented and _somewhat lacking. It is very  hard for someone to just _search for something_ and find the answers. They might have to go through bajillion different pages in order to find what they are looking for. This can be extremely frustruating for the newcomers. I, _for one_ felt this way and wanted to change this by combining all of them here to help others like me. Some might even call this a _guide_ or simply a _pseudo-wiki_.
+
+However, I am well aware that there is a possbility that I might create more _information pollution_ by doing so. For that, I intend to contribute to other _popular_ Wikis like [Main Wiki](https://wiki.qemu.org/Main_Page) and [Wikibooks](https://en.wikibooks.org/wiki/QEMU). I know that it is not an _easy task_ but it's worth a shot. (a.k.a #insert-it-aint-much-but-its-honest-work-meme-here)
+
+Now, enough formality. Let me start by saying: "This pseudo-wiki welcomes all adventurers seeking knowledge and excitement in the world of QEMU! While it may seem challenging at first, the journey will be worth it [and fun], teaching you valuable lessons along the way <3" 
 
 # Quick Access
 
@@ -34,13 +40,12 @@ This guide welcomes all adventurers seeking knowledge and excitement in the worl
 - [Networking](#networking)
 - [Combining it All Together](#combining-it-all-together)
 - [Shortcuts \& Key Bindings](#shortcuts--key-bindings)
-- [Example VM-1: Ubuntu 22.04](#example-vm-1-ubuntu-2204)
-- [Example VM-2: ArchLinux](#example-vm-2-archlinux)
-- [Example VM-3: Windows 11](#example-vm-3-windows-11)
+- [Example VM-1: ArchLinux](#example-vm-1-archlinux)
+- [Example VM-2: macOS](#example-vm-2-macos)
 
 # Terminology
 
-There are many terminologies used in the guide. Here are some of the most important ones. Do note that these definitions are not 100% formal and only gives an abstract view.
+There are some terminologies that you must familiarize yourself with. Here are the most important ones. Do note that these definitions are not 100% formal and only gives an abstract view.
 
 ```plain
 Host: The OS/machine running the emulation/virtualization.
@@ -1559,7 +1564,7 @@ On the _UEFI firmware settings_ screen you can customize your boot order OR simp
 
 Creating a QEMU _macOS_ guest machine is a bit tricky. I am nowhere near smrat enough to achieve it. There are also legal considirations as Apple VM's are only supported on Parallels and XCode Virtual Machines. So, I won't be personally explaining how to do that here. Although, it is very much possible to do so.
 
-Check out [Dhiru Kholia's amazing GitHub repository](https://github.com/kholia/OSX-KVM) on how to run _macOS_ on QEMU with KVM. It is a really interesting work.
+Check out [Dhiru Kholia's amazing GitHub repository](https://github.com/kholia/OSX-KVM) on how to run _macOS_ on QEMU with KVM. It is an interesting work.
 
 
 [^1]: https://www.qemu.org/docs/master/about/index.html
