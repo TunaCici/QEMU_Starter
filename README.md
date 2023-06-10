@@ -2,13 +2,13 @@
 
 You might expect that with the _invention_ of the internet, the access to the information has became extremely easy. Although, it is true that we have _overwhelming_ amount of information available, the ease of access to them is still _pretty bad_.[^99] This is particularly evident when it comes to technical documentation for _complex software systems_ like QEMU. [^100]
 
-The information from the official QEMU documentation and communities like Stack OverFlow is pretty fragmented and _somewhat lacking. It is very  hard for someone to just _search for something_ and find the answers. They might have to go through bajillion different pages in order to find what they are looking for. This can be extremely frustrating for the newcomers. I, _for one_ felt this way and wanted to change this by combining all of them here to help others like me. Some might even call this a _guide_ or simply a _pseudo-wiki_.
+The information from the official QEMU documentation and communities like Stack OverFlow is pretty fragmented and _somewhat lacking. It is very hard for someone to just \_search for something_ and find the answers. They might have to go through bajillion different pages in order to find what they are looking for. This can be extremely frustrating for the newcomers. I, _for one_ felt this way and wanted to change this by combining all of them here to help others like me. Some might even call this a _guide_ or simply a _pseudo-wiki_.
 
 However, I am well aware that there is a possibility that I might create more _information pollution_ by doing so. For that, I intend to contribute to other _popular_ Wikis like [QEMU Wiki](https://wiki.qemu.org/Main_Page) and [Wikibooks](https://en.wikibooks.org/wiki/QEMU). I know that it is not an _easy task_ but it's worth a shot. (a.k.a #insert-it-aint-much-but-its-honest-work-meme-here)
 
 > **Extremely Important Note:** This pseudo-wiki is intended for beginners and newcomers to QEMU. If you are an advanced user, you might the information here 'not satisfying', 'lacking' and straight up 'wrong'. For those people, I want to remind them that this is a **beginner-friendly** guide and not an advanced one. So, set-up your expectations according to that.
 
-Now, enough formality. Let me start by saying: "This pseudo-wiki welcomes all adventurers seeking knowledge and excitement in the world of QEMU! While it may seem challenging at first, the journey will be worth it [and fun], teaching you valuable lessons along the way <3" 
+Now, enough formality. Let me start by saying: "This pseudo-wiki welcomes all adventurers seeking knowledge and excitement in the world of QEMU! While it may seem challenging at first, the journey will be worth it [and fun], teaching you valuable lessons along the way <3"
 
 # Quick Access
 
@@ -28,6 +28,7 @@ Now, enough formality. Let me start by saying: "This pseudo-wiki welcomes all ad
   - [Windows 10/11](#windows-1011)
   - [macOS 11+ (Big Sur)](#macos-11-big-sur)
 - [Hello World](#hello-world)
+  - [Kernel Images](#kernel-images)
 - [Tools/Binaries](#toolsbinaries)
   - [qemu-img](#qemu-img)
   - [qemu-system-x86_64](#qemu-system-x86_64)
@@ -40,6 +41,9 @@ Now, enough formality. Let me start by saying: "This pseudo-wiki welcomes all ad
   - [Devices](#devices)
   - [BIOS \& UEFI](#bios--uefi)
 - [Networking](#networking)
+  - [Front End](#front-end)
+  - [Back End](#back-end)
+  - [Modes](#modes)
 - [Combining it All Together](#combining-it-all-together)
 - [Shortcuts \& Key Bindings](#shortcuts--key-bindings)
 - [Example VM-1: ArchLinux](#example-vm-1-archlinux)
@@ -474,10 +478,9 @@ $ qemu-system-aarch64 --version
 💚 If the above commands **worked** then congrats, you successfully installed QEMU! 💚 \
 🔴 If you ran into any **problems** feel free to contact me or create an issue. 🔴
 
-
 # Hello World
 
-Generally you want to launch a QEMU machine with an operating system like ArchLinux. But, before doing that, we need to learn a bit more. Be patient we will get there! For now, let's run a simple "Hello World" QEMU machine by launching a Linux kernel image. 
+Generally you want to launch a QEMU machine with an operating system like ArchLinux. But, before doing that, we need to learn a bit more. Be patient we will get there! For now, let's run a simple "Hello World" QEMU machine by launching a Linux kernel image.
 
 ## Kernel Images
 
@@ -510,7 +513,7 @@ Run the below command to launch a QEMU machine with `-nographic` options:
 $ qemu-system-aarch64 -machine virt -cpu cortex-a53 -kernel linux -nographic
 ```
 
-The QEMU machine should now start by loading/launching the Linux kernel! The logs on the terminal you [hopefully] see are from the Linux kernel. 
+The QEMU machine should now start by loading/launching the Linux kernel! The logs on the terminal you [hopefully] see are from the Linux kernel.
 
 Our "Hello World" machine ends with a _kernel panic_ telling us it couldn't find a _root filesystem_ to mount.
 
@@ -522,7 +525,7 @@ Press `CTRL + A` followed by `X` to terminate the machine.
 
 **Step 4 - Launch `qemu-system-aarch64` /w Display (Optional)**
 
-Intuitively, you want your machines to have a display. In **Step 2** we disabled this behaviour with the  `-nographic` option. But, normally QEMU launches with a display. If you have a desktop environment (like many people) you can launch QEMu with a display!
+Intuitively, you want your machines to have a display. In **Step 2** we disabled this behaviour with the `-nographic` option. But, normally QEMU launches with a display. If you have a desktop environment (like many people) you can launch QEMu with a display!
 
 Run the below command to launch a QEMU machine with a display:
 
@@ -540,7 +543,6 @@ Press `CTRL + ALT + 2` to switch to the Linux kernel. Now, we can see the same l
 
 QEMU traps your mouse inside the display. Release it by pressing `CTRL + ALT + G`. Then, just close the QEMU window to terminate it!
 
-
 💚 If the Linux kernel ended with a **panic** then congrats! 💚 \
 🔴 If the QEMU somehow **failed to launch**, feel free to contact me or create an issue. 🔴
 
@@ -554,7 +556,7 @@ It would be unpractical to list and explain all of them here. For that, only the
 
 ## qemu-img
 
-Allows you to create, convert and modify disk images.[^42] It supports wide variety of image formats such as: `VDI`, `VMDK`, `raw` and `qcow2`. The latter format is special to QEMU machines. It's an abbreviation of **Q**EMU **C**opy-**o**n-**W**rite **2**. 
+Allows you to create, convert and modify disk images.[^42] It supports wide variety of image formats such as: `VDI`, `VMDK`, `raw` and `qcow2`. The latter format is special to QEMU machines. It's an abbreviation of **Q**EMU **C**opy-**o**n-**W**rite **2**.
 
 `qcow2` images initially takes a very tiny space on your disk `~200KB`, but it dynamically grows as the guest OS writes data on it. This way your QEMU machine /w 500GiB disk space does not actually take 500GiB. It's amazing isn't it!
 
@@ -563,13 +565,15 @@ Now, let's go over some of the main usages of `qemu-img`.
 **Create**
 
 Create new disk images using the command below:
+
 ```bash
 $ qemu-img create [options]
 ```
 
 Example:
+
 ```bash
-$ qemu-img create -f qcow2 disk0.qcow2 64G  
+$ qemu-img create -f qcow2 disk0.qcow2 64G
 ```
 
 The above example creates a disk image with file type `qcow2` and size `64G` named `disk0.qcow2`. This is the most trivial usage of `qemu-img`.
@@ -581,16 +585,18 @@ Different virtual machines use different disk image formats. Popular ones like `
 > I don't think I need to explain how useful this can be >.<
 
 Convert between disk image formats using the command below:
+
 ```bash
 $ qemu convert [options]
 ```
 
 Example:
+
 ```bash
 $ qemu-img convert -f vdi -O qcow2 disk0.vdi disk0.qcow2
 ```
 
-The above example simply converts a VirtualBox image `-f vdi` to `-O qcow2`.  
+The above example simply converts a VirtualBox image `-f vdi` to `-O qcow2`.
 
 **Inspect**
 
@@ -599,13 +605,15 @@ You might want to inspect and get some information about your disk images. This 
 > There are many _commands_ that we can use to inspect an image. `info` is just one of them.
 
 Get [basic] information about an image using the command below:
+
 ```bash
 $ qemu-img info [options]
 ```
 
 Example:
+
 ```bash
-$ qemu-img info disk0.qcow2 
+$ qemu-img info disk0.qcow2
 
 # Output can look like this
 > image: disk0.qcow2
@@ -628,6 +636,7 @@ The main and one of the most used `binary` in QEMU. `qemu-system-x86_64` is used
 > The `qemu-system-*` is a prefix that is used by many other `binaries`. It is generally followed by an architecture name like: `aarch64` and `riscv64`. _Each of them has different options and configurations._ [^44]
 
 Extremely simplified usage of `qemu-system-x86_64`:
+
 ```bash
 $ qemu-system-x86_64 [options] [disk_image]
 ```
@@ -655,12 +664,12 @@ $ qemu-system-x86_64 \
   -m 2G \
   -cpu host \
   -smp 2 \
-  
+
   # Disks
   -drive if=none,file=${INSTALL_IMAGE_PATH},format=qcow2,id=hd0 \
-  -device virtio-blk-device,drive=hd0,serial="main_disk" \ 
+  -device virtio-blk-device,drive=hd0,serial="main_disk" \
   -cdrom ${VM_DISK_PATH} \
-  
+
   # Devices
   -device usb-ehci  \
   -device usb-kbd \
@@ -680,9 +689,9 @@ $ qemu-system-x86_64 \
 
 ## qemu-system-aarch64
 
-Similar to [qemu-system-x86_64](#qemu-system-x86_64), but for the `AARCH64` architecture. Meaning most of the configuration settings between  `qemu-system-aarch64` and the `qemu-system-x86_64` will be the same. The only difference is going to be the availability of `-machine` and `-cpu` options.
+Similar to [qemu-system-x86_64](#qemu-system-x86_64), but for the `AARCH64` architecture. Meaning most of the configuration settings between `qemu-system-aarch64` and the `qemu-system-x86_64` will be the same. The only difference is going to be the availability of `-machine` and `-cpu` options.
 
-All of the things in this pseudo-wiki applies to both  `qemu-system-aarch64` and  `qemu-system-x86_64`. So, you can follow without worrying about which one to use.
+All of the things in this pseudo-wiki applies to both `qemu-system-aarch64` and `qemu-system-x86_64`. So, you can follow without worrying about which one to use.
 
 > I will make use of both of them throughout this entire pseudo-wiki. But, feel free to use whichever one you prefer!
 
@@ -704,13 +713,14 @@ To achieve good performance QEMU needs to act like a `Virtual Machine` with the 
 > More on `virtIO` devices later. They are pretty cool and useful!
 > You can also configure QEMU to be `half emulator` and `half virtualizor`. For example, using `KVM` in combination with the `Intel E1000 Network Card`.
 
-How you configure your QEMU machine will depend on your specific needs. If performance is a priority, utilizing QEMU with `Accelerators` and `virtIO` devices is highly recommended. Now, enough talking. Let's go over the configurations! 
+How you configure your QEMU machine will depend on your specific needs. If performance is a priority, utilizing QEMU with `Accelerators` and `virtIO` devices is highly recommended. Now, enough talking. Let's go over the configurations!
 
 _**Important Note:** Some `qemu-system`s might have additional configurations. However, the ones explained in this guide should be more than enough. If you want to learn more, be sure to check the given references!_
 
 ## Machine
 
 Usage (type `-machine help` to get a list of all targets):
+
 ```bash
 $ qemu-system-x86_64 -machine [target]
 ```
@@ -718,6 +728,7 @@ $ qemu-system-x86_64 -machine [target]
 Specifies which machine to be emulated. Defines some base values such as the CPU, memory and devices. For example the machine `pc-i440fx` represents a classic PC based on the `Intel 440FX` chipset. The specific default values can vary depending on the machine type and _version_. In the case of the `pc-i440fx` machine type, the default configuration includes an Intel Pentium processor, 128MB of RAM, and other standard PC components.
 
 Another good example would be the `raspi3b` machine. This machine, as you might have guessed, represents a `Raspberry Pi 3b` that has `Cortex A53 (4 cores)` and `1GiB RAM`.
+
 > More about `raspi3b` here: https://www.qemu.org/docs/master/system/arm/raspi.html
 
 _**Important Note:** Any of the default values can be overridden! It is pretty common to do so. This means you can have a `raspi3b` with `16GiB RAM`!_
@@ -730,13 +741,14 @@ Which machine should you choose can be confusing. There might be too many option
 ## CPU
 
 Usage (type `-cpu help` to get a list of all CPUs)
+
 ```bash
 $ qemu-system-x86_64 -cpu [target],[features]
 ```
 
 Specifies which the CPU to be emulated. Defines the CPU architecture (ARMv8, x86...), ABI, layout (NUMA), core count, caches, registers, and feature flags. For example `Cortex A53`, will define an `ARMv8-A` CPU with `2 Cores @ 2.00GHz` and `L1-2-3 Caches`. The exact numbers and CPu features depends on your QEMU version and the type of machine you use.
 
-Additionally, you can set some CPUID feature flags. Each CPU has different features that can be enabled/disabled. The `code snippet` at the start will also list all available CPUID flags. For example, to define a `Intel Core i7-8700K` CPU with  `AVX (Advanced Vector Extensions)` use:
+Additionally, you can set some CPUID feature flags. Each CPU has different features that can be enabled/disabled. The `code snippet` at the start will also list all available CPUID flags. For example, to define a `Intel Core i7-8700K` CPU with `AVX (Advanced Vector Extensions)` use:
 
 ```bash
 $ qemu-system-x86_64 -cpu SandyBridge,+avx
@@ -754,7 +766,7 @@ The `-cpu [target]` option in QEMU defines a default core count (vCPU). However,
 
 ```bash
 $ qemu-system-aarch64 -cpu cortex-a53 -smp 8
-```  
+```
 
 **S**ymmetric **M**ulti**P**rocessing (SMP) is used to specify the number of virtual CPUs (vCPUs) for the QEMU machine.[^50] Increasing the core count can **enhance** the performance of your guest OS, _provided that your host CPU has enough cores_. Therefore, it is highly recommended to specify the `-smp` option in your QEMU `virtual` machines.
 
@@ -780,13 +792,15 @@ The `-accel [hypervisor]` needs to know which Hypervisor to use. Here's the curr
 > Again, refer to [Hardware Acceleration (Optional)](#hardware-acceleration-optional) for more information on them.
 
 An example usage of `-accel [hypervisor]`:
+
 ```bash
 $ qemu-system-aarch64 -cpu host -smp 4 -accel hvf
-```  
+```
 
 ## Memory
 
 Usage (type `-m help` for more information):
+
 ```bash
 $ qemu-system-x86_64 -m [size]
 ```
@@ -795,9 +809,10 @@ Specifies the amount of memory (RAM) allocated to the guest. The amount of memor
 
 The important thing to note here is that the amount of memory you specify **should be within the limits of your host system's available physical memory**. Allocating excessive memory to the virtual machine may impact the performance of both the host and the guest.
 
-The default `[size]` unit is `Mebibyte (MiB)`. Meaning `-m 1024` will be equal `1024 MiB (1GiB)`. You can, however, specify the memory size using `suffixes` like `k, M, G, T`. They, _in order_, refer to `kibibyte`, `Mebibyte`, `Gibibyte` and `Tebibyte`. 
+The default `[size]` unit is `Mebibyte (MiB)`. Meaning `-m 1024` will be equal `1024 MiB (1GiB)`. You can, however, specify the memory size using `suffixes` like `k, M, G, T`. They, _in order_, refer to `kibibyte`, `Mebibyte`, `Gibibyte` and `Tebibyte`.
 
 An example machine with `4GiB` would use:
+
 ```bash
 $ qemu-system-x86_64 -m 4G
 ```
@@ -805,6 +820,7 @@ $ qemu-system-x86_64 -m 4G
 ## Disks
 
 Usage (for `help` refer to [QEMU Source Code](https://github.com/qemu/qemu/blob/master/docs/qdev-device-use.txt)):
+
 ```bash
 $ qemu-system-x86_64 -drive [option],[option],[...]
 ```
@@ -820,9 +836,11 @@ _**Important Note:** Most of the time you will be using multiple options. For ex
 ### `file=[option]`
 
 Specifies the `path` to the disk image file. An example usage would be:
+
 ```bash
 $ qemu-system-x86_64 -drive file=/home/mike/machines/disks/archlinux0.img
 ```
+
 index: Specifies the index or position of the drive attachment.
 media: Specifies the type of media, such as disk, CD-ROM, etc.
 snapshot: Enables snapshot mode for the drive.
@@ -830,6 +848,7 @@ snapshot: Enables snapshot mode for the drive.
 ### `format=[option]`
 
 Specifies the format of the disk image. Commonly used formats include `raw`, `qcow2`, `vmdk`, etc. An example usage would be:
+
 ```bash
 $ qemu-system-x86_64 -drive file=archlinux0.qcow2,format=qcow2
 ```
@@ -840,6 +859,7 @@ $ qemu-system-x86_64 -drive file=archlinux0.qcow2,format=qcow2
 ### `if=[option]`
 
 Specifies the interface type of the storage device. The guest must include the necessary driver. Commonly used interfaces include `IDE`, `SCSCI`, `VIRTIO`, `PFLASH` etc. An example usage would be:
+
 ```bash
 $ qemu-system-x86_64 -drive file=archlinux0.qcow2,format=qcow2,if=virtio
 ```
@@ -847,6 +867,7 @@ $ qemu-system-x86_64 -drive file=archlinux0.qcow2,format=qcow2,if=virtio
 ### `index=[option]`
 
 Specifies the index or position of the drive. The order of drive is important if you have multiple drives specified. Generally, `Bootloaders` will try to boot the first drive. The `index` order depends entirely on your needs. An example usage would be:
+
 ```bash
 $ qemu-system-x86_64 -drive file=archlinux0.qcow2,format=qcow2,if=virtio,index=1 \
                      -drive file=ubuntu0.qcow2,format=qcow2,if=virtio,index=2
@@ -856,6 +877,7 @@ $ qemu-system-x86_64 -drive file=archlinux0.qcow2,format=qcow2,if=virtio,index=1
 ### `media=[option]`
 
 Specifies the media type of the drive. Commonly used options include `cdrom`, `disk`, etc. An example usage would be:
+
 ```bash
 $ qemu-system-x86_64 -drive file=windows11_setup.img,format=raw,if=virtio,index=1,media=cdrom
 
@@ -864,20 +886,21 @@ $ qemu-system-x86_64 -drive file=windows11_setup.img,format=raw,if=virtio,index=
 ### `readonly=[option]`
 
 Specifies if the drive should be marked as **readonly**. This is generally used with `CD-ROM` medias or `PFLASH` drives as to protect the drive. You can set this value to `on` to mark that drive as readonly. An example usage would be:
+
 ```bash
 $ qemu-system-x86_64 -drive file=efi.fd,format=raw,if=pflash,readonly=on
 ```
 
 > If not specified, the drive will be both **readable** and **writable**.
 
-
 Now, there are many possibilities with the `-drive`. You can have specify many drives, ROMs, storage devices and etc. It might be confusing to decide which option to use and where. So, I wrote some of the most common use cases to help you decide.
 
-- **General Drive (SSD/HDD):**  Use this type for large storage devices. (e.g. Install OS, Backup files) 
+- **General Drive (SSD/HDD):** Use this type for large storage devices. (e.g. Install OS, Backup files)
 - **Optical Drive (CD/DVD):** Use this for installation images. (e.g. ubuntu-arm64.iso, archboot.aarch64.iso)
 - **Flash ROM:** Use this for readonly drives. (e.g. EFI)
 
 Here's a simple usage:
+
 ```bash
 # Flash ROM
 -drive file=edk2-aarch64-code.fd,format=raw,if=pflash,readonly=on,index=1
@@ -895,6 +918,7 @@ Here's a simple usage:
 ## Devices
 
 Usage (type `-device help` to get a list of all devices)
+
 ```bash
 $ qemu-system-x86_64 -device [target],[option]
 ```
@@ -907,8 +931,9 @@ Just like in a real hardware, QEMU machines can also have external devices conne
 
 **Useful Information**
 You can add `help` as an option to any `-device` targets to get a list of all available options! It is a great way to learn more about that device. Here's an example:
+
 ```bash
-$ qemu-system-x86_64 -device sd-card,help 
+$ qemu-system-x86_64 -device sd-card,help
 
 # Output
 > sd-card options:
@@ -954,11 +979,13 @@ There are many more _Input devices_ that can be specified in QEMU. But most of t
 If you want an efficient input device, then simply use `virtio-*` devices. However, if you really need `usb-*` devices (when developing/testing drivers), then use that as you wish.
 
 An example usage:
+
 ```bash
 $ qemu-system-x86_64 ... -device usb-kbd -device usb-mouse ...
 ```
 
 To learn more about an _Input device_ use `-device [target],help`:
+
 ```bash
 $ qemu-system-x86_64 -device usb-kbd,help
 
@@ -977,7 +1004,7 @@ $ qemu-system-x86_64 -device usb-kbd,help
 
 Network devices in QEMU provides the guest machine with a Network Interface Controller (NIC).[^59]. These NIC devices enables the guest machine to connect to various types of networks. Refer to the [Networking](#networking) for more information on how _Networking_ is handled within QEMU.
 
- Here are some of the most commonly used network devices:
+Here are some of the most commonly used network devices:
 
 - `e1000`: Emulates an Intel 8254x-based Gigabit Ethernet NIC.
 - `rtl8139`: Emulates a Realtek RTL8139-based Ethernet NIC. (_very popular_)
@@ -987,6 +1014,7 @@ Network devices in QEMU provides the guest machine with a Network Interface Cont
 These network devices offer different network connectivity options for the guest machine. You can choose the appropriate device based on your requirements and needs. Generally `rtl8139` and `e1000` is used when developing/testing Ethernet drivers. And `virtio-net` is used [heavily] within virtual machines and various cloud solutions.
 
 An example usage:
+
 ```bash
 $ qemu-system-x86_64 ... -device rtl8139,mac=52:54:00:12:34:56,netdev=mynetdev ...
 ```
@@ -994,6 +1022,7 @@ $ qemu-system-x86_64 ... -device rtl8139,mac=52:54:00:12:34:56,netdev=mynetdev .
 > The `netdev=[name]` is very important in here. Please, refer to [Networking](#networking).
 
 To learn more about a _Network device_ use `-device [target],help`:
+
 ```bash
 $ qemu-system-x86_64 -device rtl8139,help
 
@@ -1010,7 +1039,7 @@ $ qemu-system-x86_64 -device rtl8139,help
 
 ### Storage Devices
 
-Storage devices in QEMU facilitate the storage and retrieval of data between the guest and host machine. They allow the guest machine to access and manage storage resources (like a real-world storage device). 
+Storage devices in QEMU facilitate the storage and retrieval of data between the guest and host machine. They allow the guest machine to access and manage storage resources (like a real-world storage device).
 
 Here are some of the most commonly used storage devices in QEMU:
 
@@ -1033,16 +1062,18 @@ Assume that I have a disk image called `disk0.qcow2`. I have two options to expo
 - **Using only `-drive`:** The simplest way. Just do `... -drive file=disk0.qcow2,format=qcow2,if=virtio`
 - **Using both `-device` and `-drive`:** The more _controlled way_. Do `-device virtio-blk,drive=mydrive` and `-drive file=disk0.qcow2,format=qcow2,id=mydrive`
 
-As you can see I can use `-device` to add a _Storage device_ and ADDITIONALLY use `-drive` to expose my disk image using the **drive** identifier. However, I can choose NOT to use `-device` and simply use `-drive` by specifying the `if=[target]`. With QEMU, you are free to choose whichever you want! 
+As you can see I can use `-device` to add a _Storage device_ and ADDITIONALLY use `-drive` to expose my disk image using the **drive** identifier. However, I can choose NOT to use `-device` and simply use `-drive` by specifying the `if=[target]`. With QEMU, you are free to choose whichever you want!
 
 > In other words, `-device` specifies the device model rather than directly exposing a disk image.
 
 An example usage:
+
 ```bash
 $ qemu-system-x86_64 ... -device nvme,drive=my-ubuntu-drive ...
 ```
 
 To learn more about a _Storage device_ use `-device [target],help`:
+
 ```bash
 $ qemu-system-x86_64 -device virtio-blk,help
 
@@ -1058,7 +1089,7 @@ $ qemu-system-x86_64 -device virtio-blk,help
 
 ### Display Devices
 
-Display devices in QEMU handle the graphical output of the guest machine. When configured with a _display device_, a window is shown on the host machine. Thru that window, the guest machine can display graphics, _and if possible_, accept inputs such as mouse clicks and touch inputs. 
+Display devices in QEMU handle the graphical output of the guest machine. When configured with a _display device_, a window is shown on the host machine. Thru that window, the guest machine can display graphics, _and if possible_, accept inputs such as mouse clicks and touch inputs.
 
 > QEMU makes use of host's windowing system when displaying GUI elements. `Win32` on Windows[^60], `AppKit` on macOS[^61] and `GTK` on GNU/Linux[^62].
 
@@ -1073,18 +1104,20 @@ Here's some of the most commonly used _Displays_:
 - `virtio-vga`: A virtual VGA display device using the `VirtIO` specification.
 - `virtio-gpu`: A virtual GPU display device using the `VirtIO` specification. Similar to `virtio-vga`.
 - `qxl-vga`: Emulates a QXL VGA display. Provides accelerated graphics capabilities for virtual machines. Good for Windows.
-- `ramfb`: Emulates a framebuffer device backed by host RAM. Provides a simple display output. 
+- `ramfb`: Emulates a framebuffer device backed by host RAM. Provides a simple display output.
 
 Most of the time you will be fine using the default _display device_, `qxl-vga`. If your intention is to use QEMU to do some 'heavy' GPU stuff (DirectX, Vulkan, Tensor), just don't. That's why other emulation/virtualization services exist (e.g. [Parallels](https://www.parallels.com), [Crossover](https://www.codeweavers.com/crossover),[VMWare Workstation](https://www.vmware.com/products/workstation-pro.html)). Maybe in the future QEMU will be mature enough for this type of stuff.
 
 > There are some amazing people out there working on 3D acceleration and decent GPU support to QEMU. I highly suggest you to check them out! [Mesa3D VirGL](https://docs.mesa3d.org/drivers/virgl.html), [ArchLinux Guest Graphics Acceleration](https://wiki.archlinux.org/title/QEMU/Guest_graphics_acceleration), [Kraxel Display Devices in QEMU](https://www.kraxel.org/blog/2019/09/display-devices-in-qemu/)
 
 An example usage:
+
 ```bash
 $ qemu-system-x86_64 ... -device virtio-gpu,xres=1920,yres=1080 ...
 ```
 
 To learn more about a _Display device_ use `-device [target],help`:
+
 ```bash
 $ qemu-system-x86_64 -device virtio-gpu,help
 
@@ -1122,11 +1155,13 @@ Although, there seems to be many options to choose from, you rarely use anything
 > My recommendation is to just use `intel-hda` AND `hda-duplex`, unless you want to develop/test something else. Most guest OS's has `hda` drivers out-of-box (e.g. Windows, GNU/Linux).[^66]
 
 An example usage:
+
 ```bash
 $ qemu-system-x86_64 ... -device intel-hda -device hda-duplex ...
 ```
 
 To learn more about a _Sound device_ use `-device [target],help`:
+
 ```bash
 $ qemu-system-x86_64 -device hda-duplex,help
 
@@ -1147,7 +1182,7 @@ So far, we have seen some USB devices such as `usb-kbd`, `usb-storage` or `usb-a
 
 - `usb-host`: Allows you to **pass through** a USB device connected from host to guest. [^68]
 - `usb-hub`: Emulates a generic USB hub with multiple USB ports. [^69]
-- `nec-usb-xchi`:  Emulates an NEC USB eXtensible Host Controller Interface (xHCI) controller. Supports USB 3.0. [^70][^71]
+- `nec-usb-xchi`: Emulates an NEC USB eXtensible Host Controller Interface (xHCI) controller. Supports USB 3.0. [^70][^71]
 - `usb-ehci`: Emulates a USB 2.0 Enhanced Host Controller Interface (EHCI) controller. [^72]
 - `usb-storage`: Represents a USB storage device (e.g. flash drive, external hard drive).
 - `usb-mtp`: Emulates a USB Media Transfer Protocol (MTP) device. [^73]
@@ -1165,11 +1200,13 @@ As you can see, there are many USB device that QEMU can emulate. It is pretty am
 > You can learn more about it here on [KVM - Assigning Host USB to Guest VM](https://www.linux-kvm.org/page/USB_Host_Device_Assigned_to_Guest)
 
 An example usage:
+
 ```bash
 $ qemu-system-x86_64 ... -device usb-host,hostbus=3,hostport=10 ...
 ```
 
 To learn more about an _USB device_ use `-device [target],help`:
+
 ```bash
 $ qemu-system-x86_64 -device usb-hub,help
 
@@ -1192,7 +1229,7 @@ These 'programs' are generally stored on a machine's Read-only Memory (ROM). The
 
 > BIOS and UEFI are two different firmware that tries to solve the same problems.
 
-QEMU, _by default_, uses a BIOS called [SeaBios](https://en.wikipedia.org/wiki/SeaBIOS). It is a pretty good option and most can be used with most bootloaders.[^79] And naturally, every guest machine is loaded with the `SeaBios` and you don't have to do anything. However, you might want, _or need_,  to use UEFI instead.
+QEMU, _by default_, uses a BIOS called [SeaBios](https://en.wikipedia.org/wiki/SeaBIOS). It is a pretty good option and most can be used with most bootloaders.[^79] And naturally, every guest machine is loaded with the `SeaBios` and you don't have to do anything. However, you might want, _or need_, to use UEFI instead.
 
 > UEFI is the modern replacement of BIOS. And naturally, we want to use UEFI whenever possible;)
 
@@ -1235,6 +1272,7 @@ To enable UEFI on a QEMU machine we have to provide two things: `UEFI firmware` 
 **Step 1 - Providing the UEFI firmware itself**
 
 This is as easy as adding a `-drive` to your guest machine. The important thing here is the `-drive` is of type `pflash` and is read-only.
+
 ```bash
 $ qemu-system-aarch64 ... -drive if=pflash,format=raw,readonly=on,file=${EFI_FLASH_PATH} ...
 
@@ -1248,18 +1286,21 @@ The UEFI firmware itself is readonly. We can do some configurations on it like t
 The UEFI variables is nothing special. It is a basic image with a _very-specific_ size of 64MiB. So, we need to create a raw image!
 
 Create a raw image with size 64MiB (_Windows users can skip this_):
+
 ```bash
 $ dd if=/dev/zero of=efi-vars.raw bs=1M count=64
 ```
 
 Windows users can just retrieve it from the QEMU installation directory:
+
 ```powershell
 $ ls 'C:\Progam Files\qemu\share\edk2-arm-vars.fd'
 
-# Replace 'arm' with 'i386' if your guest machine is x86_64 
+# Replace 'arm' with 'i386' if your guest machine is x86_64
 ```
 
 Now, provide the UEFI variables image:
+
 ```bash
 $ qemu-system-aarch64 ... -drive if=pflash,format=raw,file=${EFI_VARS_PATH} ...
 
@@ -1272,7 +1313,7 @@ Your guest machine should now boot with the UEFI firmware. To test it, just laun
 
 # Networking
 
-QEMU provides a _very_ flexible networking infrastructure that allows you to configure various modes (e.,g. `Shared`, `Bridged`) and options for networking between the guest and the host machine.[^82] Generally, you will be creating your own **V**irtual **L**ocal **A**rea **N**etworks (VLANs).[^83] 
+QEMU provides a _very_ flexible networking infrastructure that allows you to configure various modes (e.,g. `Shared`, `Bridged`) and options for networking between the guest and the host machine.[^82] Generally, you will be creating your own **V**irtual **L**ocal **A**rea **N**etworks (VLANs).[^83]
 
 > Networking in QEMU, might seem scary but don't worry, it is fairly easy to do so when you learn the basics. Most of the 'complex' stuff will be abstracted from you.
 
@@ -1282,9 +1323,10 @@ The networking in QEMU can be categorized into two parts `front end` and `back e
 
 ## Front End
 
-This part represents the virtual network device that is provided to the guest using the `-device` option (e.g. `Emulated NIC`, `virtio-net`). Please refer to [Network Devices](#network-devices) for more information on this. 
+This part represents the virtual network device that is provided to the guest using the `-device` option (e.g. `Emulated NIC`, `virtio-net`). Please refer to [Network Devices](#network-devices) for more information on this.
 
 Usage (as a reminder):
+
 ```bash
 $ qemu-system-x86_64 ... -device rtl8139,mac=52:54:00:12:34:56,netdev=mynetdev ...
 ```
@@ -1300,6 +1342,7 @@ On the other hand, back end represents the **network backend** that interacts wi
 To configure the back end, we use the `-netdev` option followed by the TYPE of the network backend and its parameters.
 
 Defining a back end:
+
 ```bash
 $ qemu-system-x86_64 ... -netdev type=[TYPE],id=[NAME],...
 ```
@@ -1312,7 +1355,7 @@ The user-mode networking, is the default networking back end and is the easiest 
 
 > Shameless plug: [More [ELI5] information on NAT](https://medium.com/@tunacici7/linux-networking-eli5-part-1-networks-interfaces-b912826d699b)
 
-Most of the time it is enough to just use `user`. It is enabled by default and you don't have to do many configurations to use it.[^88] However, according to the official [QEMU documentations](https://wiki.qemu.org/Documentation/Networking#User_Networking_(SLIRP)), it has the following limitations:
+Most of the time it is enough to just use `user`. It is enabled by default and you don't have to do many configurations to use it.[^88] However, according to the official [QEMU documentations](<https://wiki.qemu.org/Documentation/Networking#User_Networking_(SLIRP)>), it has the following limitations:
 
 - there is a lot of overhead so the performance is poor
 - in general, ICMP traffic does not work (so you cannot use ping within a guest)
@@ -1333,25 +1376,28 @@ TAP network overcomes all of the limitations of user-mode networking, but requir
 Here are some of the most used network modes that can be configured in QEMU.[^91]
 
 ### Shared Network (Default)
+
 In the shared network mode, the back end acts as a Network Addres Translation (NAT) gateway between the guest machine and the external network.[^92] The back end network assigns private IP addresses to the guest machines and performs the translation of network traffic between the guest and the external network (e.g. the Internet).[^93]
 
 To create a shared network using `-netdev`:
+
 ```bash
 $ -netdev type=user,id=my-shrd-net
 ```
 
 You can then, connect it to your front end `-device`:
+
 ```bash
 $ qemu-system-aarch64 -netdev type=user,id=my-shrd-net -device virtio-net-device,netdev=my-shrd-net ...
 ```
 
-> This is the _default_ network mode in QEMU. It is the easiest to use and it basically _Just Works_™.
+> This is the _default_ network mode in QEMU. It is the easiest to use and it basically *Just Works*™.
 
 ### Bridged
 
 In the bridged network mode, the back end is connected directly to the host's physical network interface (e.g. `eth0`). This allows the guest machine to appear as a separate node on the network (e.g. your home network), with its own IP address assigned by the router's DHCP server. The guest can communicate with other nodes on the network and can be accessed by other devices.[^94]
 
-> **Warning (_from [ArchLinux Wiki](https://wiki.archlinux.org/title/QEMU#Tap_networking_with_QEMU)_):** If you bridge together a guest [network] device and some host interface, such as `eth0`, your machines will appear directly on the external network, which will expose them to possible attack. ... a better solution might be to use [Host Only](#host-only) networking mode and set up NAT. 
+> **Warning (_from [ArchLinux Wiki](https://wiki.archlinux.org/title/QEMU#Tap_networking_with_QEMU)_):** If you bridge together a guest [network] device and some host interface, such as `eth0`, your machines will appear directly on the external network, which will expose them to possible attack. ... a better solution might be to use [Host Only](#host-only) networking mode and set up NAT.
 
 This mode can be useful if you want:
 
@@ -1469,10 +1515,10 @@ The reasons I want you to use a **launch script** and **shell variables** is thi
 
 ```bash
 /Applications/UTM.app/Contents/XPCServices/QEMUHelper.xpc/Contents/MacOS/QEMULauncher.app/Contents/MacOS/QEMULauncher /Applications/UTM.app/Contents/Frameworks/qemu-aarch64-softmmu.framework/Versions/A/qemu-aarch64-softmmu -L /Applications/UTM.app/Contents/Resources/qemu -S -qmp tcp:127.0.0.1:4000,server,nowait -nodefaults -vga none -spice unix=on,addr=/Users/BestUserNameLeft/Library/Group Containers/WDNLXAD4W8.com.utmapp.UTM/C6D43025-8BF5-4B87-A5F5-A8155C6B9DBE.spice,disable-ticketing=on,image-compression=off,playback-compression=off,streaming-video=off,gl=off
- -device virtio-ramfb -cpu host -smp cpus=4,sockets=1,cores=4,threads=1 
- -machine virt, -accel hvf -accel tcg,thread=multi,tb-size=1536 -drive if=pflash,format=raw,unit=0,file=/Applications/UTM.app/Contents/Resources/qemu/edk2-aarch64-code.fd,readonly=on -drive if=pflash,unit=1,file=/Users/BestUserNameLeft/Library/Containers/com.utmapp.UTM/Data/Documents/Windows.utm/Images/efi_vars.fd 
- -boot menu=on -m 6144 -device intel-hda -device hda-duplex -name Windows -device nec-usb-xhci,id=usb-bus -device usb-tablet,bus=usb-bus.0 -device usb-mouse,bus=usb-bus.0 
- -device usb-kbd,bus=usb-bus.0 -device qemu-xhci,id=usb-controller-0 -chardev spicevmc,name=usbredir,id=usbredirchardev0 -device usb-redir,chardev=usbredirchardev0,id=usbredirdev0,bus=usb-controller-0.0 -chardev spicevmc,name=usbredir,id=usbredirchardev1 -device usb-redir,chardev=usbredirchardev1,id=usbredirdev1,bus=usb-controller-0.0 -chardev spicevmc,name=usbredir,id=usbredirchardev2 -device usb-redir,chardev=usbredirchardev2,id=usbredirdev2,bus=usb-controller-0.0 -device nvme,drive=drive0,serial=drive0,bootindex=0 
+ -device virtio-ramfb -cpu host -smp cpus=4,sockets=1,cores=4,threads=1
+ -machine virt, -accel hvf -accel tcg,thread=multi,tb-size=1536 -drive if=pflash,format=raw,unit=0,file=/Applications/UTM.app/Contents/Resources/qemu/edk2-aarch64-code.fd,readonly=on -drive if=pflash,unit=1,file=/Users/BestUserNameLeft/Library/Containers/com.utmapp.UTM/Data/Documents/Windows.utm/Images/efi_vars.fd
+ -boot menu=on -m 6144 -device intel-hda -device hda-duplex -name Windows -device nec-usb-xhci,id=usb-bus -device usb-tablet,bus=usb-bus.0 -device usb-mouse,bus=usb-bus.0
+ -device usb-kbd,bus=usb-bus.0 -device qemu-xhci,id=usb-controller-0 -chardev spicevmc,name=usbredir,id=usbredirchardev0 -device usb-redir,chardev=usbredirchardev0,id=usbredirdev0,bus=usb-controller-0.0 -chardev spicevmc,name=usbredir,id=usbredirchardev1 -device usb-redir,chardev=usbredirchardev1,id=usbredirdev1,bus=usb-controller-0.0 -chardev spicevmc,name=usbredir,id=usbredirchardev2 -device usb-redir,chardev=usbredirchardev2,id=usbredirdev2,bus=usb-controller-0.0 -device nvme,drive=drive0,serial=drive0,bootindex=0
  -drive if=none,media=disk,id=drive0,file=/Users/BestUserNameLeft/Library/Containers/com.utmapp.UTM/Data/Documents/Windows.utm/Images/windows-11-arm64.qcow2,discard=unmap,detect-zeroes=unmap -device usb-storage,drive=cdrom0,removable=true,bootindex=1,bus=usb-bus.0 -drive if=none,media=cdrom,id=cdrom0 -device virtio-net-pci,mac=9E:E1:25:9D:E7:99,netdev=net0 -netdev vmnet-bridged,id=net0,ifname=en0 -device virtio-serial -device virtserialport,chardev=vdagent,name=com.redhat.spice.0 -
  chardev spicevmc,id=vdagent,debug=0,name=vdagent -device virtserialport,chardev=charchannel1,id=channel1,name=org.spice-space.webdav.0 -chardev spiceport,name=org.spice-space.webdav.0,id=charchannel1 -uuid C6D43025-8BF5-4B87-A5F5-A8155C6B9DBE -rtc base=localtime -device virtio-rng-pci
 ```
@@ -1507,9 +1553,10 @@ I will be explaining how to build a very simple QEMU _ArxhLinux x86_64_ virtual 
 
 **Step 1 - Acquire an installation image**
 
-The 'best' place is Arch Linux's [Downloads](https://archlinux.org/download/) page. 
+The 'best' place is Arch Linux's [Downloads](https://archlinux.org/download/) page.
 
 Alternatively use `wget`:
+
 ```bash
 $ wget https://geo.mirror.pkgbuild.com/iso/2023.06.01/archlinux-2023.06.01-x86_64.iso
 ```
@@ -1538,6 +1585,7 @@ Here are the basic machine specs I have decided to use:
 To simplify things I am gonna define some path variables. The `EFI_FLASH_PATH` and `EFI_VARS_PATH` are your UEFI firmware and variables files. (e.g. `/usr/share/edk2-ovmf/x64/QEMU.fd`). The `ISO_PATH` is the installation image you acquired from _Step 1_. And the `DISK_PATH` is the disk image that you create using `qemu-img`. Don't forget define these variables before running the command below.
 
 Run the following command (append `-nographic` if you want no display):
+
 ```bash
 $ qemu-system-x86_64 -machine q35 -cpu host -smp 2 -accel kvm -m 4G -drive if=pflash,format=raw,readonly=on,file=${EFI_FLASH_PATH} -drive if=pflash,format=raw,file=${EFI_VARS_PATH} -device usb-ehci -device usb-kbd -device usb-mouse -device virtio-net-device,netdev=net0 -netdev user,id=net0 -device nvme,drive=hd0,serial=super-fast-boi -device virtio-gpu,xres=1280,yres=720 -device intel-hda -drive id=cd0,media=cdrom,file=${ISO_PATH} -drive id=hd0,if=none,format=qcow2,file=${DISK_PATH}
 ```
@@ -1556,18 +1604,17 @@ To fix this refer to [Hardware Acceleration (Optional)](#hardware-acceleration-o
 
 **Common Problem 2:** UEFI Shell Appears Instead of the OS/Bootloader
 
-When you first launch a QEMU machine with `EDK2` your firmware settings might be incorrect. This can result in a _boot order_ that you might not want (e.g. OS/Bootloader not launching). To correctly setup your UEFI firmware settings **Press `ESC`** during the first boot screen (a.k.a TianaCore screen). OR **Type `exit`** to the UEFI shell if you are using the `-nographic` option. 
+When you first launch a QEMU machine with `EDK2` your firmware settings might be incorrect. This can result in a _boot order_ that you might not want (e.g. OS/Bootloader not launching). To correctly setup your UEFI firmware settings **Press `ESC`** during the first boot screen (a.k.a TianaCore screen). OR **Type `exit`** to the UEFI shell if you are using the `-nographic` option.
 
 ![UEFI Shell](/Media/uefi_shell.png)
 
-On the _UEFI firmware settings_ screen you can customize your boot order OR simply launch a drive. Feel free to explore the settings, you might find something useful to you. 
+On the _UEFI firmware settings_ screen you can customize your boot order OR simply launch a drive. Feel free to explore the settings, you might find something useful to you.
 
 # Example VM-2: macOS
 
 Creating a QEMU _macOS_ guest machine is a bit tricky. I am nowhere near smrat enough to achieve it. There are also legal considirations as Apple VM's are only supported on Parallels and XCode Virtual Machines. So, I won't be personally explaining how to do that here. Although, it is very much possible to do so.
 
 Check out [Dhiru Kholia's amazing GitHub repository](https://github.com/kholia/OSX-KVM) on how to run _macOS_ on QEMU with KVM. It is an interesting work.
-
 
 [^1]: https://www.qemu.org/docs/master/about/index.html
 [^2]: https://en.wikipedia.org/wiki/Fabrice_Bellard
