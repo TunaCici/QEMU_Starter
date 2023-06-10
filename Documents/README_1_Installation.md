@@ -19,7 +19,7 @@ Here is the list of common QEMU binaries/packages [^24]:
 - **qemu-system-x86_64** [^26]: Full system emulator for the x86_64 architecture.
 - **qemu-system-aarch64** [^27]: Full system emulator for the aarch64 architecture.
 - **qemu-x86_64** [^28]: User-mode emulator for the x86_64 architecture.
-- **qemu-arm** [^28:]: User-mode emulator for the ARM architecture.
+- **qemu-arm** [^28]: User-mode emulator for the ARM architecture.
 - **qemu-nbd** [^30]: Network block device driver for QEMU.
 - **qemu-kvm** [^31]: Linux hypervisor that allows QEMU to run virtual machines with full hardware acceleration.
 - **qemu-storage-daemon** [^32]: Daemon/service that provides storage services to QEMU guests.
