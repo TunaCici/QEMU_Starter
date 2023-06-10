@@ -1494,7 +1494,7 @@ QEMU defines some shortcuts for you to control the guest machine. Here are some 
 
 ArxhLinux is a simple and lightweight Linux distribution which follows a rolling release-model for it's packages.[^TODO:https://wiki.archlinux.org/title/Arch_Linux]. The official wiki has an amazing [Installation guide](https://wiki.archlinux.org/title/Installation_guide) that I suggest anyone who is interested to at least check out.
 
-I will be explaining how to build a very simple QEMU virtual machine with _ArxhLinux_ on my ArchLinux host machine. This is not a through step-by-step tutorial and you can just deviate anytime you want.
+I will be explaining how to build a very simple QEMU _ArxhLinux_ virtual machine with on my ArchLinux host machine (/w `Intel i5 6600K`). This is not a through step-by-step tutorial and you can just deviate anytime you want.
 
 > This machine can be found at [`/Machines`](https://github.com/TunaCici/QEMU_Starter/tree/main/Machines) as a basic shell script.
 
@@ -1511,7 +1511,7 @@ $ wget https://geo.mirror.pkgbuild.com/iso/2023.06.01/archlinux-2023.06.01-x86_6
 
 Here are the basic machine specs I have decided to use:
 
-- Machine: `virt`
+- Machine: `q35`
 - CPU: `host`
 - vCORE: `2`
 - Accelerator: `KVM`
@@ -1532,14 +1532,26 @@ To simplify things I am gonna define some path variables. The `EFI_FLASH_PATH` a
 
 Run the following command (append `-nographic` if you want no display):
 ```bash
-$ qemu-system-x86_64 -machine virt -cpu host -smp 2 -accel kvm -m 4G -drive if=pflash,format=raw,readonly=on,file=${EFI_FLASH_PATH} -drive if=pflash,format=raw,file=${EFI_VARS_PATH} -device usb-ehci -device usb-kbd -device usb-mouse -device virtio-net-device,netdev=net0 -netdev user,id=net0 -device nvme,drive=hd0,serial=super-fast-boi -device virtio-gpu,xres=1280,yres=720 -device intel-hda -drive id=cd0,media=cdrom,file=${ISO_PATH} -drive id=hd0,if=none,format=qcow2,file=${DISK_PATH}
+$ qemu-system-x86_64 -machine q35 -cpu host -smp 2 -accel kvm -m 4G -drive if=pflash,format=raw,readonly=on,file=${EFI_FLASH_PATH} -drive if=pflash,format=raw,file=${EFI_VARS_PATH} -device usb-ehci -device usb-kbd -device usb-mouse -device virtio-net-device,netdev=net0 -netdev user,id=net0 -device nvme,drive=hd0,serial=super-fast-boi -device virtio-gpu,xres=1280,yres=720 -device intel-hda -drive id=cd0,media=cdrom,file=${ISO_PATH} -drive id=hd0,if=none,format=qcow2,file=${DISK_PATH}
 ```
 
-![ArchLinux Starting]()
+![ArchLinux Starting](/Media/arch_grub_screen.png)
 
-**Common Problem: UEFI Shell Appears Instead of the OS/Bootloader**
+**Common Problem 1:** Could not access KVM kernel module: No such file or directory
+
+This error eccours when your host machine does not have the KVM kernel module loaded. There are copule of reasons for that:
+
+- a) The Linux kernel is not built with KVM.
+- b) `Intel VT-x` or `AMD-V` is not enabled in the UEFI settings.
+- c) Your CPU does not supports hardware virtualization.
+
+To fix this refer to [Hardware Acceleration (Optional)](#hardware-acceleration-optional). Or si
+
+**Common Problem 2:** UEFI Shell Appears Instead of the OS/Bootloader
 
 When you first launch a QEMU machine with `EDK2` your firmware settings might be incorrect. This can result in a _boot order_ that you might not want (e.g. OS/Bootloader not launching). To correctly setup your UEFI firmware settings **Press `ESC`** during the first boot screen (a.k.a TianaCore screen). OR **Type `exit`** to the UEFI shell if you are using the `-nographic` option. 
+
+![UEFI Shell](/Media/uefi_shell.png)
 
 On the _UEFI firmware settings_ screen you can customize your boot order OR simply launch a drive. Feel free to explore the settings, you might find something useful to you. 
 
