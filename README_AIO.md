@@ -1,6 +1,6 @@
 # Motivation
 
-You might expect that with the _invention_ of the internet, the access to the information has became extremely easy. Although, it is true that we have _overwhelming_ amount of information available, the ease of access to them is still _pretty bad_.[^99] This is particularly evident when it comes to technical documentation for _complex software systems_ like QEMU. [^100]
+You might expect that with the _invention_ of the internet, access to information would be extremely easy. However, while it is true that we have an _overwhelming_ amount of information available, the ease of access to it is still _quite poor_.[^99] This is particularly evident when it comes to technical documentation for _complex software systems_ like QEMU. [^100]
 
 The information from the official QEMU documentation and communities like Stack OverFlow is pretty fragmented and _somewhat lacking. It is very hard for someone to just \_search for something_ and find the answers. They might have to go through bajillion different pages in order to find what they are looking for. This can be extremely frustrating for the newcomers. I, _for one_ felt this way and wanted to change this by combining all of them here to help others like me. Some might even call this a _guide_ or simply a _pseudo-wiki_.
 
