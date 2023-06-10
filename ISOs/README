@@ -9,23 +9,29 @@
 # NOTE: Just use your favorite search engine... or,
 
 #
-# For official Windows 10/11 images
+# For Windows 10/11 images
 #
-# URL: https://www.microsoft.com/software-download/windows10
-# URL: https://www.microsoft.com/software-download/windows11
-# URL: https://uupdump.net
-#
-
-#
-# For safe ArchLinux images 
-#
-# URL: https://archlinux.org/download
-# URL: https://archboot.com
+# URL (official): https://www.microsoft.com/software-download/windows10
+# URL (official): https://www.microsoft.com/software-download/windows11
+# URL (alt.): https://uupdump.net
 #
 
 #
-# For official Debian/Ubuntu images
+# For ArchLinux images 
 #
-# URL: https://www.debian.org/distrib
-# URL: https://ubuntu.com/download
+# URL (x86_64): https://archlinux.org/download
+# URL (AARCH64): https://archboot.com
+#
+
+#
+# For Debian/Ubuntu images
+#
+# URL (main src.): https://www.debian.org/distrib
+# URL (main src.): https://ubuntu.com/download
+#
+
+#
+# For macOS images
+#
+# URL (@DhiruKholia): https://github.com/kholia/OSX-KVM
 #
