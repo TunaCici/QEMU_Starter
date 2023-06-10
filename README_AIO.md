@@ -436,7 +436,7 @@ $ qemu-system-x86_64.exe --version
 
 The most common way to install QEMU on macOS is via `brew`. The installation process is rather straightforward. Just follow the below steps.
 
-**Step 1 - Install `brew` if you don't already have it. Otherwise skip!** \
+**Step 1 - Install `brew` if you don't already have it. Otherwise skip!**
 
 Follow the instructions here: https://brew.sh
 
