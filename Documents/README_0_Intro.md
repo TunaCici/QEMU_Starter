@@ -98,3 +98,4 @@ QEMU supports `Full Virtualization` on almost every platform via the `Hypervisor
 [^18]: https://www.linux-kvm.org/page/Main_Page
 [^19]: https://developer.apple.com/documentation/hypervisor
 [^20]: https://en.wikipedia.org/wiki/Hyper-V
+[^81]: https://mac.getutm.app
