@@ -1492,9 +1492,9 @@ QEMU defines some shortcuts for you to control the guest machine. Here are some 
 
 # Example VM-1: ArchLinux
 
-ArxhLinux is a simple and lightweight Linux distribution which follows a rolling release-model for it's packages.[^TODO:https://wiki.archlinux.org/title/Arch_Linux]. The official wiki has an amazing [Installation guide](https://wiki.archlinux.org/title/Installation_guide) that I suggest anyone who is interested to at least check out.
+ArxhLinux is a simple and lightweight Linux distribution which follows a rolling release-model for it's packages.[^95]. The official wiki has an amazing [Installation guide](https://wiki.archlinux.org/title/Installation_guide) that I suggest anyone who is interested to at least check out.
 
-I will be explaining how to build a very simple QEMU _ArxhLinux_ virtual machine with on my ArchLinux host machine (/w `Intel i5 6600K`). This is not a through step-by-step tutorial and you can just deviate anytime you want.
+I will be explaining how to build a very simple QEMU _ArxhLinux x86_64_ virtual machine with on my ArchLinux host machine (/w `Intel i5 6600K`). This is not a through step-by-step tutorial and you can just deviate anytime you want.
 
 > This machine can be found at [`/Machines`](https://github.com/TunaCici/QEMU_Starter/tree/main/Machines) as a basic shell script.
 
@@ -1555,14 +1555,11 @@ When you first launch a QEMU machine with `EDK2` your firmware settings might be
 
 On the _UEFI firmware settings_ screen you can customize your boot order OR simply launch a drive. Feel free to explore the settings, you might find something useful to you. 
 
+# Example VM-2: macOS
 
-# Example VM-2: Windows 10/11
+Creating a QEMU _macOS_ guest machine is a bit tricky. I am nowhere near smrat enough to achieve it. There are also legal considirations as Apple VM's are only supported on Parallels and XCode Virtual Machines. So, I won't be personally explaining how to do that here. Although, it is very much possible to do so.
 
-@TODO: Give an average configuration that create an example Windows machine.
-
-# Example VM-3: macOS
-
-@TODO: Directly give reference to this repo: https://github.com/kholia/OSX-KVM
+Check out [Dhiru Kholia's amazing GitHub repository](https://github.com/kholia/OSX-KVM) on how to run _macOS_ on QEMU with KVM. It is really an interesting work.
 
 
 [^1]: https://www.qemu.org/docs/master/about/index.html
@@ -1658,3 +1655,4 @@ On the _UEFI firmware settings_ screen you can customize your boot order OR simp
 [^92]: https://en.wikipedia.org/wiki/Network_address_translation
 [^93]: https://wiki.archlinux.org/title/QEMU#User-mode_networking
 [^94]: https://wiki.archlinux.org/title/QEMU#Bridged_networking_using_qemu-bridge-helper
+[^95]: https://wiki.archlinux.org/title/Arch_Linux
