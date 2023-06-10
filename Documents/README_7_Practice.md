@@ -1,4 +1,4 @@
-**Next Section** [6. Networking](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_6_Networking.md)
+**Previous Part** [6. Networking](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_6_Networking.md)
 
 # Combining it All Together
 
