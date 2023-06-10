@@ -161,7 +161,7 @@ This error eccours when your host machine does not have the KVM kernel module lo
 - b) `Intel VT-x` or `AMD-V` is not enabled in the UEFI settings.
 - c) Your CPU does not supports hardware virtualization.
 
-To fix this refer to [Hardware Acceleration (Optional)](#hardware-acceleration-optional). Or si
+To fix this refer to [Hardware Acceleration (Optional)](#hardware-acceleration-optional).
 
 **Common Problem 2:** UEFI Shell Appears Instead of the OS/Bootloader
 
