@@ -55,7 +55,7 @@ Now, enough formality. Let me start by saying: "This pseudo-wiki welcomes all ad
 Everything is split into multiple parts and each of them is isolated from each other. This way, you can just open up the one you need at that moment. The sections are full of references and links for you to follow. If you want to learn more about a specific topic, you can just open it up, explore and come back.
 
 When ready, start here: [0. Introduction](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_0_Intro.md) \
-The whole thing is also available as a single AIO file: [All-in-One](https://github.com/TunaCici/QEMU_Starter/blob/main/README_AIO.md)
+Also available as a single AIO file: [All-in-One](https://github.com/TunaCici/QEMU_Starter/blob/main/README_AIO.md)
 
 > Good luck and have fun <3
 
