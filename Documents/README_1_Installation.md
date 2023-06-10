@@ -353,6 +353,7 @@ $ qemu-system-aarch64 --version
 
 **Next Part** [2. Hello World, Tools and Binaries](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_2_HelloWorld.md)
 
+[^19]: https://developer.apple.com/documentation/hypervisor
 [^21]: https://wiki.qemu.org/Hosts/Linux
 [^22]: https://wiki.qemu.org/Hosts/W32
 [^23]: https://wiki.qemu.org/Hosts/Mac
