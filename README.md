@@ -1488,22 +1488,70 @@ QEMU defines some shortcuts for you to control the guest machine. Here are some 
 - **Toggle between guest & QEMU Monitor (`-nographic` only)** All systems: `CTRL + A` then `C`
 - **Terminate machine (`-nographic` only):** All systems: `CTRL + A` then `X`
 
-> QEMU Monitor is an amazing feature that QEMU offers. It is an advanced topic that is targated for developers. For this reasons, I won't be explaining it here. Maybe down the road I will... If you are really curious, check out the official documentation [QEMU Monitor](https://qemu-project.gitlab.io/qemu/system/monitor.html).
+> QEMU Monitor is an amazing feature that QEMU offers. It is an advanced topic that is targeted to developers. For this reasons, I won't be explaining it here. Maybe down the road I will... If you are really curious, check out the official documentation [QEMU Monitor](https://qemu-project.gitlab.io/qemu/system/monitor.html).
 
-# Example VM-1: Ubuntu 22.04
+# Example VM-1: ArchLinux
 
-@TODO: Give an average configuration that creates an example Ubuntu machine.
+ArxhLinux is a simple and lightweight Linux distribution which follows a rolling release-model for it's packages.[^TODO:https://wiki.archlinux.org/title/Arch_Linux]. The official wiki has an amazing [Installation guide](https://wiki.archlinux.org/title/Installation_guide) that I suggest anyone who is interested to at least check out.
 
-# Example VM-2: ArchLinux
+I will be explaining how to build a very simple QEMU virtual machine with _ArxhLinux_ on my ArchLinux host machine. This is not a through step-by-step tutorial and you can just deviate anytime you want.
 
-@TODO: Give an average configuration that creates an example machine that is able to boot ArchLinux.
+> This machine can be found at [`/Machines`](https://github.com/TunaCici/QEMU_Starter/tree/main/Machines) as a basic shell script.
 
-# Example VM-3: Windows 11
+**Step 1 - Acquire an installation image**
+
+The 'best' place is Arch Linux's [Downloads](https://archlinux.org/download/) page. 
+
+Alternatively use `wget`:
+```bash
+$ wget https://geo.mirror.pkgbuild.com/iso/2023.06.01/archlinux-2023.06.01-x86_64.iso
+```
+
+**Step 2 - Design a QEMU machine**
+
+Here are the basic machine specs I have decided to use:
+
+- Machine: `virt`
+- CPU: `host`
+- vCORE: `2`
+- Accelerator: `KVM`
+- Memory: `4G`
+- UEFI/BIOS: `edk2`
+- I/O: `usb-ehci, usb-kbd, usb-mouse`
+- Network (Front end): `virtio-net-device`
+- Network (Back end): `user`
+- Storage: `nvme`
+- Display: `virtio-gpu`,
+- Sound: `intel-hda` and `hda-duplex`
+- Drive-1: `cdrom` (for the installation image)
+- Drive-2: `qcow2` size of `32G` (for the `nvme` storage)
+
+**Step 3 - Launch the machine**
+
+To simplify things I am gonna define some path variables. The `EFI_FLASH_PATH` and `EFI_VARS_PATH` are your UEFI firmware and variables files. (e.g. `/usr/share/edk2-ovmf/x64/QEMU.fd`). The `ISO_PATH` is the installation image you acquired from **Step 1**. Lastly, the `DISK_PATH` is the disk image that you create using `qemu-img`.
+
+Run the following command (append `-nographic` if you want no display):
+```bash
+$ qemu-system-x86_64 -machine virt -cpu host -smp 2 -accel kvm -m 4G -drive if=pflash,format=raw,readonly=on,file=${EFI_FLASH_PATH} -drive if=pflash,format=raw,file=${EFI_VARS_PATH} -device usb-ehci -device usb-kbd -device usb-mouse -device virtio-net-device,netdev=net0 -netdev user,id=net0 -device nvme,drive=hd0,serial=super-fast-boi -device virtio-gpu,xres=1280,yres=720 -device intel-hda -drive id=cd0,media=cdrom,file=${ISO_PATH} -drive id=hd0,if=none,format=qcow2,file=${DISK_PATH}
+```
+
+![ArchLinux Starting]()
+
+**Common Problem: UEFI Shell Appears Instead of the OS/Bootloader**
+
+When you first launch a QEMU machine with `EDK2` your firmware settings might be incorrect. This can result in a _boot order_ that you might not want (e.g. OS/Bootloader not launching). To correctly setup your UEFI firmware settings **Press `ESC`** during the first boot screen (a.k.a TianaCore screen). OR **Type `exit`** to the UEFI shell if you are using the `-nographic` option. 
+
+On the _UEFI firmware settings_ screen you can customize your boot order OR simply launch a drive. Feel free to explore the settings, you might find something useful to you. 
+
+
+# Example VM-2: Windows 10/11
 
 @TODO: Give an average configuration that create an example Windows machine.
 
-https://www.reddit.com/r/qemu_kvm/comments/yuvnk9/is_there_a_way_to_run_windows_11_arm64_under/
-https://news.ycombinator.com/item?id=29576518
+# Example VM-3: macOS
+
+@TODO: Directly give reference to this repo: https://github.com/kholia/OSX-KVM
+
 
 [^1]: https://www.qemu.org/docs/master/about/index.html
 [^2]: https://en.wikipedia.org/wiki/Fabrice_Bellard
