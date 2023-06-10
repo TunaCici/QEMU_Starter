@@ -1,3 +1,5 @@
+![QEMU Starter](/Media/qemu_starter_header.png)
+
 # Motivation
 
 You might expect that with the _invention_ of the internet, the access to the information has became extremely easy. Although, it is true that we have _overwhelming_ amount of information available, the ease of access to them is still _pretty bad_.[^1] This is particularly evident when it comes to technical documentation for _complex software systems_ like QEMU. [^2]
