@@ -1,3 +1,5 @@
+**Previous Part** [0. Introduction](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_0_Intro.md)
+
 # Requirements
 
 Since QEMU is Free and Open Source, the source code can be cloned and built on any machine and platform. You can `manually` choose to do that. But since that is more advanced [and not suitable for beginner] we won't do it. Instead, we'll focus on pre-built `binary` packages.
@@ -7,7 +9,7 @@ Since QEMU is Free and Open Source, the source code can be cloned and built on a
 
 The most commonly used platforms (`GNU/Linux`, `Windows` and `macOS`) have pre-built binary packages that we can use to `automatically` install QEMU.
 
-## Main Packages
+# Main Packages
 
 There are many binaries that QEMU provides for us. Only the most used/popular will be explained in this guide. More of them can be added in the future, and you are free to contribute;)
 
@@ -25,7 +27,7 @@ Here is the list of common QEMU binaries/packages [^24]:
 
 > The availability of the binaries/packages listed above can vary from platform to platform but they generally don't effect how QEMU is installed and used >.<
 
-## Hardware Acceleration (Optional)
+# Hardware Acceleration (Optional)
 
 By default, QEMU emulates everything and that includes the CPU. Emulating a CPU is extremely hard and brings lots of overheads ([tho it's a fascinating thing!](http://www.emulator101.com/a-quick-introduction-to-a-cpu.html)). The emulated machine is, naturally, slow and becomes unpractical to use.
 
@@ -43,7 +45,7 @@ Intel calls their `Intel VT-x` [^34], AMD calls `AMD-V` [^35] and Apple calls `n
 > **In Windows 10/11**: Launch `Task Manager` and check out the CPU section. [^38] \
 > **In macOS (Apple Silicon | Intel)**: Enabled by default! 💚
 
-### GNU/Linux (KVM)
+## GNU/Linux (KVM)
 
 **K**ernel-based **V**irtual **M**achine (KVM) is the `Hypervisor` used in GNU/Linux platforms. [^18] Your Linux kernel needs to be built with KVM module. Most distros include KVM, so you probably need not to worry about it.
 
@@ -71,7 +73,7 @@ $ sudo kvm-ok
 💚 If the above commands **worked** then congrats your Linux kernel has KVM installed! 💚 \
 🔴 If you ran into any **problems**, check out [ArchLinux Wiki KVM](https://wiki.archlinux.org/title/KVM). You probably need to switch to another kernel built with KVM. 🔴
 
-### Windows 10/11 (Hypervisor-V)
+## Windows 10/11 (Hypervisor-V)
 
 **V**iridian, Hypervisor-V, is the `Hypervisor` used in Windows 10/11 platforms. [^20]. By default, it is probably disabled on your system. Follow the steps below to **install/enable** it.
 
@@ -348,6 +350,8 @@ $ qemu-system-aarch64 --version
 
 💚 If the above commands **worked** then congrats, you successfully installed QEMU! 💚 \
 🔴 If you ran into any **problems** feel free to contact me or create an issue. 🔴
+
+**Next Part** [2. Hello World, Tools and Binaries](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_2_HelloWorld.md)
 
 [^21]: https://wiki.qemu.org/Hosts/Linux
 [^22]: https://wiki.qemu.org/Hosts/W32

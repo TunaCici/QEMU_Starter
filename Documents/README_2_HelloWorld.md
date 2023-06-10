@@ -1,3 +1,5 @@
+**Previous Part** [1. Hardware Acceleration, Requirements & Installation](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_1_Installation.md)
+
 # Hello World
 
 Generally you want to launch a QEMU machine with an operating system like ArchLinux. But, before doing that, we need to learn a bit more. Be patient we will get there! For now, let's run a simple "Hello World" QEMU machine by launching a Linux kernel image.
@@ -216,6 +218,8 @@ All of the things in this pseudo-wiki applies to both `qemu-system-aarch64` and 
 > I will make use of both of them throughout this entire pseudo-wiki. But, feel free to use whichever one you prefer!
 
 If you're feeling ready for the main event, let's begin!
+
+**Next Part** [3. Configurations, Machines CPUs and more](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_3_Basics.md)
 
 [^41]: https://en.wikibooks.org/wiki/QEMU/Monitor
 [^42]: https://qemu.readthedocs.io/en/latest/tools/qemu-img.html

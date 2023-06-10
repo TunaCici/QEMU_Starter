@@ -76,6 +76,8 @@ QEMU supports `Full Virtualization` on almost every platform via the `Hypervisor
 
 > Shameless Plug: [Additional [ELI5] Info on Emulation/Virtualization](https://medium.com/@tunacici7/virtualization-vs-emulation-4ab2afdb1b90)
 
+**Next Part** [1. Hardware Acceleration, Requirements & Installation](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_1_Installation.md)
+
 [^1]: https://www.qemu.org/docs/master/about/index.html
 [^2]: https://en.wikipedia.org/wiki/Fabrice_Bellard
 [^3]: https://en.wikipedia.org/wiki/QEMU#Accelerator

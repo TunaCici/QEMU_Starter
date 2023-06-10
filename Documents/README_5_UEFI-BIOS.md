@@ -1,4 +1,6 @@
-## BIOS & UEFI
+**Previous Section** [4. Devices, VirtIO and more](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_4_Devices.md)
+
+# BIOS & UEFI
 
 **B**asic **I**nput/**O**utput **S**ystem (BIOS) and **U**nifed **E**xtensiable **F**irmware **I**nterface (UEFI) are essential components that provide the necessary initialization process for machines.[^76][^77] They are basically the 'first' program that loads when a machine powers up.
 
@@ -10,7 +12,7 @@ QEMU, _by default_, uses a BIOS called [SeaBios](https://en.wikipedia.org/wiki/S
 
 > UEFI is the modern replacement of BIOS. And naturally, we want to use UEFI whenever possible;)
 
-### OVMF
+## OVMF
 
 **O**pen **V**irtual **M**achine **F**irmware, `OVMF`, is an EDK II based project to enable UEFI support for Virtual Machines. `OVMF` contains sample UEFI firmware for QEMU and KVM. [^80]. It is an amazing project with amazing people behind it! I won't talk about it here for obvious reasons. If you want to learn more visit their GitHub repository [OVMF - FAQ](https://github.com/tianocore/tianocore.github.io/wiki/OVMF-FAQ)
 
@@ -40,7 +42,7 @@ Comes pre-installed with `Homebrew`.
 
 Each CPU architecture (e.g. aarch64, x86_64) has different `OVMF` firmware. You can see which ones are installed on your system by checking their file locations. Their locations can be found under this repositorie's `/Firmwares` folder. Access it here [Firmwares](https://github.com/TunaCici/QEMU_Starter/tree/main/Firmwares)
 
-### UEFI on QEMU
+## UEFI on QEMU
 
 To enable UEFI on a QEMU machine we have to provide two things: `UEFI firmware` and `UEFI variables`. In this section I will explain how to do that, but you should know that most of the stuff here is taken from Joonas's article on [UEFI, PC boot process and UEFI with QEMU](https://joonas.fi/2021/02/uefi-pc-boot-process-and-uefi-with-qemu/) and [Arch Linux Wiki](https://wiki.archlinux.org/title/QEMU#Booting_in_UEFI_mode).
 
@@ -87,6 +89,8 @@ $ qemu-system-aarch64 ... -drive if=pflash,format=raw,file=${EFI_VARS_PATH} ...
 **Step 3 - Enjoy the UEFI (Optional) 💚**
 
 Your guest machine should now boot with the UEFI firmware. To test it, just launch your machine and check if **TianaCore** appears on the boot screen.
+
+**Next Section** [6. Networking](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_6_Networking.md)
 
 [^76]: https://en.wikipedia.org/wiki/BIOS
 [^77]: https://en.wikipedia.org/wiki/UEFI

@@ -1,3 +1,5 @@
+**Next Section** [6. Networking](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_6_Networking.md)
+
 # Combining it All Together
 
 It might be challenging to digest all that QEMU has to offer.. Don't be scared [of it]. The more you use it, the more comfortable you'll feel. Know that the information that we've gone though is A LOT. Pat yourself in the back if you have made this far! Take your time and familiarize yourself with QEMU. And when you fell ready, continue reading.
@@ -171,8 +173,9 @@ On the _UEFI firmware settings_ screen you can customize your boot order OR simp
 
 # Example VM-2: macOS
 
-Creating a QEMU _macOS_ guest machine is a bit tricky. I am nowhere near smrat enough to achieve it. There are also legal considirations as Apple VM's are only supported on Parallels and XCode Virtual Machines. So, I won't be personally explaining how to do that here. Although, it is very much possible to do so.
+Creating a QEMU _macOS_ guest machine is a bit tricky. I am nowhere near smrat enough to achieve it. There are also legal considirations as Apple VM's are only supported on Parallels and XCode Virtual Machines.[^96] So, I won't be personally explaining how to do that here. Although, it is very much possible to do so.
 
 Check out [Dhiru Kholia's amazing GitHub repository](https://github.com/kholia/OSX-KVM) on how to run _macOS_ on QEMU with KVM. It is an interesting work.
 
 [^95]: https://wiki.archlinux.org/title/Arch_Linux
+[^96]: https://developer.apple.com/documentation/virtualization/running_macos_in_a_virtual_machine_on_apple_silicon

@@ -1,3 +1,5 @@
+**Previous Part** [2. Hello World, Tools and Binaries](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_2_HelloWorld.md)
+
 # Configurations
 
 Like every machine in the real-world, every QEMU machine can be different. The CPU architecture, memory size, devices, disks, displays and so on. Each of these settings can be customized. For example, you can create a QEMU machine with `Cortex A72 CPU`, `8GiB RAM` and devices like `USB-Storage`, `Intel E1000 Network Card`, `AHCI HDD`, `UART`, `Console`... QEMU is greatly configurable. You have many devices and options to choose from!
@@ -213,6 +215,8 @@ Here's a simple usage:
 -drive file=disk0.qcow2,format=qcow2,if=virtio,index=3
 -drive file=disk1.vdi,format=vdi,if=virtio,index=4
 ```
+
+**Next Part** [4. Devices, VirtIO and more](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_4_Devices.md)
 
 [^45]: https://qemu-project.gitlab.io/qemu/system/device-emulation.html
 [^46]: https://blogs.oracle.com/linux/post/introduction-to-virtio

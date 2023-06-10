@@ -1,3 +1,5 @@
+**Previous Part** [5. UEFI, BIOS and OVMF](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_5_UEFI-BIOS.md)
+
 # Networking
 
 QEMU provides a _very_ flexible networking infrastructure that allows you to configure various modes (e.,g. `Shared`, `Bridged`) and options for networking between the guest and the host machine.[^82] Generally, you will be creating your own **V**irtual **L**ocal **A**rea **N**etworks (VLANs).[^83]
@@ -125,6 +127,8 @@ This mode can be useful if you want:
 - **isolated network environment**: Guest machine(s) does not have access to the external network (e.g. Internet).
 
 The setup is very similar to [Bridged](#bridged). Just follow the instructions there, but do NOT assign an interface to your bridge. After that, you will have host-only networking!
+
+**Next Part** [7. Combining it All Together and Practices](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_7_Practice.md)
 
 [^82]: https://kb.parallels.com/4948
 [^83]: https://en.wikipedia.org/wiki/VLAN

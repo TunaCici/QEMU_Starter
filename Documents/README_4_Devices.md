@@ -1,4 +1,6 @@
-## Devices
+**Previous Part** [3. Configurations, Machines CPUs and more](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_3_Basics.md)
+
+# Devices
 
 Usage (type `-device help` to get a list of all devices)
 
@@ -25,7 +27,7 @@ $ qemu-system-x86_64 -device sd-card,help
 >   spi=<bool>             -  (default: false)
 ```
 
-### VirtIO
+## VirtIO
 
 **Virt**ual **I**nput/**O**utput, `virtIO`, devices are special type of devices that are tailored for virtual machines. Formally, `virtIO` is not a device but a specification. [^52] The main purpose here is to simplify the virtual devices, and _naturally_ making them efficient and high-performant. There are many devices specified within `virtIO` specification. We simply call them `virtIO` devices.
 
@@ -44,7 +46,7 @@ Unlike other devices in QEMU (`Intel E1000 Network Card`), the above `virtIO` de
 
 > Each `virtIO` device deserve its own writing. I will only talk about _some_ of them here. If you want to learn more, check out the _references_ linked in the above list.
 
-### Input Devices
+## Input Devices
 
 Input devices in QEMU refer to the devices that allow users to interact with the guest machine by providing input. These devices include `keyboards`, `mouse`, and other `input peripherals`. Here's some of the most commonly used input devices.
 
@@ -83,7 +85,7 @@ $ qemu-system-x86_64 -device usb-kbd,help
 >  usb_version=<uint32>   -  (default: 2)
 ```
 
-### Network Devices
+## Network Devices
 
 Network devices in QEMU provides the guest machine with a Network Interface Controller (NIC).[^59]. These NIC devices enables the guest machine to connect to various types of networks. Refer to the [Networking](#networking) for more information on how _Networking_ is handled within QEMU.
 
@@ -120,7 +122,7 @@ $ qemu-system-x86_64 -device rtl8139,help
 >  ...
 ```
 
-### Storage Devices
+## Storage Devices
 
 Storage devices in QEMU facilitate the storage and retrieval of data between the guest and host machine. They allow the guest machine to access and manage storage resources (like a real-world storage device).
 
@@ -170,7 +172,7 @@ $ qemu-system-x86_64 -device virtio-blk,help
 >  ...
 ```
 
-### Display Devices
+## Display Devices
 
 Display devices in QEMU handle the graphical output of the guest machine. When configured with a _display device_, a window is shown on the host machine. Thru that window, the guest machine can display graphics, _and if possible_, accept inputs such as mouse clicks and touch inputs.
 
@@ -216,7 +218,7 @@ $ qemu-system-x86_64 -device virtio-gpu,help
 >  yres=<uint32>          -  (default: 800)
 ```
 
-### Sound Devices
+## Sound Devices
 
 Sound devices in QEMU handle the audio output and input of the guest machine. These are basically _Sound cards_ that you connect to the guest machine.
 By default, QEMU chooses the good-old `ac97`, which emulates the `AC'97` audio controller.[^63]
@@ -257,7 +259,7 @@ $ qemu-system-x86_64 -device hda-duplex,help
 >  use-timer=<bool>       -  (default: true)
 ```
 
-### USB Devices
+## USB Devices
 
 **U**niversel **S**erial **B**us, USB, devices in QEMU is used for all kinds of purposes. QEMU can emulate a PCI UHCI, OHCI, EHCI or XHCI USB controller.[^67] How these devices can be used is up to the guest machine.
 
@@ -303,6 +305,8 @@ $ qemu-system-x86_64 -device usb-hub,help
 >  ports=<uint32>         -  (default: 8)
 >  serial=<str>
 ```
+
+**Next Part** [5. UEFI, BIOS and OVMF](https://github.com/TunaCici/QEMU_Starter/blob/main/Documents/README_5_UEFI-BIOS.md)
 
 [^51]: https://en.wikibooks.org/wiki/QEMU/Devices
 [^52]: https://www.oasis-open.org/committees/virtio/
