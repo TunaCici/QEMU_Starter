@@ -1494,7 +1494,7 @@ QEMU defines some shortcuts for you to control the guest machine. Here are some 
 
 ArxhLinux is a simple and lightweight Linux distribution which follows a rolling release-model for it's packages.[^95]. The official wiki has an amazing [Installation guide](https://wiki.archlinux.org/title/Installation_guide) that I suggest anyone who is interested to at least check out.
 
-I will be explaining how to build a very simple QEMU _ArxhLinux x86_64_ virtual machine with on my ArchLinux host machine (/w `Intel i5 6600K`). This is not a through step-by-step tutorial and you can just deviate anytime you want.
+I will be explaining how to build a very simple QEMU _ArxhLinux x86_64_ virtual machine on my ArchLinux host machine (/w `Intel i5 6600K`). This is not a through step-by-step tutorial and you can just deviate anytime you want.
 
 > This machine can be found at [`/Machines`](https://github.com/TunaCici/QEMU_Starter/tree/main/Machines) as a basic shell script.
 
@@ -1528,7 +1528,7 @@ Here are the basic machine specs I have decided to use:
 
 **Step 3 - Launch the machine**
 
-To simplify things I am gonna define some path variables. The `EFI_FLASH_PATH` and `EFI_VARS_PATH` are your UEFI firmware and variables files. (e.g. `/usr/share/edk2-ovmf/x64/QEMU.fd`). The `ISO_PATH` is the installation image you acquired from **Step 1**. Lastly, the `DISK_PATH` is the disk image that you create using `qemu-img`.
+To simplify things I am gonna define some path variables. The `EFI_FLASH_PATH` and `EFI_VARS_PATH` are your UEFI firmware and variables files. (e.g. `/usr/share/edk2-ovmf/x64/QEMU.fd`). The `ISO_PATH` is the installation image you acquired from _Step 1_. And the `DISK_PATH` is the disk image that you create using `qemu-img`. Don't forget define these variables before running the command below.
 
 Run the following command (append `-nographic` if you want no display):
 ```bash
@@ -1559,7 +1559,7 @@ On the _UEFI firmware settings_ screen you can customize your boot order OR simp
 
 Creating a QEMU _macOS_ guest machine is a bit tricky. I am nowhere near smrat enough to achieve it. There are also legal considirations as Apple VM's are only supported on Parallels and XCode Virtual Machines. So, I won't be personally explaining how to do that here. Although, it is very much possible to do so.
 
-Check out [Dhiru Kholia's amazing GitHub repository](https://github.com/kholia/OSX-KVM) on how to run _macOS_ on QEMU with KVM. It is really an interesting work.
+Check out [Dhiru Kholia's amazing GitHub repository](https://github.com/kholia/OSX-KVM) on how to run _macOS_ on QEMU with KVM. It is a really interesting work.
 
 
 [^1]: https://www.qemu.org/docs/master/about/index.html
