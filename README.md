@@ -28,7 +28,6 @@ Now, enough formality. Let me start by saying: "This pseudo-wiki welcomes all ad
   - [Windows 10/11](#windows-1011)
   - [macOS 11+ (Big Sur)](#macos-11-big-sur)
 - [Hello World](#hello-world)
-  - [Kernel Images](#kernel-images)
 - [Tools/Binaries](#toolsbinaries)
   - [qemu-img](#qemu-img)
   - [qemu-system-x86_64](#qemu-system-x86_64)
